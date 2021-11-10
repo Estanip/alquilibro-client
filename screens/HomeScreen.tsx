@@ -1,24 +1,25 @@
 import * as React from 'react';
 
 import { StyleSheet } from 'react-native';
-import NavBar from '../components/NavBar';
 import { View, Text } from '../components/Themed';
-import { RootStackScreenProps } from '../types';
 import SearchHomeBar from '../components/SearchHomeBar';
-import { useFonts } from 'expo-font';
 import HomeCards from '../components/HomeCards';
+import UploadBook from '../components/UploadBook';
+
+import { RootTabScreenProps } from '../types';
+import { useFonts } from 'expo-font';
+
 
 const customFonts = {
     Roboto: require('../assets/fonts/Roboto-Regular.ttf')
 };
 
-export default function Home() {
+export default function Home({ navigation }: RootTabScreenProps<'Home'>) {
 
     useFonts(customFonts);
 
     return (
         <View style={styles.homeContainer}>
-            <NavBar />
             <View style={styles.titleOneContainer}>
                 <Text style={styles.titleOne}>
                     ¿Buscas un libro en especial?
@@ -30,12 +31,13 @@ export default function Home() {
                     ¿No sabés qué leer?
                 </Text>
             </View>
-            <View style={styles.titleThree}>
+            <HomeCards />
+            <View style={styles.titleThreeContainer}>
                 <Text style={styles.titleThree}>
                     ¿Querés alquilar tus libros?
                 </Text>
             </View>
-            <HomeCards />
+            <UploadBook />
         </View>
     )
 };
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: 379,
         height: 24,
-        top: 140,
+        top: '5%',
         left: 16
     },
     titleOne: {
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: 379,
         height: 24,
-        top: 292,
+        top: '25%',
         left: 16
     },
     titleTwo: {
@@ -95,8 +97,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: 379,
         height: 24,
-        top: 545,
-        lef: 20
+        top: '60%',
+        left: 20
     },
     titleThree: {
         position: 'absolute',

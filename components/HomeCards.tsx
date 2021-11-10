@@ -1,85 +1,70 @@
 import React from 'react';
-import { Card, Button, Icon } from 'react-native-elements';
-import { Image, StyleSheet } from 'react-native';
+import { ImageBackground, StyleSheet, Button, Alert } from 'react-native';
 import { View } from './Themed';
 
 export default function HomeCards() {
     return (
-        <View>
-            <Card containerStyle={styles.filterContainer}>
-                <Image
+        <View style={styles.cardsContainer}>
+            <View
+                style={styles.filterContainer}>
+                <ImageBackground
                     style={styles.img}
-                    source={require('../assets/images/alquilibro-icon.png')}
-                />
-                <Button
-                    titleStyle={styles.title}
-                    containerStyle={styles.buttonContainer}
-                    buttonStyle={styles.btn}
-                ><Card.Title>FILTROS AVANZADOS</Card.Title></Button>
-            </Card>
-            <Card containerStyle={styles.recomendedContainer}>
-                <Image
+                    source={require('../assets/images/filtros_avanzados.png')}
+                    resizeMode='contain'
+                >
+                    <View style={styles.btnContainer}>
+                        <Button
+                            color="#34495e" onPress={() => Alert.alert("Esto es un boton")}
+                            title="FILTROS AVANZADOS"
+                        ></Button>
+                    </View>
+                </ImageBackground>
+            </View>
+            <View style={styles.recomendedContainer}>
+                <ImageBackground
                     style={styles.img}
-                    source={require('../assets/images/alquilibro-icon.png')}
-                />
-                <Button
-                    titleStyle={styles.title}
-                    containerStyle={styles.buttonContainer}
-                    buttonStyle={styles.btn}
-                ><Card.Title>FILTROS AVANZADOS</Card.Title></Button>
-            </Card>
-        </View>
-
+                    source={require('../assets/images/recomendados.png')}
+                    resizeMode='contain'
+                >
+                    <View style={styles.btnContainer}>
+                        <Button
+                            color="#34495e" onPress={() => Alert.alert("Esto es un boton")}
+                            title="RECOMENDADOS"
+                        ></Button>
+                    </View>
+                </ImageBackground>
+            </View>
+        </View >
     )
 };
 
 
 const styles = StyleSheet.create({
+    cardsContainer: {
+        position: 'absolute',
+        width: '100%',
+        height: 152,
+        top: '32%'
+    },
     filterContainer: {
         position: 'absolute',
-        width: 181,
-        height: 152,
-        left: 18,
-        top: 337
+        width: '45%',
+        height: '100%',
+        left: 18
     },
     recomendedContainer: {
         position: 'absolute',
-        width: 181,
-        height: 152,
-        left: 213,
-        top: 337
+        width: '45%',
+        height: '100%',
+        left: 213
     },
     img: {
-        position: 'absolute',
-        width: 181,
-        height: 152,
+        height: '100%',
+        width: '100%'
     },
-    buttonContainer: {
+    btnContainer: {
         position: 'absolute',
-        width: 181,
-        height: 47.96,
-        top: 103.91,
-        bottom: '0.08%',
-        backgroundColor: '#CCFFBD'
-    },
-    btn: {
-        position: 'absolute',
-        width: 160,
-        height: 17,
-        top: 17.09,
-        left: 9
-    },
-    title: {
-        position: 'absolute',
-        fontFamily: 'Roboto',
-        fontStyle: 'normal',
-        fontSize: 14,
-        lineHeight: 24,
-        letterSpacing: 1.25,
-        display: 'flex',
-        alignItems: 'center',
-        textAlign: 'center',
-        textTransform: 'uppercase',
-        color: '#1C1427'
+        width: '99%',
+        top: '79%'
     }
 });

@@ -45,6 +45,7 @@ const linking: LinkingOptions<RootStackParamList> = {
           },
         },
       },
+      Oli: 'oli',
       Modal: 'modal',
       NotFound: '*',
     },
