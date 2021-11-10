@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         width: 379,
         height: 24,
         top: 140,
-        lef: 16
+        left: 16
     },
     titleOne: {
         position: 'absolute',
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         width: 379,
         height: 24,
         top: 292,
-        lef: 16
+        left: 16
     },
     titleTwo: {
         position: 'absolute',

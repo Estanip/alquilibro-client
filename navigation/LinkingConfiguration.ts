@@ -4,6 +4,23 @@
  * https://reactnavigation.org/docs/configuring-links
  */
 
+
+
+
+ 
+
+//-------------------
+//-------------------
+//No se esta usando esta configuracion 
+//-------------------
+//-------------------
+
+
+
+
+
+
+
 import { LinkingOptions } from '@react-navigation/native';
 import * as Linking from 'expo-linking';
 
@@ -13,7 +30,8 @@ const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
-      Root: {
+      Root: 'root',
+      Home: {
         screens: {
           TabOne: {
             screens: {
@@ -27,7 +45,6 @@ const linking: LinkingOptions<RootStackParamList> = {
           },
         },
       },
-      Home: 'home',
       Modal: 'modal',
       NotFound: '*',
     },
