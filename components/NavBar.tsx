@@ -1,29 +1,35 @@
 import * as React from 'react';
-import { ImageBackground, StyleSheet } from 'react-native';
-
+import { Image, StyleSheet } from 'react-native';
+import { useFonts } from 'expo-font';
 import { View, Text } from './Themed';
 
-const alqicon = { uri: '../assets/images/alquilibro-icon.png' }
+const customFonts = {
+    Roboto: require('../assets/fonts/Roboto-Regular.ttf')
+};
 
 export default function NavBar() {
+
+useFonts(customFonts);
 
     return (
 
         <View style={styles.container}>
             <View style={styles.iconContainer}>
-                <ImageBackground style={styles.alquilibroIcon} source={alqicon} >
-                </ImageBackground>
+                <View style={styles.iconImage}>
+                    <Image style={styles.alquilibroIcon} source={require('../assets/images/alquilibro-icon.png')} >
+                    </Image>
+                </View>
             </View>
             <View style={styles.textContainer}>
                 <Text style={styles.title}>Alquilibro</Text>
             </View>
             <View style={styles.shareContainer}>
-                <ImageBackground source={alqicon} >
-                </ImageBackground>
+                <Image source={require('../assets/images/alquilibro-icon.png')} >
+                </Image>
             </View>
             <View style={styles.notifyContainer}>
-                <ImageBackground source={alqicon} >
-                </ImageBackground>
+                <Image source={require('../assets/images/alquilibro-icon.png')} >
+                </Image>
             </View>
         </View>
     )
@@ -60,16 +66,26 @@ const styles = StyleSheet.create({
     },
     iconContainer: {
         position: 'absolute',
+        borderRadius: 50,
         width: 37,
         height: 37,
         left: 16,
         top: 9.5
     },
+    iconImage: {
+        position: 'absolute',
+        left: '3.89%',
+        right: '87.1%',
+        top: '16.98%',
+        bottom: '16.98%',
+        backgroundColor: '#FFFFFF'
+    },
     alquilibroIcon: {
+        position: 'absolute',
+        borderRadius: 50,
         width: 24,
         height: 25,
-        left: 22,
-        top: 15
+        left: 5
     },
     shareContainer: {
         position: 'absolute',

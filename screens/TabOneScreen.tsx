@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { StyleSheet, Pressable } from 'react-native';
+
+import { StyleSheet, Pressable, Image } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
+import NavBar from '../components/NavBar';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
-import NavBar from '../components/NavBar';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
     const onPressFunction = ()=> {
@@ -12,14 +13,13 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
     }
   return (
     <View style={styles.container}>
-      <NavBar></NavBar>
-      <Text style={styles.title}>Tab One</Text>
+      <Text style={styles.title}>Tab One</Text>    
+      <NavBar />
+      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
       <Pressable onPress={onPressFunction}>
                  <Text>LOGIN  | REGISTER</Text>
       </Pressable>
-      
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
     </View>
   );
 }
