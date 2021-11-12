@@ -21,7 +21,8 @@ import { RootStackParamList } from '../types';
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      // theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+      >
       <RootNavigator />
     </NavigationContainer>
   );
@@ -36,7 +37,19 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Login" component={LoginRegister} />
+      <Stack.Screen name="Login" component={LoginRegister} options={{
+        title: 'Alquilibro',
+        headerStyle: {
+            backgroundColor: '#7ECA9C'
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+            fontFamily: 'Roboto',
+            fontWeight: 'bold',
+            fontSize: 20,
+            color: '#1C1427'
+        }
+      }} />
       <Stack.Screen name="Main" component={BottomTabNavigator} options={{
         title: 'Alquilibro',
         headerStyle: {
