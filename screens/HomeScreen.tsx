@@ -1,24 +1,24 @@
 import * as React from 'react';
 
-import { StyleSheet } from 'react-native';
-import NavBar from '../components/NavBar';
-import { View, Text } from '../components/Themed';
-import { RootStackScreenProps } from '../types';
+import { StyleSheet, View, Text } from 'react-native';
 import SearchHomeBar from '../components/SearchHomeBar';
-import { useFonts } from 'expo-font';
 import HomeCards from '../components/HomeCards';
+import UploadBook from '../components/UploadBook';
+
+import { RootTabScreenProps } from '../types';
+import { useFonts } from 'expo-font';
+
 
 const customFonts = {
     Roboto: require('../assets/fonts/Roboto-Regular.ttf')
 };
 
-export default function Home() {
+export default function Home({ navigation }: RootTabScreenProps<'Home'>) {
 
     useFonts(customFonts);
 
     return (
         <View style={styles.homeContainer}>
-            <NavBar />
             <View style={styles.titleOneContainer}>
                 <Text style={styles.titleOne}>
                     ¿Buscas un libro en especial?
@@ -30,12 +30,13 @@ export default function Home() {
                     ¿No sabés qué leer?
                 </Text>
             </View>
-            <View style={styles.titleThree}>
+            <HomeCards />
+            <View style={styles.titleThreeContainer}>
                 <Text style={styles.titleThree}>
                     ¿Querés alquilar tus libros?
                 </Text>
             </View>
-            <HomeCards />
+            <UploadBook />
         </View>
     )
 };
@@ -43,23 +44,17 @@ export default function Home() {
 const styles = StyleSheet.create({
     homeContainer: {
         position: 'relative',
-        width: 411,
-        height: 731,
+        width: '100%',
+        height: '100%',
         backgroundColor: '#FFFFFF'
     },
     titleOneContainer: {
         position: 'absolute',
-        width: 379,
+        width: '100%',
         height: 24,
-        top: 140,
-        lef: 16
+        top: '6%'
     },
     titleOne: {
-        position: 'absolute',
-        left: '3.89%',
-        right: '3.89%',
-        top: '39.95%',
-        botton: '56.77%',
         fontFamily: 'Roboto',
         fontStyle: 'normal',
         fontWeight: 'bold',
@@ -71,45 +66,33 @@ const styles = StyleSheet.create({
     },
     titleTwoContainer: {
         position: 'absolute',
-        width: 379,
+        width: '100%',
         height: 24,
-        top: 292,
-        lef: 16
+        top: '30%'
     },
     titleTwo: {
-        position: 'absolute',
-        left: '3.89%',
-        right: '3.89%',
-        top: '39.95%',
-        botton: '56.77%',
         fontFamily: 'Roboto',
         fontStyle: 'normal',
         fontWeight: 'bold',
+        textAlign: 'center',
         fontSize: 24,
         lineHeight: 24,
-        textAlign: 'center',
         color: '#1C1427',
         letterSpacing: 0.15
     },
     titleThreeContainer: {
         position: 'absolute',
-        width: 379,
+        width: '100%',
         height: 24,
-        top: 545,
-        lef: 20
+        top: '73%'
     },
     titleThree: {
-        position: 'absolute',
-        left: '3.89%',
-        right: '3.89%',
-        top: '74.56%',
-        botton: '22.16%',
         fontFamily: 'Roboto',
         fontStyle: 'normal',
         fontWeight: 'bold',
+        textAlign: 'center',
         fontSize: 24,
         lineHeight: 24,
-        textAlign: 'center',
         color: '#1C1427',
         letterSpacing: 0.15
     }
