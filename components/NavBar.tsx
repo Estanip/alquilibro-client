@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, View, Text } from 'react-native';
 import { useFonts } from 'expo-font';
-import { View, Text } from './Themed';
 
 const customFonts = {
     Roboto: require('../assets/fonts/Roboto-Regular.ttf')

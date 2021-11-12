@@ -4,16 +4,17 @@
  *
  */
 
+import * as React from 'react';
+import BottomTabNavigator from './BottomTabNav';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
-
+import NavBar from '../constants/NavBar';
 
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
+import HomeScreen from '../screens/HomeScreen';
 import LoginRegister from '../screens/LoginRegisterScreen';
-import BottomTabNavigator from './BottomTabNav';
 
 import { RootStackParamList } from '../types';
 
@@ -36,12 +37,37 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Login" component={LoginRegister} />
-      <Stack.Screen name="Home" component={BottomTabNavigator} />
+      <Stack.Screen name="Login" component={LoginRegister} options={{
+        title: 'Alquilibro',
+        headerStyle: {
+            backgroundColor: '#7ECA9C'
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+            fontFamily: 'Roboto',
+            fontWeight: 'bold',
+            fontSize: 20,
+            color: '#1C1427'
+        }
+      }} />
+      <Stack.Screen name="Main" component={BottomTabNavigator} options={{
+        title: 'Alquilibro',
+        headerStyle: {
+            backgroundColor: '#7ECA9C'
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+            fontFamily: 'Roboto',
+            fontWeight: 'bold',
+            fontSize: 20,
+            color: '#1C1427'
+        }
+      }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
     </Stack.Navigator>
+
   );
 }
