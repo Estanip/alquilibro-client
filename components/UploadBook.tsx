@@ -1,14 +1,13 @@
-import React from 'react'
-import { Alert, Button, StyleSheet } from 'react-native'
-import { View } from './Themed'
+import React from 'react';
+import { Alert, Button, StyleSheet, View } from 'react-native';
 
 export default function UploadBook() {
     return (
         <View style={styles.btnContainer}>
             <Button
-              color="#34495e"
-              title="SUBIR LIBRO"  
-              onPress={() => Alert.alert("Esto es un boton")}          
+              color="#a9a9a9"
+              title="SUBIR LIBRO"
+              onPress={() => Alert.alert("Upload Button")}          
             />
         </View>
     )
@@ -17,14 +16,9 @@ export default function UploadBook() {
 const styles = StyleSheet.create({
     btnContainer: {
         position: 'absolute',
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: 183,
-        height: 36,
-        left: 114,
-        top: '70%',
-        backgroundColor: '#34495e'
+        width: '40%',
+        left: '30%',
+        top: '80%',
+        backgroundColor: '#a9a9a9'
     }   
 })

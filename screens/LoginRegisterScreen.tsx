@@ -16,7 +16,7 @@ const customFonts = {
 
 export default function LoginRegister({ navigation }: RootStackScreenProps<any>) {
    const onPressFunction = ()=> {
-       navigation.replace('Home')
+       navigation.replace('Main')
     }
 
     return (

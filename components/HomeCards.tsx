@@ -10,11 +10,11 @@ export default function HomeCards() {
                 <ImageBackground
                     style={styles.img}
                     source={require('../assets/images/filtros_avanzados.png')}
-                    resizeMode='contain'
+                    resizeMode='cover'
                 >
                     <View style={styles.btnContainer}>
                         <Button
-                            color="#34495e" onPress={() => Alert.alert("Esto es un boton")}
+                            color="#34495e" onPress={() => Alert.alert("Filter Button")}
                             title="FILTROS AVANZADOS"
                         ></Button>
                     </View>
@@ -24,11 +24,11 @@ export default function HomeCards() {
                 <ImageBackground
                     style={styles.img}
                     source={require('../assets/images/recomendados.png')}
-                    resizeMode='contain'
+                    resizeMode='cover'
                 >
                     <View style={styles.btnContainer}>
                         <Button
-                            color="#34495e" onPress={() => Alert.alert("Esto es un boton")}
+                            color="#a9a9a9" onPress={() => Alert.alert("Recomended Button")}
                             title="RECOMENDADOS"
                         ></Button>
                     </View>
@@ -44,19 +44,19 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: '100%',
         height: 152,
-        top: '32%'
+        top: '38%'
     },
     filterContainer: {
         position: 'absolute',
         width: '45%',
         height: '100%',
-        left: 18
+        left: '4%'
     },
     recomendedContainer: {
         position: 'absolute',
         width: '45%',
         height: '100%',
-        left: 213
+        left: '51%'
     },
     img: {
         height: '100%',
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     },
     btnContainer: {
         position: 'absolute',
-        width: '99%',
-        top: '79%'
+        width: '100%',
+        top: '80%'
     }
 });
