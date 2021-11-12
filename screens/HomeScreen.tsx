@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import { StyleSheet } from 'react-native';
-import { View, Text } from '../components/Themed';
+import { StyleSheet, View, Text } from 'react-native';
 import SearchHomeBar from '../components/SearchHomeBar';
 import HomeCards from '../components/HomeCards';
 import UploadBook from '../components/UploadBook';
@@ -45,23 +44,17 @@ export default function Home({ navigation }: RootTabScreenProps<'Home'>) {
 const styles = StyleSheet.create({
     homeContainer: {
         position: 'relative',
-        width: 411,
-        height: 731,
+        width: '100%',
+        height: '100%',
         backgroundColor: '#FFFFFF'
     },
     titleOneContainer: {
         position: 'absolute',
-        width: 379,
+        width: '100%',
         height: 24,
-        top: '5%',
-        left: 16
+        top: '6%'
     },
     titleOne: {
-        position: 'absolute',
-        left: '3.89%',
-        right: '3.89%',
-        top: '39.95%',
-        botton: '56.77%',
         fontFamily: 'Roboto',
         fontStyle: 'normal',
         fontWeight: 'bold',
@@ -73,45 +66,33 @@ const styles = StyleSheet.create({
     },
     titleTwoContainer: {
         position: 'absolute',
-        width: 379,
+        width: '100%',
         height: 24,
-        top: '25%',
-        left: 16
+        top: '30%'
     },
     titleTwo: {
-        position: 'absolute',
-        left: '3.89%',
-        right: '3.89%',
-        top: '39.95%',
-        botton: '56.77%',
         fontFamily: 'Roboto',
         fontStyle: 'normal',
         fontWeight: 'bold',
+        textAlign: 'center',
         fontSize: 24,
         lineHeight: 24,
-        textAlign: 'center',
         color: '#1C1427',
         letterSpacing: 0.15
     },
     titleThreeContainer: {
         position: 'absolute',
-        width: 379,
+        width: '100%',
         height: 24,
-        top: '60%',
-        left: 20
+        top: '73%'
     },
     titleThree: {
-        position: 'absolute',
-        left: '3.89%',
-        right: '3.89%',
-        top: '74.56%',
-        botton: '22.16%',
         fontFamily: 'Roboto',
         fontStyle: 'normal',
         fontWeight: 'bold',
+        textAlign: 'center',
         fontSize: 24,
         lineHeight: 24,
-        textAlign: 'center',
         color: '#1C1427',
         letterSpacing: 0.15
     }
