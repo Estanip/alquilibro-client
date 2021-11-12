@@ -30,7 +30,7 @@ export default function LoginRegister({
   const [secure, setSecure] = useState<boolean>(true)
 
   return (
-    <View>
+    <View style={styles.screen}>
       <View style={styles.loginContainer}>
         <ImageBackground
           source={bgLibrary}
@@ -53,6 +53,7 @@ export default function LoginRegister({
               <Text style={styles.label}>Usuario</Text>
               <TextInput style={styles.input}  placeholder="Ingresar usuario" />
             </View>
+
           </View>
 
           <View style={styles.container}>
@@ -81,10 +82,13 @@ export default function LoginRegister({
             }
             </View>
           </View>
-
           <Text style={styles.text}>
             ¿Ovidaste tu contraseña? Hacé click acá.
           </Text>
+          </View>
+           
+          <View style={styles.buttonsSection} >
+          
           <Pressable onPress={onPressFunction} style={styles.buttonIngresar}>
             <Text style={styles.buttonText}>INGRESAR</Text>
           </Pressable>
@@ -114,161 +118,167 @@ export default function LoginRegister({
 
 
 const styles = StyleSheet.create({
-  loginContainer: {
-    top: -22,
-    width: "100%",
-    height: "30%",
-    maxHeight: 264,
-    alignItems: "center",
-  },
-  bgImage: {
-    flex: 1,
-    width: "100%",
-    alignItems: "center",
-    paddingVertical: '20%',
-    justifyContent: "center",
-    backgroundColor: '#bbbbbb',
-  },
-  image: {
-    width: 84,
-    height: 84,
-  },
-  textContainer: {
-    height: "auto",
-    width: "auto",
-    justifyContent: "center",
-    backgroundColor: "transparent",
-    alignItems: "center",
-    top: "28%",
-  },
-  title: {
-    fontFamily: "Roboto",
-    fontStyle: "normal",
-    fontWeight: "700",
-    fontSize: 21,
-    lineHeight: 24,
-    letterSpacing: 0.15,
-    color: "#1C1427",
-  },
-  subTitle: {
-    fontFamily: "Roboto",
-    fontStyle: "normal",
-    fontWeight: "500",
-    fontSize: 18,
-    lineHeight: 24,
-    letterSpacing: 0.15,
-    color: "#1C1427",
-  },
-  loginArea: {
-    alignItems: "center",
-    height: "100%",
-    width: "100%",
-    backgroundColor:'#ffffff'
-  },
-  fieldsData: {
-    marginTop: "2%",
-    minHeight: 100,
-    height: "12%",
-    maxHeight: 156,
-    width: "85%",
-    maxWidth: 328,
-    alignItems: "center",
-  },
-  container: {
-    backgroundColor: "#E8E8E8",
-    width: "95%",
-    maxWidth: 328,
-    height: "50%",    
-    marginTop: 5,
-    marginBottom: 5,
-    borderRadius: 3,
-    borderBottomColor: "#000000",
-    borderBottomWidth: 3,
-    flexDirection: "row",
-    paddingHorizontal: 10,
-    paddingVertical: 7,
-  },
-  input: {
-    minWidth: "90%",
-    maxWidth: 0.9 * 328,
-    fontWeight: "400",
-    fontSize: 14,
-    lineHeight: 24,
-    letterSpacing: 0.15,
-    minHeight: 24,
-    maxHeight: "60%",
-  },
-  label: {
-    fontWeight: "400",
-    fontSize: 12,
-    lineHeight: 16,
-    letterSpacing: 0.4,
-    color: "#000000",
-  },
-  icon: {
-    margin: 0,
-    padding: 0,
-    width: "10%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  buttonText: {
-    fontFamily: "Roboto",
-    fontStyle: "normal",
-    fontWeight: "500",
-    fontSize: 14,
-    lineHeight: 22,
-    letterSpacing: 1.25,
-    color: "#1C1427", 
-  },
-  buttonIngresar: {
-    width: 183,
-    backgroundColor: "#DADADA",
-    borderRadius: 4,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 6,
-    marginTop: 10,
-    color: "#DADADA",
-    marginVertical: 4
-  },
-  text: {
-    fontWeight: "400",
-    fontSize: 12,
-    lineHeight: 14.06,
-    letterSpacing: 0.6,
-    color: "#1C1427",
-  },
-  iconsLogin: {
-    marginVertical: '2%',
-    paddingVertical: 5,      
-    minHeight: 30,
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    flexDirection: "row",
-    width: 100
-  },
-  visitText: {
-    fontWeight: "bold",
-    fontSize: 14,
-    lineHeight: 18.75,
-    letterSpacing: 0.5,
-    color: "#1C1427",
-    margin: 0,
-    padding: 0
-  },
-  buttonVisit: {
-    width: 183,
-    backgroundColor: "transparent",
-    borderRadius: 4,
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 6,
-    marginTop: 2,
-    color: "#DADADA",
-    alignSelf: 'center',
-    margin: 0
+    screen: {
+        backgroundColor: '#ffffff',
+        height: '100%'
+    },
+    loginContainer: {
+        width: "100%",
+        minHeight: "30%",
+        maxHeight: "35%",
+        alignItems: "center",
+    },
+    bgImage: {
+        flex: 1,
+        width: "100%",
+        height:"100%",
+        alignItems: "center",
+        paddingVertical: "10%"
+    },
+    image: {
+        width: 84,
+        height: 84,
+    },
+    textContainer: {
+        height: "auto",
+        width: "auto",
+        justifyContent: "center",
+        backgroundColor: "transparent",
+        alignItems: "center",
+        paddingTop: 15
+    },
+    title: {
+        fontFamily: "Roboto",
+        fontStyle: "normal",
+        fontWeight: "700",
+        fontSize: 21,
+        lineHeight: 24,
+        letterSpacing: 0.15,
+        color: "#1C1427",
+    },
+    subTitle: {
+        fontFamily: "Roboto",
+        fontStyle: "normal",
+        fontWeight: "500",
+        fontSize: 18,
+        lineHeight: 24,
+        letterSpacing: 0.15,
+        color: "#1C1427",
+    },
+    loginArea: {
+        alignItems: "center",
+        height: "100%",
+        width: "100%",
+        backgroundColor:'#ffffff'
+    },
+    fieldsData: {
+        paddingVertical: "3%",
+        height: "auto",
+        width: "85%",
+        maxWidth: 328,
+        alignItems: "center",
+    },
+    container: {
+        backgroundColor: "#E8E8E8",
+        width: '100%',
+        height: 56,    
+        marginTop: 5,
+        marginBottom: 5,
+        borderRadius: 3,
+        borderBottomColor: "#000000",
+        borderBottomWidth: 3,
+        flexDirection: "row",
+        justifyContent: 'space-between',
+        paddingHorizontal: 10,
+        paddingVertical: 7,
 
-  },
+    },
+    input: {
+        width: '90%',
+        fontWeight: "400",
+        fontSize: 14,
+        lineHeight: 24,
+        letterSpacing: 0.15,
+        minHeight: 24,
+        maxHeight: "60%",
+    },
+    label: {
+        fontWeight: "400",
+        fontSize: 12,
+        lineHeight: 16,
+        letterSpacing: 0.4,
+        color: "#000000",
+    },
+    icon: {
+        margin: 0,
+        padding: 0,
+        width: "10%",
+        justifyContent: "center",
+        alignItems: "center",
+        
+    },
+    buttonsSection: {
+        marginVertical: '3%',
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    buttonText: {
+        fontFamily: "Roboto",
+        fontStyle: "normal",
+        fontWeight: "500",
+        fontSize: 14,
+        lineHeight: 22,
+        letterSpacing: 1.25,
+        color: "#1C1427", 
+    },
+    buttonIngresar: {
+        width: 183,
+        backgroundColor: "#DADADA",
+        borderRadius: 4,
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 6,
+        marginTop: 10,
+        color: "#DADADA",
+        marginVertical: 4
+    },
+    text: {
+        fontWeight: "400",
+        fontSize: 12,
+        lineHeight: 14.06,
+        letterSpacing: 0.6,
+        color: "#1C1427",
+    },
+    iconsLogin: {
+        marginVertical: '5%',
+        paddingVertical: 5,      
+        minHeight: 30,
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        flexDirection: "row",
+        width: 100
+    },
+    visitText: {
+        fontWeight: "bold",
+        fontSize: 14,
+        lineHeight: 18.75,
+        letterSpacing: 0.5,
+        color: "#1C1427",
+        margin: 0,
+        padding: 0
+    },
+    buttonVisit: {
+        width: 183,
+        backgroundColor: "transparent",
+        borderRadius: 4,
+        borderWidth: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 6,
+        marginTop: 2,
+        color: "#DADADA",
+        alignSelf: 'center',
+        margin: 0
+
+    }
 });
