@@ -1,5 +1,4 @@
 import * as React from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   View,
@@ -7,6 +6,7 @@ import {
   ImageBackground,
   Image,
   TextInput,
+  ScrollView,
 } from "react-native";
 import { Text } from "../components/Themed";
 import { RootStackScreenProps } from "../types";
@@ -23,11 +23,33 @@ const customFonts = {
 export default function LoginRegister({
   navigation,
 }: RootStackScreenProps<any>) {
+
   const onPressFunction = () => {
     navigation.replace("Main");
   };
 
   const [secure, setSecure] = useState<boolean>(true);
+  const [ username, setUserName] = useState<string>('');
+  const [ password, setPassword] = useState<string>('');
+  const [ error, setError ] = useState<string>('')
+
+
+  const validation = () =>  {
+    if(!username){
+      setError('Debe ingresar un usuario')
+    } else if(!password){
+      setError('Debe ingresar una contraseña')
+    }
+    else if(username !== 'test' || password !== 'test'){
+      setError('Usuario o password incorrectos')
+    } else {
+      onPressFunction()
+    }
+  }
+
+  const handlePress = () =>  {
+    validation()
+  }
 
   return (
     <View style={styles.screen}>
@@ -45,13 +67,19 @@ export default function LoginRegister({
             </Text>
           </View>
         </ImageBackground>
-      </View>
+      </View> 
+      <ScrollView>
       <View style={styles.loginArea}>
         <View style={styles.fieldsData}>
           <View style={styles.container}>
             <View>
               <Text style={styles.label}>Usuario</Text>
-              <TextInput style={styles.input} placeholder="Ingresar usuario" />
+              <TextInput 
+                style={styles.input} 
+                placeholder="Ingresar usuario" 
+                onChangeText={text => setUserName(text)}
+                defaultValue={username}
+                />
             </View>
           </View>
 
@@ -61,6 +89,8 @@ export default function LoginRegister({
               <TextInput
                 secureTextEntry={secure}
                 style={styles.input}
+                onChangeText={text => setPassword(text)}
+                defaultValue={password}
                 placeholder="Ingresar contraseña"
               />
             </View>
@@ -87,9 +117,12 @@ export default function LoginRegister({
           </Text>
         </View>
         <View style={styles.buttonsSection}>
-          <Pressable onPress={onPressFunction} style={styles.buttonIngresar}>
+          <Pressable onPress={handlePress} style={styles.buttonIngresar}>
             <Text style={styles.buttonText}>INGRESAR</Text>
           </Pressable>
+          { error.length ? <Text style={styles.error}> {error} </Text> : null
+
+          }
           <Text style={styles.text}>¿No tenés cuenta? ¡Registrate!</Text>
           
 
@@ -106,8 +139,10 @@ export default function LoginRegister({
               <Text style={styles.buttonText}>DAR UNA VUELTA</Text>
             </Pressable>
           </View>
-        </View>
+          
+      </View>        
       </View>
+      </ScrollView>
     </View>
   );
 }
@@ -155,6 +190,9 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     letterSpacing: 0.15,
     color: "#1C1427",
+  },
+  error: {
+    color: 'red'
   },
   subTitle: {
     fontFamily: "Roboto",
