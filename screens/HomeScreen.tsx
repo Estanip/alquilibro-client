@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
         width: 379,
         height: 24,
         top: 545,
-        lef: 20
+        left: 20
     },
     titleThree: {
         position: 'absolute',
