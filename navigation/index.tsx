@@ -9,12 +9,11 @@ import BottomTabNavigator from './BottomTabNav';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ColorSchemeName } from 'react-native';
-import NavBar from '../constants/NavBar';
 
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import HomeScreen from '../screens/HomeScreen';
 import LoginRegister from '../screens/LoginRegisterScreen';
+import UploadBookScreen from '../screens/UploadBookScreen';
 
 import { RootStackParamList } from '../types';
 
@@ -63,6 +62,7 @@ function RootNavigator() {
             color: '#1C1427'
         }
       }} />
+      <Stack.Screen name="Upload" component={UploadBookScreen} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />

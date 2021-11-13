@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, Button, Alert } from 'react-native';
+import { ImageBackground, StyleSheet, Button, Alert, Pressable, Text } from 'react-native';
 import { View } from './Themed';
 
 export default function HomeCards() {
@@ -12,12 +12,14 @@ export default function HomeCards() {
                     source={require('../assets/images/filtros_avanzados.png')}
                     resizeMode='cover'
                 >
-                    <View style={styles.btnContainer}>
-                        <Button
-                            color="#34495e" onPress={() => Alert.alert("Filter Button")}
-                            title="FILTROS AVANZADOS"
-                        ></Button>
-                    </View>
+                    <Pressable
+                        onPress={() => Alert.alert("Filter Button")}
+                        style={styles.btnContainer}
+                    >
+                        <Text
+                            style={styles.textButton}
+                        >FILTROS AVANZADOS</Text>
+                    </Pressable>
                 </ImageBackground>
             </View>
             <View style={styles.recomendedContainer}>
@@ -26,12 +28,14 @@ export default function HomeCards() {
                     source={require('../assets/images/recomendados.png')}
                     resizeMode='cover'
                 >
-                    <View style={styles.btnContainer}>
-                        <Button
-                            color="#a9a9a9" onPress={() => Alert.alert("Recomended Button")}
-                            title="RECOMENDADOS"
-                        ></Button>
-                    </View>
+                    <Pressable
+                        onPress={() => Alert.alert("Recomended Button")}
+                        style={styles.btnContainer}
+                    >
+                        <Text
+                            style={styles.textButton}
+                        >RECOMENDADOS</Text>
+                    </Pressable>
                 </ImageBackground>
             </View>
         </View >
@@ -41,30 +45,42 @@ export default function HomeCards() {
 
 const styles = StyleSheet.create({
     cardsContainer: {
-        position: 'absolute',
+        display: 'flex',
+        flexDirection: 'row',
         width: '100%',
         height: 152,
-        top: '38%'
+        top: '34%',
+        backgroundColor: 'transparent'
     },
     filterContainer: {
-        position: 'absolute',
         width: '45%',
         height: '100%',
-        left: '4%'
+        left: '10%'
     },
     recomendedContainer: {
-        position: 'absolute',
         width: '45%',
         height: '100%',
-        left: '51%'
+        left: '17%'
     },
     img: {
         height: '100%',
         width: '100%'
     },
     btnContainer: {
-        position: 'absolute',
+        backgroundColor: '#CCFFBD',
+        alignItems: 'center',
+        justifyContent: 'center',
         width: '100%',
+        height: '25%',
         top: '80%'
+    },
+    textButton: {
+        fontFamily: "Roboto",
+        fontStyle: "normal",
+        fontWeight: 'bold',
+        fontSize: 14,
+        lineHeight: 22,
+        letterSpacing: 1.25,
+        color: "#1C1427"
     }
 });

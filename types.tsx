@@ -18,7 +18,7 @@ export type RootStackParamList = {
   Modal: undefined;
   NotFound: undefined;
   Main: NavigatorScreenParams<RootTabParamList> | undefined;
-  Oli: undefined;
+  Upload: NavigatorScreenParams<RootTabParamList> | undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
