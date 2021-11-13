@@ -1,19 +1,14 @@
 import React from 'react';
 import { Alert, Button, Pressable, StyleSheet, Text, View } from 'react-native';
-import { RootStackScreenProps } from "../types";
+import { useNavigation } from '@react-navigation/native';
 
-export default function UploadBook({
-    navigation,
-  }: RootStackScreenProps<any>) {
+export default function UploadBook() {
 
-    const onPressFunction = () => {
-        navigation.replace("Upload");
-      };
-
+    const navigation = useNavigation();
 
     return (
         <Pressable
-            onPress={onPressFunction}
+            onPress={() => navigation.navigate("Upload")}
             style={styles.btnContainer}
         >
             <Text

@@ -8,7 +8,9 @@ import * as React from 'react';
 import BottomTabNavigator from './BottomTabNav';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ColorSchemeName } from 'react-native';
+import { Alert, ColorSchemeName, View } from 'react-native';
+import { Entypo } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons'; 
 
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
@@ -20,8 +22,8 @@ import { RootStackParamList } from '../types';
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
-      // theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-      >
+    // theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+    >
       <RootNavigator />
     </NavigationContainer>
   );
@@ -39,30 +41,44 @@ function RootNavigator() {
       <Stack.Screen name="Login" component={LoginRegister} options={{
         title: 'Alquilibro',
         headerStyle: {
-            backgroundColor: '#7ECA9C'
+          backgroundColor: '#7ECA9C'
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
-            fontFamily: 'Roboto',
-            fontWeight: 'bold',
-            fontSize: 20,
-            color: '#1C1427'
+          fontFamily: 'Roboto',
+          fontWeight: 'bold',
+          fontSize: 20,
+          color: '#1C1427'
         }
       }} />
       <Stack.Screen name="Main" component={BottomTabNavigator} options={{
         title: 'Alquilibro',
+        headerRight: () => <ShareIcon name="share" />,
         headerStyle: {
-            backgroundColor: '#7ECA9C'
+          backgroundColor: '#7ECA9C'
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
-            fontFamily: 'Roboto',
-            fontWeight: 'bold',
-            fontSize: 20,
-            color: '#1C1427'
+          fontFamily: 'Roboto',
+          fontWeight: 'bold',
+          fontSize: 20,
+          color: '#1C1427'
         }
       }} />
-      <Stack.Screen name="Upload" component={UploadBookScreen} />
+      <Stack.Screen name="Upload" component={UploadBookScreen} options={{
+        title: 'Subir Libro',
+        headerStyle: {
+          backgroundColor: '#7ECA9C'
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontFamily: 'Roboto',
+          fontWeight: 'bold',
+          fontSize: 20,
+          color: '#1C1427'
+        }
+      }}
+      />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
@@ -70,4 +86,20 @@ function RootNavigator() {
     </Stack.Navigator>
 
   );
+}
+
+
+ // * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
+
+ function ShareIcon(props: {
+  name: React.ComponentProps<typeof Entypo>['name'];
+}) {
+  return <Entypo size={24} onPress={() => Alert.alert("Share Button")}  style={{ marginBottom: -3, color: "black" }} {...props} />;
+}
+
+
+function NotiIcon(props: {
+  name: React.ComponentProps<typeof Ionicons>['name'];
+}) {
+  return <Ionicons size={24} onPress={() => Alert.alert("Noti Button")}  style={{ marginBottom: -3, color: "black" }} {...props} />;
 }
