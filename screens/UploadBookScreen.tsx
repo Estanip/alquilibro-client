@@ -2,12 +2,15 @@ import React from 'react';
 import { Text, View, TextInput, Button, Alert, StyleSheet, ScrollView, Pressable } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { RootStackScreenProps } from '../types';
-import { AntDesign } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons';
+import { yupResolver } from '@hookform/resolvers/yup';
+import uploadBookValidationSchema from '../validations/uploadBookValidator';
+import Books from '../constants/Books';
 
 export default function UploadBookScreen({ navigation }: RootStackScreenProps<'Upload'>) {
 
   type FormData = {
-    ISBN: string;
+    isbn: string;
     title: string;
     author: string;
     editorial: string;
@@ -17,10 +20,29 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
     price: string;
   }
 
-  const { control, handleSubmit, formState: { errors } } = useForm<FormData>({ defaultValues: { ISBN: "" } })
+  const { control, setValue, handleSubmit, formState: { errors } } = useForm<FormData>({
+    resolver: yupResolver(uploadBookValidationSchema)
+  })
+
+  const onSubmit = handleSubmit((data: FormData) => {
+
+    if (Books.isbn == data.isbn) {
+      setValue("title", Books.title)
+      setValue("author", Books.author)
+      setValue("editorial", Books.editorial)
+      setValue("category", Books.category)
+      setValue("language", Books.language)
+      setValue("state", Books.state)
+    } else {
+      Alert.alert("Error")
+    }
+
+  });
 
   return (
-    <ScrollView>
+    <ScrollView
+      style={{ backgroundColor: '#FFF' }}
+    >
       <View
         style={styles.uploadContainer}
       >
@@ -40,18 +62,19 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
                 style={styles.input}
                 onChangeText={onChange}
                 placeholder="ISBN" />
-            )} name="ISBN"
+            )} name="isbn"
           />
-          {errors.ISBN && <Text>Debe Cargar un ISBN valido</Text>}
+          {errors.isbn?.message && <Text>Debe Cargar un ISBN valido</Text>}
 
           <Controller
             control={control}
             rules={{
               maxLength: 50,
             }}
-            render={({ field: { onChange } }) => (
+            render={({ field: { onChange, value } }) => (
               <TextInput
                 style={styles.input}
+                value={value}
                 onChangeText={onChange}
                 placeholder="Titulo" />
             )} name="title"
@@ -65,6 +88,7 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
             render={({ field: { onChange, value } }) => (
               <TextInput
                 style={styles.input}
+                value={value}
                 onChangeText={onChange}
                 placeholder="Autor"
               />
@@ -76,9 +100,10 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
             rules={{
               maxLength: 50,
             }}
-            render={({ field: { onChange } }) => (
+            render={({ field: { onChange, value } }) => (
               <TextInput
                 style={styles.input}
+                value={value}
                 onChangeText={onChange}
                 placeholder="Editorial"
               />
@@ -90,9 +115,10 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
             rules={{
               maxLength: 50,
             }}
-            render={({ field: { onChange } }) => (
+            render={({ field: { onChange, value } }) => (
               <TextInput
                 style={styles.input}
+                value={value}
                 onChangeText={onChange}
                 placeholder="Genero"
               />
@@ -104,9 +130,10 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
             rules={{
               maxLength: 50,
             }}
-            render={({ field: { onChange } }) => (
+            render={({ field: { onChange, value } }) => (
               <TextInput
                 style={styles.input}
+                value={value}
                 onChangeText={onChange}
                 placeholder="Idioma"
               />
@@ -118,9 +145,10 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
             rules={{
               maxLength: 50,
             }}
-            render={({ field: { onChange } }) => (
+            render={({ field: { onChange, value } }) => (
               <TextInput
                 style={styles.input}
+                value={value}
                 onChangeText={onChange}
                 placeholder="Estado"
               />
@@ -132,10 +160,11 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
             rules={{
               maxLength: 50,
             }}
-            render={({ field: { onChange } }) => (
+            render={({ field: { onChange, value } }) => (
               <TextInput
                 style={styles.input}
                 onChangeText={onChange}
+                value={value}
                 placeholder="Precio por día"
               />
             )} name="price"
@@ -147,10 +176,10 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
               onPress={() => Alert.alert("Upload Image")}
               style={styles.imageButton}
             >
-              <AntDesign 
-              name="camera" 
-              size={24} 
-              color="black" 
+              <AntDesign
+                name="camera"
+                size={24}
+                color="black"
               />
 
               <Text
@@ -161,7 +190,7 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
             </Pressable>
 
             <Pressable
-              onPress={() => Alert.alert("Upload Book")}
+              onPress={onSubmit}
               style={styles.uploadButton}
             >
               <Text
