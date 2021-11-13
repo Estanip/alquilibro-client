@@ -1,6 +1,7 @@
 import React from 'react';
 import { Alert, Button, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Icon } from 'react-native-elements';
 
 export default function UploadBook() {
 
@@ -13,7 +14,9 @@ export default function UploadBook() {
         >
             <Text
             style={styles.buttonText}
-            >SUBIR LIBRO</Text>
+            >
+                SUBIR LIBRO
+            </Text>
         </Pressable>
     )
 }

@@ -18,6 +18,7 @@ import LoginRegister from '../screens/LoginRegisterScreen';
 import UploadBookScreen from '../screens/UploadBookScreen';
 
 import { RootStackParamList } from '../types';
+import { Image } from 'react-native-elements/dist/image/Image';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -53,7 +54,8 @@ function RootNavigator() {
       }} />
       <Stack.Screen name="Main" component={BottomTabNavigator} options={{
         title: 'Alquilibro',
-        headerRight: () => <ShareIcon name="share" />,
+        headerLeft: () => <Image source={require('../assets/images/adaptive-icon.png')} style={{marginBottom: -1, marginRight: 10, width: 50, height: 50}} />,
+        headerRight: () => <ShareIcon name="share"  />,
         headerStyle: {
           backgroundColor: '#7ECA9C'
         },
@@ -67,6 +69,7 @@ function RootNavigator() {
       }} />
       <Stack.Screen name="Upload" component={UploadBookScreen} options={{
         title: 'Subir Libro',
+        headerRight: () => <ShareIcon name="share" />,
         headerStyle: {
           backgroundColor: '#7ECA9C'
         },
