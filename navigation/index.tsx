@@ -41,6 +41,7 @@ function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="Login" component={LoginRegister} options={{
         title: 'Alquilibro',
+        headerLeft: () => <Image source={require('../assets/images/adaptive-icon.png')} style={{marginBottom: -1, marginRight: 10, width: 50, height: 50}} />,
         headerStyle: {
           backgroundColor: '#7ECA9C'
         },
