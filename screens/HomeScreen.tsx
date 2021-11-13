@@ -1,6 +1,5 @@
 import * as React from 'react';
-
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import SearchHomeBar from '../components/SearchHomeBar';
 import HomeCards from '../components/HomeCards';
 import UploadBook from '../components/UploadBook';
@@ -18,40 +17,43 @@ export default function Home({ navigation }: RootTabScreenProps<'Home'>) {
     useFonts(customFonts);
 
     return (
-        <View style={styles.homeContainer}>
-            <View style={styles.titleOneContainer}>
-                <Text style={styles.titleOne}>
-                    ¿Buscas un libro en especial?
-                </Text>
+        <ScrollView
+            style={{backgroundColor: '#FFF'}}
+        >
+            <View style={styles.homeContainer}>
+                <View style={styles.titleOneContainer}>
+                    <Text style={styles.titleOne}>
+                        ¿Buscas un libro en especial?
+                    </Text>
+                </View>
+                <SearchHomeBar />
+                <View style={styles.titleTwoContainer}>
+                    <Text style={styles.titleTwo}>
+                        ¿No sabés qué leer?
+                    </Text>
+                </View>
+                <HomeCards />
+                <View style={styles.titleThreeContainer}>
+                    <Text style={styles.titleThree}>
+                        ¿Querés alquilar tus libros?
+                    </Text>
+                </View>
+                <UploadBook />
             </View>
-            <SearchHomeBar />
-            <View style={styles.titleTwoContainer}>
-                <Text style={styles.titleTwo}>
-                    ¿No sabés qué leer?
-                </Text>
-            </View>
-            <HomeCards />
-            <View style={styles.titleThreeContainer}>
-                <Text style={styles.titleThree}>
-                    ¿Querés alquilar tus libros?
-                </Text>
-            </View>
-            <UploadBook />
-        </View>
+        </ScrollView>
     )
 };
 
 const styles = StyleSheet.create({
     homeContainer: {
-        position: 'relative',
         width: '100%',
-        height: '100%',
-        backgroundColor: '#FFFFFF'
+        maxHeight: 730,
+        minHeight: 640,
+        backgroundColor: '#FFF'
     },
     titleOneContainer: {
-        position: 'absolute',
         width: '100%',
-        height: 24,
+        alignSelf: 'center',
         top: '6%'
     },
     titleOne: {
@@ -65,10 +67,10 @@ const styles = StyleSheet.create({
         letterSpacing: 0.15
     },
     titleTwoContainer: {
-        position: 'absolute',
         width: '100%',
+        alignSelf: 'center',
         height: 24,
-        top: '30%'
+        top: '18%'
     },
     titleTwo: {
         fontFamily: 'Roboto',
@@ -81,10 +83,9 @@ const styles = StyleSheet.create({
         letterSpacing: 0.15
     },
     titleThreeContainer: {
-        position: 'absolute',
         width: '100%',
-        height: 24,
-        top: '73%'
+        alignSelf: 'center',
+        top: '35%'
     },
     titleThree: {
         fontFamily: 'Roboto',

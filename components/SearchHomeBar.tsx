@@ -34,12 +34,11 @@ export default function SearchHomeBar() {
 
 const styles = StyleSheet.create({
     searchContainer: {
-        position: 'absolute',
         flexDirection: 'row',
+        alignSelf: 'center',
         width: '80%',
         height: 40,
-        left: '10%',
-        top: '13%',
+        top: '15%',
         padding: 10,
         backgroundColor: '#ECEFF0',
         alignItems: 'center',
