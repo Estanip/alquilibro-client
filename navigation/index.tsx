@@ -9,8 +9,7 @@ import BottomTabNavigator from './BottomTabNav';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Alert, ColorSchemeName, View } from 'react-native';
-import { Entypo } from '@expo/vector-icons'; 
-import { Ionicons } from '@expo/vector-icons'; 
+import { Entypo } from '@expo/vector-icons';
 
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
@@ -41,7 +40,7 @@ function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="Login" component={LoginRegister} options={{
         title: 'Alquilibro',
-        headerLeft: () => <Image source={require('../assets/images/adaptive-icon.png')} style={{marginBottom: -1, marginRight: 10, width: 50, height: 50}} />,
+        headerLeft: () => <Image source={require('../assets/images/adaptive-icon.png')} style={{ marginBottom: -1, marginRight: 10, width: 50, height: 50 }} />,
         headerStyle: {
           backgroundColor: '#7ECA9C'
         },
@@ -55,8 +54,12 @@ function RootNavigator() {
       }} />
       <Stack.Screen name="Main" component={BottomTabNavigator} options={{
         title: 'Alquilibro',
-        headerLeft: () => <Image source={require('../assets/images/adaptive-icon.png')} style={{marginBottom: -1, marginRight: 10, width: 50, height: 50}} />,
-        headerRight: () => <ShareIcon name="share"  />,
+        headerLeft: () => <Image source={require('../assets/images/adaptive-icon.png')} style={{ marginBottom: -1, marginRight: 10, width: 50, height: 50 }} />,
+        headerRight: () => (
+          <View style={{ display: 'flex', flexDirection: 'row', marginRight: 10 }}>
+            <Icons name="notification" />
+            <Icons name="share" />
+          </View>),
         headerStyle: {
           backgroundColor: '#7ECA9C'
         },
@@ -70,7 +73,11 @@ function RootNavigator() {
       }} />
       <Stack.Screen name="Upload" component={UploadBookScreen} options={{
         title: 'Subir Libro',
-        headerRight: () => <ShareIcon name="share" />,
+        headerRight: () => (
+          <View style={{ display: 'flex', flexDirection: 'row', marginRight: 10 }}>
+            <Icons name="notification" />
+            <Icons name="share" />
+          </View>),
         headerStyle: {
           backgroundColor: '#7ECA9C'
         },
@@ -93,17 +100,10 @@ function RootNavigator() {
 }
 
 
- // * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
+// * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 
- function ShareIcon(props: {
+function Icons(props: {
   name: React.ComponentProps<typeof Entypo>['name'];
 }) {
-  return <Entypo size={24} onPress={() => Alert.alert("Share Button")}  style={{ marginBottom: -3, color: "black" }} {...props} />;
-}
-
-
-function NotiIcon(props: {
-  name: React.ComponentProps<typeof Ionicons>['name'];
-}) {
-  return <Ionicons size={24} onPress={() => Alert.alert("Noti Button")}  style={{ marginBottom: -3, color: "black" }} {...props} />;
-}
+  return <Entypo size={24} onPress={() => Alert.alert("Share Button")} style={{ marginLeft: 6, marginBottom: -3, color: "black" }} {...props} />;
+};

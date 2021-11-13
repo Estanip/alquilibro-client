@@ -76,7 +76,7 @@ export default function LoginRegister({
               <Text style={styles.label}>Usuario</Text>
               <TextInput 
                 style={styles.input} 
-                placeholder="Ingresar usuario" 
+                placeholder="Ingresar Usuario" 
                 onChangeText={text => setUserName(text)}
                 defaultValue={username}
                 />
@@ -232,12 +232,10 @@ const styles = StyleSheet.create({
     paddingVertical: 7,
   },
   input: {
-    width: "90%",
+    width: "100%",
     fontWeight: "400",
     fontSize: 14,
-    lineHeight: 24,
     letterSpacing: 0.15,
-    minHeight: 24,
     maxHeight: "60%",
   },
   label: {
