@@ -64,7 +64,7 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
                 placeholder="ISBN" />
             )} name="isbn"
           />
-          {errors.isbn?.message && <Text>Debe Cargar un ISBN valido</Text>}
+          {errors.isbn?.message && <Text style={{alignSelf: 'center', marginBottom:5, marginTop: -5, color: 'red'}}>{errors.isbn?.message}</Text>}
 
           <Controller
             control={control}
