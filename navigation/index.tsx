@@ -38,25 +38,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-            <Stack.Screen name="Upload" component={UploadBookScreen} options={{
-        title: 'Subir Libro',
-        headerRight: () => (
-          <View style={{ display: 'flex', flexDirection: 'row', marginRight: 10 }}>
-            <Icons name="notification" />
-            <Icons name="share" />
-          </View>),
-        headerStyle: {
-          backgroundColor: '#7ECA9C'
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontFamily: 'Roboto',
-          fontWeight: 'bold',
-          fontSize: 20,
-          color: '#1C1427'
-        }
-      }}
-      />
+
       <Stack.Screen name="Login" component={LoginRegister} options={{
         title: 'Alquilibro',
         headerLeft: () => <Image source={require('../assets/images/adaptive-icon.png')} style={{ marginBottom: -1, marginRight: 10, width: 50, height: 50 }} />,
@@ -90,7 +72,25 @@ function RootNavigator() {
           color: '#1C1427'
         }
       }} />
-
+      <Stack.Screen name="Upload" component={UploadBookScreen} options={{
+        title: 'Subir Libro',
+        headerRight: () => (
+          <View style={{ display: 'flex', flexDirection: 'row', marginRight: 10 }}>
+            <Icons name="notification" />
+            <Icons name="share" />
+          </View>),
+        headerStyle: {
+          backgroundColor: '#7ECA9C'
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontFamily: 'Roboto',
+          fontWeight: 'bold',
+          fontSize: 20,
+          color: '#1C1427'
+        }
+      }}
+      />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
