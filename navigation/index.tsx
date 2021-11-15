@@ -18,6 +18,7 @@ import UploadBookScreen from '../screens/UploadBookScreen';
 
 import { RootStackParamList } from '../types';
 import { Image } from 'react-native-elements/dist/image/Image';
+import SearchResultScreen from '../screens/SearchResultScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -41,7 +42,7 @@ function RootNavigator() {
 
       <Stack.Screen name="Login" component={LoginRegister} options={{
         title: 'Alquilibro',
-        headerLeft: () => <Image source={require('../assets/images/adaptive-icon.png')} style={{ marginBottom: -1, marginRight: 10, width: 50, height: 50 }} />,
+        headerLeft: () => <Image source={require('../assets/images/adaptive-icon.png')} style={{ marginRight: 15, width: 50, height: 50 }} />,
         headerStyle: {
           backgroundColor: '#7ECA9C'
         },
@@ -55,7 +56,7 @@ function RootNavigator() {
       }} />
       <Stack.Screen name="Main" component={BottomTabNavigator} options={{
         title: 'Alquilibro',
-        headerLeft: () => <Image source={require('../assets/images/adaptive-icon.png')} style={{ marginBottom: -1, marginRight: 10, width: 50, height: 50 }} />,
+        headerLeft: () => <Image source={require('../assets/images/adaptive-icon.png')} style={{ marginRight: 15, width: 50, height: 50 }} />,
         headerRight: () => (
           <View style={{ display: 'flex', flexDirection: 'row', marginRight: 10 }}>
             <Icons name="notification" />
@@ -72,6 +73,25 @@ function RootNavigator() {
           color: '#1C1427'
         }
       }} />
+      <Stack.Screen name="SearchResults" component={SearchResultScreen} options={{
+        title: 'Cronicas del Angel Gris',
+        headerRight: () => (
+          <View style={{ display: 'flex', flexDirection: 'row', marginRight: 10 }}>
+            <Icons name="notification" />
+            <Icons name="share" />
+          </View>),
+        headerStyle: {
+          backgroundColor: '#7ECA9C'
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontFamily: 'Roboto',
+          fontWeight: 'bold',
+          fontSize: 20,
+          color: '#1C1427'
+        }
+      }}
+      />
       <Stack.Screen name="Upload" component={UploadBookScreen} options={{
         title: 'Subir Libro',
         headerRight: () => (
@@ -106,5 +126,5 @@ function RootNavigator() {
 function Icons(props: {
   name: React.ComponentProps<typeof Entypo>['name'];
 }) {
-  return <Entypo size={24} onPress={() => Alert.alert("Share Button")} style={{ marginLeft: 6, marginBottom: -3, color: "black" }} {...props} />;
+  return <Entypo size={24} onPress={() => Alert.alert("Share Button")} style={{ marginLeft: 15, color: "black" }} {...props} />;
 };
