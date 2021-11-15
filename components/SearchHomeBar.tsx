@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, TextInput, Alert } from 'react-native';
 import { useFonts } from 'expo-font';
 import { Icon } from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
 
 const customFonts = {
     Roboto: require('../assets/fonts/Roboto-Regular.ttf')
@@ -10,6 +11,7 @@ const customFonts = {
 
 export default function SearchHomeBar() {
 
+    const navigation = useNavigation();
     useFonts(customFonts);
 
     return (
@@ -17,7 +19,7 @@ export default function SearchHomeBar() {
             <Icon
                 name='search'
                 color='#000'
-                onPress={() => Alert.alert("Search Button")}
+                onPress={() => navigation.navigate("SearchResults")}
                 size={20}
             />
             <TextInput
