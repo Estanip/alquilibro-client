@@ -64,8 +64,7 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
                 placeholder="ISBN" />
             )} name="isbn"
           />
-          {errors.isbn?.message && <Text style={{alignSelf: 'center', marginBottom:5, marginTop: -5, color: 'red'}}>{errors.isbn?.message}</Text>}
-
+          {errors.isbn?.message && <Text style={styles.textError}>"{errors.isbn?.message}"</Text>}
           <Controller
             control={control}
             rules={{
@@ -225,8 +224,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: 'bold',
-    fontSize: 20,
-    lineHeight: 24,
+/*     fontSize: 20,
+ */    lineHeight: 24,
     letterSpacing: 0.15,
     color: '#1C1427',
     alignSelf: 'center',
@@ -288,5 +287,11 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#1C1427',
     letterSpacing: 0.15
+  },
+  textError: {
+    alignSelf: 'center', 
+    marginBottom:5, 
+    marginTop: -5, 
+    color: 'red'
   }
 })
