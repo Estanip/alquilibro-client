@@ -128,3 +128,5 @@ function Icons(props: {
 }) {
   return <Entypo size={24} onPress={() => Alert.alert("Share Button")} style={{ marginLeft: 15, color: "black" }} {...props} />;
 };
+
+

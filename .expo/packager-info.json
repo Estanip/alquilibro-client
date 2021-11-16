@@ -1,4 +1,8 @@
 {
+<<<<<<< Updated upstream
+=======
+  "devToolsPort": 19002,
+>>>>>>> Stashed changes
   "expoServerPort": 19000,
   "packagerPort": 19000,
   "packagerPid": null,

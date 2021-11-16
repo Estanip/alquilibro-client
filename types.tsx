@@ -18,8 +18,12 @@ export type RootStackParamList = {
   Modal: undefined;
   NotFound: undefined;
   Main: NavigatorScreenParams<RootTabParamList> | undefined;
+<<<<<<< Updated upstream
   Upload: NavigatorScreenParams<RootTabParamList> | undefined;
   SearchResults: NavigatorScreenParams<RootTabParamList> | undefined;
+=======
+  Upload: undefined;
+>>>>>>> Stashed changes
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -31,6 +35,7 @@ export type RootTabParamList = {
   TabOne: undefined;
   TabTwo: undefined;
   Home: undefined;
+  Upload: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
