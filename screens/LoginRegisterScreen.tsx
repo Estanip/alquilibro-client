@@ -33,8 +33,8 @@ export default function LoginRegister({
 
   }
   return (
-    <View style={styles.screen}>
-      <Formik        
+    <View>
+      <Formik
         validationSchema={loginValidatorSchema}
         initialValues={{ username: "", password: "" }}
         onSubmit={values => Alert.alert(values.username)}
@@ -81,7 +81,7 @@ export default function LoginRegister({
 
         
       </Formik>
-    </View>
+      </View>
 
     //  <View style={styles.screen}>
     //     <View style={styles.loginContainer}>
