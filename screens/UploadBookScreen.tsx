@@ -26,7 +26,7 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
 
   const onSubmit = handleSubmit((data: FormData) => {
 
-    if (Books.isbn == data.isbn) {
+    if (Books.isbn === data.isbn) {
       setValue("title", Books.title)
       setValue("author", Books.author)
       setValue("editorial", Books.editorial)
@@ -64,7 +64,7 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
                 placeholder="ISBN" />
             )} name="isbn"
           />
-          {errors.isbn?.message && <Text style={styles.textError}>"{errors.isbn?.message}"</Text>}
+          {errors.isbn?.message && <Text style={styles.textError}>{errors.isbn?.message}</Text>}
           <Controller
             control={control}
             rules={{

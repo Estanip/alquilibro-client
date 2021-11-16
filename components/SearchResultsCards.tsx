@@ -1,9 +1,12 @@
 import React from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function SearchResultsCards() {
+
+    const navigation = useNavigation();
 
     return (
         <View style={styles.resultsContainer}>
@@ -14,9 +17,13 @@ export default function SearchResultsCards() {
                 style={styles.textContainer}
             >
                 <Text style={styles.author} >Alejandro Dolina</Text>
-                <Text style={styles.title} >Cronicas del Angel Gris</Text>
+                <Pressable
+                    onPress={() => navigation.navigate("BookDetail")}
+                >
+                    <Text style={styles.title} >Cronicas del Angel Gris</Text>
+                </Pressable>
                 <View style={styles.descriptionContainer}>
-                    <MaterialCommunityIcons name="map-marker" style={{marginRight: 4, marginLeft: -3}} size={20} color="#BEBEBE" />
+                    <MaterialCommunityIcons name="map-marker" style={{ marginRight: 4, marginLeft: -3 }} size={20} color="#BEBEBE" />
                     <Text style={styles.description} >850 mts - $150 por día</Text>
                 </View>
             </View>

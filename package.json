@@ -17,7 +17,7 @@
     "@expo/vector-icons": "^12.0.0",
     "@gregfrench/react-native-wheel-picker": "^1.2.18",
     "@hookform/resolvers": "^2.8.3",
-    "@react-native-community/datetimepicker": "^3.5.2",
+    "@react-native-community/datetimepicker": "3.5.2",
     "@react-navigation/bottom-tabs": "^6.0.9",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",

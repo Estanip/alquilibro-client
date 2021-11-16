@@ -18,12 +18,9 @@ export type RootStackParamList = {
   Modal: undefined;
   NotFound: undefined;
   Main: NavigatorScreenParams<RootTabParamList> | undefined;
-<<<<<<< Updated upstream
   Upload: NavigatorScreenParams<RootTabParamList> | undefined;
   SearchResults: NavigatorScreenParams<RootTabParamList> | undefined;
-=======
-  Upload: undefined;
->>>>>>> Stashed changes
+  BookDetail: NavigatorScreenParams<RootTabParamList> | undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

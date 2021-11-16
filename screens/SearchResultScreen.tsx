@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View, Text, Platform } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-import * as Calendar from 'expo-calendar';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 import SearchResultsCards from '../components/SearchResultsCards';
@@ -13,38 +12,6 @@ export default function SearchResultScreen() {
     const [date, setDate] = useState<Date>(new Date(1598051730000));
     const [mode, setMode] = useState<string>('date');
     const [show, setShow] = useState<boolean>(false);
-
-    useEffect(() => {
-        (async () => {
-            const { status } = await Calendar.requestCalendarPermissionsAsync();
-            if (status === 'granted') {
-                await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT)
-            }
-        })
-    }, []);
-
-    const getDefaultCalendarSource = async () => {
-        const defaultCalendar = await Calendar.getDefaultCalendarAsync();
-        return defaultCalendar.source;
-    };
-
-    const createCalendar = async () => {
-        const defaultCalendarSource =
-            Platform.OS === 'ios'
-                ? await getDefaultCalendarSource()
-                : { isLocalAccount: true, name: 'Expo Calendar' };
-        const newCalendarID = await Calendar.createCalendarAsync({
-            title: 'Expo Calendar',
-            color: 'blue',
-            entityType: Calendar.EntityTypes.EVENT,
-            sourceId: defaultCalendarSource.id,
-            source: defaultCalendarSource,
-            name: 'internalCalendarName',
-            ownerAccount: 'personal',
-            accessLevel: Calendar.CalendarAccessLevel.OWNER,
-        });
-        console.log(`Your new calendar ID is: ${newCalendarID}`);
-    };
 
     const onChange = (event: any, selectedDate: Date) => {
         const currentDate = selectedDate || date;
@@ -77,7 +44,7 @@ export default function SearchResultScreen() {
                     size={30}
                     color="black"
                     style={{ width: '25 %', left: '120%', alignSelf: 'center' }}
-                    onPress={createCalendar}
+                    onPress={showDatepicker}
                 />
                 <Feather
                     name="map-pin"
