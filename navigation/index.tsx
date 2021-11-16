@@ -19,6 +19,7 @@ import UploadBookScreen from '../screens/UploadBookScreen';
 import { RootStackParamList } from '../types';
 import { Image } from 'react-native-elements/dist/image/Image';
 import SearchResultScreen from '../screens/SearchResultScreen';
+import BookResultSceen from '../screens/BookResultSceen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -74,7 +75,26 @@ function RootNavigator() {
         }
       }} />
       <Stack.Screen name="SearchResults" component={SearchResultScreen} options={{
-        title: 'Cronicas del Angel Gris',
+        title: "Nombre del Libro",
+        headerRight: () => (
+          <View style={{ display: 'flex', flexDirection: 'row', marginRight: 10 }}>
+            <Icons name="notification" />
+            <Icons name="share" />
+          </View>),
+        headerStyle: {
+          backgroundColor: '#7ECA9C'
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontFamily: 'Roboto',
+          fontWeight: 'bold',
+          fontSize: 20,
+          color: '#1C1427'
+        }
+      }}
+      />
+      <Stack.Screen name="BookDetail" component={BookResultSceen} options={{
+        title: "Nombre del Libro",
         headerRight: () => (
           <View style={{ display: 'flex', flexDirection: 'row', marginRight: 10 }}>
             <Icons name="notification" />
@@ -128,3 +148,5 @@ function Icons(props: {
 }) {
   return <Entypo size={24} onPress={() => Alert.alert("Share Button")} style={{ marginLeft: 15, color: "black" }} {...props} />;
 };
+
+

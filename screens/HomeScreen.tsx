@@ -7,7 +7,6 @@ import UploadBook from '../components/UploadBook';
 import { RootTabScreenProps } from '../types';
 import { useFonts } from 'expo-font';
 
-
 const customFonts = {
     Roboto: require('../assets/fonts/Roboto-Regular.ttf')
 };
