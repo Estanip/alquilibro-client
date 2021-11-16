@@ -77,7 +77,7 @@ export default function LoginRegister({
               <Text style={styles.label}>Usuario</Text>
               <TextInput 
                 style={styles.input} 
-                placeholder="Ingresar Usuario" 
+                placeholder="IngresaR" 
                 onChangeText={text => setUserName(text)}
                 defaultValue={username}
                 />

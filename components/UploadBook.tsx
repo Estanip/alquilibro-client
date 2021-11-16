@@ -1,7 +1,6 @@
 import React from 'react';
-import { Alert, Button, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Icon } from 'react-native-elements';
 
 export default function UploadBook() {
 

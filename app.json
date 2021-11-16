@@ -24,7 +24,10 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#000000"      }
+        "backgroundColor": "#FFFFFF"     
+      },
+    "package": "com.alquilibrodev.alquilibro",
+    "versionCode": 1
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
