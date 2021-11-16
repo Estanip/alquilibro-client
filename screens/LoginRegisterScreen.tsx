@@ -29,6 +29,7 @@ export default function LoginRegister({
   };
 
   const [secure, setSecure] = useState<boolean>(true);
+
   const [ username, setUserName] = useState<string>('');
   const [ password, setPassword] = useState<string>('');
   const [ error, setError ] = useState<string>('')
@@ -236,7 +237,7 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     fontSize: 14,
     letterSpacing: 0.15,
-    maxHeight: "60%",
+    maxHeight: "70%",
   },
   label: {
     fontWeight: "400",
