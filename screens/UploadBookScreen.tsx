@@ -1,9 +1,5 @@
 import React from 'react';
-<<<<<<< Updated upstream
 import { Text, View, TextInput, Button, Alert, StyleSheet, ScrollView, Pressable } from "react-native";
-=======
-import { Text, View, TextInput, Button, Alert, StyleSheet, ScrollView } from "react-native";
->>>>>>> Stashed changes
 import { useForm, Controller } from "react-hook-form";
 import { RootStackScreenProps } from '../types';
 import { AntDesign } from '@expo/vector-icons';
@@ -14,7 +10,6 @@ import Books from '../constants/Books';
 export default function UploadBookScreen({ navigation }: RootStackScreenProps<'Upload'>) {
 
   type FormData = {
-<<<<<<< Updated upstream
     isbn: string;
     title: string;
     author: string;
@@ -128,50 +123,6 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
                 placeholder="Genero"
               />
             )} name="category"
-=======
-    ISBN: string;
-  }
-
-  const { control, handleSubmit, formState: { errors } } = useForm<FormData>({ defaultValues: { ISBN: "" } })
-
-  return (
-    <ScrollView>
-      <View
-        style={styles.uploadContainer}
-      >
-        <Text
-          style={styles.uploadTitle}
-        > Cargá el ISBN del libro a subir y completá los campos vacios </Text>
-        <View
-          style={styles.formContainer}
-        >
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange } }) => (
-              <TextInput
-                style={styles.input}
-                onChangeText={onChange}
-                placeholder="ISBN"
-              />
-            )}
-          />
-          {errors.ISBN && <Text>Debe Cargar un ISBN valido</Text>}
-
-          <Controller
-            control={control}
-            rules={{
-              maxLength: 50,
-            }}
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={styles.input}
-                onChangeText={onChange}
-                value="Cronica del Angel"
-              />
-            )}
           />
 
           <Controller
@@ -182,43 +133,9 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
             render={({ field: { onChange, value } }) => (
               <TextInput
                 style={styles.input}
-                onChangeText={onChange}
-                value="Cronica del Angel"
-              />
-            )}
-          />
-
-          <Controller
-            control={control}
-            rules={{
-              maxLength: 50,
-            }}
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={styles.input}
-                onChangeText={onChange}
-                value="Cronica del Angel"
-              />
-            )}
->>>>>>> Stashed changes
-          />
-
-          <Controller
-            control={control}
-            rules={{
-              maxLength: 50,
-            }}
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={styles.input}
-<<<<<<< Updated upstream
                 value={value}
                 onChangeText={onChange}
                 placeholder="Idioma"
-=======
-                onChangeText={onChange}
-                value="Cronica del Angel"
->>>>>>> Stashed changes
               />
             )} name="language"
           />
@@ -231,18 +148,11 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
             render={({ field: { onChange, value } }) => (
               <TextInput
                 style={styles.input}
-<<<<<<< Updated upstream
                 value={value}
                 onChangeText={onChange}
                 placeholder="Estado"
               />
             )} name="state"
-=======
-                onChangeText={onChange}
-                value="Cronica del Angel"
-              />
-            )}
->>>>>>> Stashed changes
           />
 
           <Controller
@@ -250,7 +160,6 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
             rules={{
               maxLength: 50,
             }}
-<<<<<<< Updated upstream
             render={({ field: { onChange, value } }) => (
               <TextInput
                 style={styles.input}
@@ -292,30 +201,6 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
             </Pressable>
 
           </View>
-=======
-            render={({ field: { onChange } }) => (
-              <TextInput
-                style={styles.input}
-                onChangeText={onChange}
-                placeholder= "Estado"
-              />
-            )}
-          />
-
-          <Controller
-            control={control}
-            rules={{
-              maxLength: 50,
-            }}
-            render={({ field: { onChange } }) => (
-              <TextInput
-                style={styles.input}
-                onChangeText={onChange}
-                placeholder= "Precio por día"
-              />
-            )}
-          />
->>>>>>> Stashed changes
 
         </View>
       </View>
@@ -335,11 +220,8 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   uploadTitle: {
-<<<<<<< Updated upstream
     marginLeft: 12,
     marginRight: 12,
-=======
->>>>>>> Stashed changes
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: 'bold',
@@ -354,7 +236,6 @@ const styles = StyleSheet.create({
   input: {
     alignSelf: 'center',
     padding: 10,
-<<<<<<< Updated upstream
     width: '90%',
     height: '5%',
     backgroundColor: '#ECEFF0',
@@ -407,11 +288,5 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#1C1427',
     letterSpacing: 0.15
-=======
-    width: '80%',
-    height: '5%',
-    backgroundColor: '#ECEFF0',
-    marginBottom: 10
->>>>>>> Stashed changes
   }
 })
