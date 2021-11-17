@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 interface Iprops {
   label: string;
@@ -20,7 +20,7 @@ export default function InputLogin(props: Iprops) {
   return (
     <View style={styles.inputField}>
       <View style={styles.textArea}>
-        <Text>{label}</Text>
+        <Text style={styles.label}>{label}</Text>
         <TextInput
           style={styles.input}
           placeholder={placeHolder}
@@ -66,11 +66,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 10,
-    paddingVertical: 7,
+    paddingVertical: 6
   },
   textArea: {
     flexDirection: "column",
-    width: "85%",
+    justifyContent: 'center',
+    width: "85%"
   },
   label: {
     fontFamily: "Roboto",
@@ -79,19 +80,21 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16,
     letterSpacing: 0.4,
-    color: "#000000",
+    color: "#000000"
   },
   input: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
     fontWeight: "400",
     fontSize: 14,
     letterSpacing: 0.15,
-    maxHeight: "70%",
+    maxHeight: "80%"
   },
   icon: {
     margin: 0,
     padding: 0,
     width: "15%",
     justifyContent: "center",
-    alignItems: "center",
-  },
+    alignItems: "center"
+  }
 });
