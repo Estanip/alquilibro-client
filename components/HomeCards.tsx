@@ -1,8 +1,12 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, Button, Alert, Pressable, Text } from 'react-native';
 import { View } from './Themed';
+import { useNavigation } from '@react-navigation/native';
 
 export default function HomeCards() {
+
+    const navigation = useNavigation();
+
     return (
         <View style={styles.cardsContainer}>
             <View
@@ -29,7 +33,7 @@ export default function HomeCards() {
                     resizeMode='cover'
                 >
                     <Pressable
-                        onPress={() => Alert.alert("Recomended Button")}
+                        onPress={() => navigation.navigate('Recommended')}
                         style={styles.btnContainer}
                     >
                         <Text
