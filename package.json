@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.0",
-    "@gregfrench/react-native-wheel-picker": "^1.2.18",
     "@hookform/resolvers": "^2.8.3",
     "@react-native-community/datetimepicker": "3.5.2",
     "@react-navigation/bottom-tabs": "^6.0.9",
@@ -42,9 +41,7 @@
     "react-native-screens": "~3.8.0",
     "react-native-select-multiple": "^2.1.0",
     "react-native-web": "0.17.1",
-    "yup": "^0.32.11",
-    "expo-calendar": "~10.0.3",
-    "expo-permissions": "~13.0.3"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

@@ -7,15 +7,16 @@ import {
   Pressable,
   ImageBackground,
   Image,
-  TextInput,
   ScrollView,
   Alert,
 } from "react-native";
+
 import { Text } from "../components/Themed";
 import { RootStackScreenProps } from "../types";
 import { useState } from "react";
 import InputLogin from "../components/InputLogin";
 import loginValidatorSchema from "../validations/loginValidator";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
 const bgLibrary = require("../assets/images/loginBackground.png");
 const logo = require("../assets/images/alquilibro-icon.png");
@@ -27,155 +28,124 @@ const customFonts = {
 export default function LoginRegister({
   navigation,
 }: RootStackScreenProps<any>) {
-
   const handleOnPress = () => {
-    navigation.replace("Main")
-
-  }
+    navigation.replace("Main");
+  };
   return (
-    <View>
-      <Formik
-        validationSchema={loginValidatorSchema}
-        initialValues={{ username: "", password: "" }}
-        onSubmit={values => Alert.alert(values.username)}
+    <View style={styles.screen}>
+      <ImageBackground
+        source={bgLibrary}
+        resizeMode="cover"
+        style={styles.bgImage}
       >
-        {({ 
-          handleChange, 
-          handleBlur, 
-          handleSubmit, 
-          values,
-          errors,
-          touched,
-          isValid 
-        }) => {
-          <>
-            <InputLogin
-              label={"Usuario"}
-              name={"username"}
-              placeHolder={"Ingresar usuario"}
-              icon={false}
-              handleChange={handleChange}
-              value={values.username}
-              handleBlur={handleBlur}
-            />
-            {(errors.username && touched.username) &&
+        <Image source={logo} style={styles.image} />
+        <Text style={styles.textContainer}>
+          <Text style={styles.title}>¡HOLA, ya estás en ALQUILIBRO!</Text>
+          <Text style={styles.subTitle}>
+            {"\nTu app para alquilar libros en papel."}
+          </Text>
+        </Text>
+      </ImageBackground>
+
+      <View style={styles.loginArea}>
+        <ScrollView contentContainerStyle={styles.scroll}>
+          <Formik
+            validationSchema={loginValidatorSchema}
+            initialValues={{ username: "", password: "" }}
+            onSubmit={handleOnPress}
+          >
+            {({
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              values,
+              errors,
+              touched,
+              isValid,
+            }) => (
+              <View style={styles.formik}>
+                <View >
+                <InputLogin
+                  label={"Usuario"}
+                  name={"username"}
+                  placeHolder={"Ingresar usuario"}
+                  icon={false}
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  value={values.username}
+                />
+                {errors.username && touched.username && (
                   <Text style={styles.error}>{errors.username}</Text>
-            }
-            <InputLogin
-              label={"Contraseña"}
-              name={"password"}
-              placeHolder={"Ingresar contraseña"}
-              icon={true}
-              handleChange={handleChange}
-              value={values.password}
-              handleBlur={handleBlur}
-            />
-            {(errors.password && touched.password) &&
+                )}
+                <InputLogin
+                  label={"Contraseña"}
+                  name={"password"}
+                  placeHolder={"Ingresar contraseña"}
+                  icon={true}
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  value={values.password}
+                />
+                {errors.password && touched.password && (
                   <Text style={styles.error}>{errors.password}</Text>
-            }
-            <Pressable onPress={handleSubmit} style={styles.buttonIngresar} disabled={!isValid}>
-              <Text style={styles.buttonText}>INGRESAR</Text>
-            </Pressable>
-          </>;
-        }}
+                )}
+                <Text style={{ paddingLeft: 15 }}>
+                  <Text style={styles.text}>¿Ovidaste tu contraseña? </Text>
+                  <Text
+                    style={styles.text}
+                    onPress={() => {
+                      Alert.alert("Recuperar pass");
+                    }}
+                  >
+                    Hacé click acá.
+                  </Text>
+                </Text>
+                </View>
+                    
+                <Pressable
+                  onPress={handleSubmit}
+                  style={isValid ? styles.disabledButton : styles.activeButton}
+                  disabled={!isValid}
+                >
+                  <Text style={styles.buttonText}>INGRESAR</Text>
+                </Pressable>
+              </View>
+            )}
+          </Formik>
+          <View style={styles.registerArea}>
+            <Text style={styles.text}>¿No tenés cuenta? ¡Registrate!</Text>
+            <View style={styles.iconsLogin}>
+              <MaterialIcons name="facebook" size={24} color="black" />
+              <Ionicons name="logo-google" size={22} color="black" />
+            </View>
 
-        
-      </Formik>
+            <View>
+              <Text style={styles.visitText}>
+                ¿Querés entrar sin registrarte?
+              </Text>
+              <Pressable onPress={handleOnPress} style={styles.buttonVisit}>
+                <Text style={styles.buttonText}>DAR UNA VUELTA</Text>
+              </Pressable>
+            </View>
+          </View>
+        </ScrollView>
       </View>
-
-    //  <View style={styles.screen}>
-    //     <View style={styles.loginContainer}>
-    //       <ImageBackground
-    //         source={bgLibrary}
-    //         resizeMode="cover"
-    //         style={styles.bgImage}
-    //       >
-    //         <Image source={logo} style={styles.image}></Image>
-    //         <View style={styles.textContainer}>
-    //           <Text style={styles.title}>¡HOLA, ya estás en ALQUILIBRO!</Text>
-    //           <Text style={styles.subTitle}>
-    //             Tu app para alquilar libros en papel.
-    //           </Text>
-    //         </View>
-    //       </ImageBackground>
-    //     </View>
-    //     <ScrollView>
-    //     <View style={styles.loginArea}>
-    //       <View style={styles.fieldsData}>
-    //         <View style={styles.container}>
-    //           <View>
-    //             <Text style={styles.label}>Usuario</Text>
-    //             <TextInput
-    //               style={styles.input}
-    //               placeholder="IngresaR"
-    //               onChangeText={text => setUserName(text)}
-    //               defaultValue={username}
-    //               />
-    //           </View>
-    //         </View>
-
-    //         <View style={styles.container}>
-    //           <View>
-    //             <Text style={styles.label}>Contraseña</Text>
-    //             <TextInput
-    //
-    //               style={styles.input}
-    //               onChangeText={text => setPassword(text)}
-    //               defaultValue={password}
-    //               placeholder="Ingresar contraseña"
-    //             />
-    //           </View>
-    //
-    //         </View>
-    //         <Text style={styles.text}>
-    //           ¿Ovidaste tu contraseña? Hacé click acá.
-    //         </Text>
-    //       </View>
-    //       <View style={styles.buttonsSection}>
-    //         
-    //         { error.length ? <Text style={styles.error}> {error} </Text> : null
-
-    //         }
-    //         <Text style={styles.text}>¿No tenés cuenta? ¡Registrate!</Text>
-
-    //         <View style={styles.iconsLogin}>
-    //           <MaterialIcons name="facebook" size={24} color="black" />
-    //           <Ionicons name="logo-google" size={22} color="black" />
-    //         </View>
-
-    //         <View>
-    //           <Text style={styles.visitText}>
-    //             ¿Querés entrar sin registrarte?
-    //           </Text>
-    //           <Pressable onPress={onPressFunction} style={styles.buttonVisit}>
-    //             <Text style={styles.buttonText}>DAR UNA VUELTA</Text>
-    //           </Pressable>
-    //         </View>
-    //     </View>
-    //     </View>
-    //     </ScrollView>
-    //  </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   screen: {
     backgroundColor: "#ffffff",
-    height: "100%",
     flex: 1,
-    flexDirection: "column",
   },
-  loginContainer: {
-    flex: 1,
-    flexDirection: "column",
-    width: "100%",
-    minHeight: "30%",
-    maxHeight: "35%",
+  scroll: {
+    flexGrow: 1,
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   bgImage: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
+    flex: 3,
     alignItems: "center",
     justifyContent: "space-evenly",
   },
@@ -187,10 +157,10 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     height: "auto",
-    width: "auto",
+    width: "100%",
+    textAlign: "center",
     justifyContent: "center",
     backgroundColor: "transparent",
-    alignItems: "center",
   },
   title: {
     fontFamily: "Roboto",
@@ -202,7 +172,10 @@ const styles = StyleSheet.create({
     color: "#1C1427",
   },
   error: {
-    color: "red",
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "400",
+    color: "#FF0000",
   },
   subTitle: {
     fontFamily: "Roboto",
@@ -214,28 +187,13 @@ const styles = StyleSheet.create({
     color: "#1C1427",
   },
   loginArea: {
-    flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "space-around",
+    flex: 5,
     width: "100%",
-    backgroundColor: "#ffffff",
-    paddingVertical: 10,
-  },
-  fieldsData: {
-    width: "85%",
-    maxWidth: 328,
+    height: "100%",
     alignItems: "center",
-  },
-  container: {},
-
-  buttonsSection: {
-    flex: 1,
-    flexDirection: "column",
-    width: "100%",
-    justifyContent: "space-around",
-    alignItems: "center",
-    paddingBottom: "2%",
+    paddingTop: 5,
+    paddingBottom: 15,
+    paddingHorizontal: 10,
   },
   buttonText: {
     fontFamily: "Roboto",
@@ -246,7 +204,18 @@ const styles = StyleSheet.create({
     letterSpacing: 1.25,
     color: "#1C1427",
   },
-  buttonIngresar: {
+  disabledButton: {
+    width: 183,
+    backgroundColor: "#7ECA9C",
+    borderRadius: 4,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 6,
+    marginTop: 10,
+    marginVertical: 4,
+    alignSelf: "center",
+  },
+  activeButton: {
     width: 183,
     backgroundColor: "#DADADA",
     borderRadius: 4,
@@ -254,8 +223,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 6,
     marginTop: 10,
-    color: "#DADADA",
     marginVertical: 4,
+    alignSelf: "center",
+  },
+  formik:{
+    flex:2,
+    justifyContent: 'space-evenly'
+  },
+  registerArea: {
+    flex:1,
+    textAlign: "center",
+    alignItems: "center",
+    justifyContent: "space-evenly",
   },
   text: {
     fontWeight: "400",
