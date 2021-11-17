@@ -50,9 +50,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff'
     },booksList: {
         flexDirection: 'row'
-    }, 
-    scrollView: {
-
     },
     text: {
         fontFamily: "Roboto",
