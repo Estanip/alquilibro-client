@@ -7,4 +7,4 @@ const uploadBookValidationSchema = yup.object().shape({
     .required('ISBN is required')
 });
 
-export default uploadBookValidationSchema;
+export default uploadBookValidationSchema ;

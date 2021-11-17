@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import { RootStackScreenProps } from '../types';
 import { AntDesign } from '@expo/vector-icons';
 import { yupResolver } from '@hookform/resolvers/yup';
-import uploadBookValidationSchema from '../validations/uploadBookValidator';
+import  uploadBookValidationSchema  from '../validations/uploadBookValidator';
 import Books from '../constants/Books';
 
 export default function UploadBookScreen({ navigation }: RootStackScreenProps<'Upload'>) {

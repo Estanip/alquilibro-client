@@ -19,7 +19,7 @@ import UploadBookScreen from '../screens/UploadBookScreen';
 import { RootStackParamList } from '../types';
 import { Image } from 'react-native-elements/dist/image/Image';
 import SearchResultScreen from '../screens/SearchResultScreen';
-import BookResultSceen from '../screens/BookResultSceen';
+import BookResultScreen from '../screens/BookResultScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -93,7 +93,7 @@ function RootNavigator() {
         }
       }}
       />
-      <Stack.Screen name="BookDetail" component={BookResultSceen} options={{
+      <Stack.Screen name="BookDetail" component={BookResultScreen} options={{
         title: "Nombre del Libro",
         headerRight: () => (
           <View style={{ display: 'flex', flexDirection: 'row', marginRight: 10 }}>
