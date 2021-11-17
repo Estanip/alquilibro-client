@@ -37,8 +37,8 @@ export default function LoginRegister({
     <View style={styles.screen}>
        <Formik
         validationSchema={loginValidatorSchema}
-        initialValues={{ username: "", password: "" }}
-        onSubmit={values => console.log(values)}
+        initialValues={{ username: "", password: ""}}
+        onSubmit={values => console.log("press")}
    >
      {({ handleChange, handleBlur, handleSubmit, values, errors,
           touched,
@@ -68,8 +68,7 @@ export default function LoginRegister({
             {(errors.password && touched.password) &&
                   <Text style={styles.error}>{errors.password}</Text>
             }
-
-         <Pressable onPress={handleSubmit}   style={styles.buttonIngresar} disabled={!isValid}>
+         <Pressable onPress={handleSubmit}  style={isValid ? styles.disabledButton : styles.activeButton} disabled={!isValid}>
               <Text style={styles.buttonText}>INGRESAR</Text>
             </Pressable>
        </View>
@@ -240,15 +239,24 @@ const styles = StyleSheet.create({
     letterSpacing: 1.25,
     color: "#1C1427",
   },
-  buttonIngresar: {
+  disabledButton: {
     width: 183,
+    backgroundColor: "#7ECA9C",
+    borderRadius: 4,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 6,
+    marginTop: 10,
+    marginVertical: 4,
+  },
+  activeButton: {
+     width: 183,
     backgroundColor: "#DADADA",
     borderRadius: 4,
     alignItems: "center",
     justifyContent: "center",
     padding: 6,
     marginTop: 10,
-    color: "#DADADA",
     marginVertical: 4,
   },
   text: {
