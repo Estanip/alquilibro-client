@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Formik } from "formik";
+import { Formik } from 'formik';
 
 import {
   StyleSheet,
@@ -11,6 +11,7 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
+
 import { Text } from "../components/Themed";
 import { RootStackScreenProps } from "../types";
 import { useState } from "react";
@@ -21,7 +22,7 @@ const bgLibrary = require("../assets/images/loginBackground.png");
 const logo = require("../assets/images/alquilibro-icon.png");
 
 const customFonts = {
-  Roboto: require("../assets/fonts/Roboto-Regular.ttf"),
+  Roboto: require("../assets/fonts/Roboto-Regular.ttf")
 };
 
 export default function LoginRegister({
@@ -33,30 +34,24 @@ export default function LoginRegister({
 
   }
   return (
-    <View>
-      <Formik
+    <View style={styles.screen}>
+       <Formik
         validationSchema={loginValidatorSchema}
         initialValues={{ username: "", password: "" }}
-        onSubmit={values => Alert.alert(values.username)}
-      >
-        {({ 
-          handleChange, 
-          handleBlur, 
-          handleSubmit, 
-          values,
-          errors,
+        onSubmit={values => console.log(values)}
+   >
+     {({ handleChange, handleBlur, handleSubmit, values, errors,
           touched,
-          isValid 
-        }) => {
-          <>
-            <InputLogin
+          isValid  }) => (
+       <View>
+         <InputLogin
               label={"Usuario"}
               name={"username"}
               placeHolder={"Ingresar usuario"}
               icon={false}
-              handleChange={handleChange}
-              value={values.username}
+              handleChange={handleChange}              
               handleBlur={handleBlur}
+              value={values.username}
             />
             {(errors.username && touched.username) &&
                   <Text style={styles.error}>{errors.username}</Text>
@@ -66,23 +61,26 @@ export default function LoginRegister({
               name={"password"}
               placeHolder={"Ingresar contraseña"}
               icon={true}
-              handleChange={handleChange}
-              value={values.password}
+              handleChange={handleChange}              
               handleBlur={handleBlur}
+              value={values.password}
             />
             {(errors.password && touched.password) &&
                   <Text style={styles.error}>{errors.password}</Text>
             }
-            <Pressable onPress={handleSubmit} style={styles.buttonIngresar} disabled={!isValid}>
+
+         <Pressable onPress={handleSubmit}   style={styles.buttonIngresar} disabled={!isValid}>
               <Text style={styles.buttonText}>INGRESAR</Text>
             </Pressable>
-          </>;
-        }}
+       </View>
+     )}
+   </Formik>
+   </View>
+ );
+}
 
-        
-      </Formik>
-      </View>
-
+ 
+             
     //  <View style={styles.screen}>
     //     <View style={styles.loginContainer}>
     //       <ImageBackground
@@ -155,15 +153,11 @@ export default function LoginRegister({
     //     </View>
     //     </ScrollView>
     //  </View>
-  );
-}
 
 const styles = StyleSheet.create({
   screen: {
     backgroundColor: "#ffffff",
-    height: "100%",
     flex: 1,
-    flexDirection: "column",
   },
   loginContainer: {
     flex: 1,

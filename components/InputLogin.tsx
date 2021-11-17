@@ -13,14 +13,14 @@ interface Iprops {
 }
 
 export default function InputLogin(props: Iprops) {
-  const { label, name, placeHolder, icon, handleChange, value, handleBlur } =
+  const { label, name, placeHolder, icon, handleChange, handleBlur, value } =
     props;
   const [NoVisiblePass, setVisiblePass] = useState<boolean>(true);
 
   return (
     <View style={styles.inputField}>
       <View style={styles.textArea}>
-        <Text style={styles.label}>{label}</Text>
+        <Text>{label}</Text>
         <TextInput
           style={styles.input}
           placeholder={placeHolder}
