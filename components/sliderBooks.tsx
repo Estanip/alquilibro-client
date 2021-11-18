@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 
-
 import { useFonts } from 'expo-font';
 import BookCard from './BookCard';
 
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
     text: {
         fontFamily: "Roboto",
         fontStyle: "normal",
-        fontWeight: "600",
+        fontWeight: "bold",
         fontSize: 13,
         lineHeight: 16,
         color: "#000000",        
