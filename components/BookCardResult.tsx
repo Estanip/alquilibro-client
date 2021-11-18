@@ -34,13 +34,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '95%',
         backgroundColor: '#CCFFBD',
-        marginTop: 10,
+        marginTop: 20,
         marginHorizontal: 10,
-        padding: 10
+        padding: 20
     },
     img: {
         width: '25%',
-        marginRight: 10
+        marginRight: 15
     },
     textContainer: {
         width: '80%',
@@ -58,11 +58,12 @@ const styles = StyleSheet.create({
     },
     bookAuthor: {
         fontFamily: "Roboto",
-        fontStyle: "normal",
+        fontStyle: "italic",
         fontWeight: 'bold',
         fontSize: 12,
         lineHeight: 22,
         letterSpacing: 1.25,
+        marginBottom: 5,
         color: "#1C1427"
     }
 })
