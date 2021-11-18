@@ -31,6 +31,7 @@ export default function BottomTabNavigator() {
           tabBarIcon: () => <TabBarIcon name="home-circle-outline" />
         })}
       />
+      
     </BottomTab.Navigator>
   );
 }

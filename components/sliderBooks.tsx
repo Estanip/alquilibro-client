@@ -38,7 +38,6 @@ export default function SliderBooks(props: Iprops) {
             }
             </ScrollView>
             </View>
-            
         </View>
        </>
     )
@@ -47,9 +46,11 @@ export default function SliderBooks(props: Iprops) {
 const styles = StyleSheet.create({
     screen: {
         flex:1,
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',        
+        justifyContent: 'center'        
     },booksList: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginVertical: 10,    
     },
     text: {
         fontFamily: "Roboto",
@@ -57,7 +58,6 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         fontSize: 13,
         lineHeight: 16,
-        color: "#000000",
-        paddingVertical: 3
+        color: "#000000",        
     }
 })

@@ -1,25 +1,41 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, ImageBackground, Pressable } from 'react-native';
+import { StyleSheet, View, Text, ImageBackground } from 'react-native';
 import { useFonts } from 'expo-font';
 import { Ionicons } from '@expo/vector-icons'; 
+import { Dimensions } from 'react-native';
+import { useEffect, useState } from 'react';
 
 const customFonts = {
     Roboto: require('../assets/fonts/Roboto-Regular.ttf')
 };
 
+const window = Dimensions.get("window");
 interface Iprops {
     title: string;
     image: string;
 }
+
 export default function BookCard(props: Iprops) {
     
     const { title, image } = props
     const imgSource = { uri: image}
+       
+    const [dimensions, setDimensions] = useState({ window });
+
+    useEffect(() => {
+        Dimensions.addEventListener(
+        "change",
+        ({ window }) => {
+            setDimensions({ window });
+        }
+        );        
+    });
 
     useFonts(customFonts);
 
     return (
-        <View style={styles.container}>     
+        <View style={{width:0.40*dimensions.window.width, 
+        height: 0.19*dimensions.window.height, marginHorizontal: 8 }}>     
             <ImageBackground
                 source={imgSource}
                 resizeMode="contain"
@@ -36,8 +52,7 @@ export default function BookCard(props: Iprops) {
 
 const styles = StyleSheet.create({
     container: {
-        width:148,
-        height:145,
+        width: 148,
         marginHorizontal: 6
     },
     bgImage: {
@@ -45,7 +60,8 @@ const styles = StyleSheet.create({
     },
     detailBar: {
         width: '100%',
-        height: 46,
+        height: '25%',
+        maxHeight: 46,
         backgroundColor: '#CCFFBD',
         position: 'absolute',
         bottom: 0,
