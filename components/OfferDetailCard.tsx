@@ -16,10 +16,10 @@ export default function OfferDetailCard() {
 
             <Text
                 style={styles.text}
-            >{"JUAN CARLOS\nDetalle"}</Text>
+            >{"Un Mundo Feliz\nAldous Huxley"}</Text>
             <Text
                 style={styles.text}
-            >{"JUAN CARLOS\nDetalle"}</Text>
+            >{"Precio por día: \n$35"}</Text>
 
             <Entypo name="edit" size={24} color="black" style={{marginLeft: 10, alignSelf: 'center'}} />
 
@@ -34,14 +34,14 @@ const styles = StyleSheet.create({
         top: '5%',
         padding: 15,
         backgroundColor: '#CCFFBD',
-        width: '80%',
+        width: '70%',
         marginHorizontal: 10,
         alignSelf: 'center'
     },
     img: {
         width: '20%',
         height: 60,
-        marginRight: 10
+        marginRight: 20
     },
     text: {
         fontFamily: "Roboto",
