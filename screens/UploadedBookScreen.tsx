@@ -6,7 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 import OfferDetailCard from '../components/OfferDetailCard';
 
 
-export default function BookUploadedScreen() {
+export default function UploadedBookScreen() {
     return (
         <>
         <View
