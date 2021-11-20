@@ -35,6 +35,7 @@ export type RootTabParamList = {
   Home: undefined;
   Upload: undefined;  
   Recommended: undefined;
+  Profile: undefined;
 };
 
 
