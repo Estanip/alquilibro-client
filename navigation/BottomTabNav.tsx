@@ -6,6 +6,7 @@ import { RootTabParamList, RootTabScreenProps } from '../types';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
 import UploadBookScreen from '../screens/UploadBookScreen';
+import RecommendedScreen from '../screens/RecommendedScreen';
 
 /**
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
