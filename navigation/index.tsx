@@ -19,8 +19,8 @@ import LoginRegister from '../screens/LoginRegisterScreen';
 import UploadBookScreen from '../screens/UploadBookScreen';
 import SearchResultScreen from '../screens/SearchResultScreen';
 import RecommendedScreen from '../screens/RecommendedScreen';
-import BookSelectedScreen from '../screens/BookSelectedScreen';
-import BookUploadedScreen from '../screens/BookUploadedScreen';
+import SelectedBookScreen from '../screens/SelectedBookScreen';
+import UploadedBookScreen from '../screens/UploadedBookScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -98,7 +98,7 @@ function RootNavigator() {
         }
       }}
       />
-      <Stack.Screen name="BookDetail" component={BookSelectedScreen} options={{
+      <Stack.Screen name="BookDetail" component={SelectedBookScreen} options={{
         title: "Nombre del Libro",
         headerRight: () => (
           <View style={{ display: 'flex', flexDirection: 'row', marginRight: 10 }}>
@@ -136,7 +136,7 @@ function RootNavigator() {
         }
       }}
       />
-      <Stack.Screen name="UploadedBook" component={BookUploadedScreen} options={{
+      <Stack.Screen name="UploadedBook" component={UploadBookScreen} options={{
         title: 'Nombre del Libro',
         headerRight: () => (
           <View style={{ display: 'flex', flexDirection: 'row', marginRight: 10 }}>

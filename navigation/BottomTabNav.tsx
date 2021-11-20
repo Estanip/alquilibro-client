@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons'; 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { RootTabParamList, RootTabScreenProps } from '../types';
 import { useNavigation } from '@react-navigation/native';
@@ -8,7 +7,6 @@ import { useNavigation } from '@react-navigation/native';
 import HomeScreen from '../screens/HomeScreen';
 import UploadBookScreen from '../screens/UploadBookScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import RecommendedScreen from '../screens/RecommendedScreen';
 
 /**
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
@@ -23,7 +21,7 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      screenOptions={{ headerShown: false, tabBarShowLabel: true, tabBarActiveTintColor:'black', tabBarInactiveTintColor: 'black', tabBarActiveBackgroundColor: '#7ECA9C', tabBarInactiveBackgroundColor: '#7ECA9C' }}
+      screenOptions={{ headerShown: false, tabBarShowLabel: false, tabBarActiveTintColor:'black', tabBarInactiveTintColor: 'black', tabBarActiveBackgroundColor: '#7ECA9C', tabBarInactiveBackgroundColor: '#7ECA9C' }}
     >
       <BottomTab.Screen
         name='Home'
@@ -45,14 +43,6 @@ export default function BottomTabNavigator() {
       component={ProfileScreen}
         options={({ navigation }: RootTabScreenProps<'Profile'>) => ({
           tabBarIcon: () => <TabBarIcon name="account-circle" />
-        })}
-      />
-      <BottomTab.Screen
-        name='Recommended'
-        component={RecommendedScreen}
-        options={({ navigation }: RootTabScreenProps<'Recommended'>) => ({
-          title: "PERFIL",
-          tabBarIcon: () => <AntDesign name="user" size={24} color="black" />
         })}
       />
     </BottomTab.Navigator>

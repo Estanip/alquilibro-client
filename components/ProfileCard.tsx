@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     image: {
         width: 70,
         height: 63,
-        marginRigth: 10
+        marginRight: 10
     },
     text: {
         fontFamily: "Roboto",
