@@ -4,9 +4,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
 import { RootTabParamList, RootTabScreenProps } from '../types';
 import { useNavigation } from '@react-navigation/native';
-import { Alert } from 'react-native';
 import UploadBookScreen from '../screens/UploadBookScreen';
-import RecommendedScreen from '../screens/RecommendedScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 /**
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
@@ -34,7 +33,14 @@ export default function BottomTabNavigator() {
       name='Upload'
       component={UploadBookScreen}
         options={({ navigation }: RootTabScreenProps<'Upload'>) => ({
-          tabBarIcon: () => <TabBarIcon name="book" />
+          tabBarIcon: () => <TabBarIcon name="book"   />
+        })}
+      />
+       <BottomTab.Screen
+      name='Profile'
+      component={ProfileScreen}
+        options={({ navigation }: RootTabScreenProps<'Profile'>) => ({
+          tabBarIcon: () => <TabBarIcon name="account-circle" />
         })}
       />
     </BottomTab.Navigator>
@@ -47,8 +53,6 @@ export default function BottomTabNavigator() {
  function TabBarIcon(props: {
   name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
 }) {
-
   const navigation = useNavigation();
-
-  return <MaterialCommunityIcons size={24} onPress={() => navigation.navigate("Main")}  style={{ marginBottom: -3, color: "black" }} {...props} />;
+  return <MaterialCommunityIcons size={24} style={{ marginBottom: -3, color: "black" }} {...props} />;
 }
