@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
-import SearchHomeBar from '../components/SearchHomeBar';
-import HomeCards from '../components/HomeCards';
-import UploadBook from '../components/UploadBook';
-
 import { RootTabScreenProps } from '../types';
 import { useFonts } from 'expo-font';
+
+import HomeCards from '../components/HomeCards';
+import SearchInputHome from '../components/SearchInputHome';
+import UploadBookButton from '../components/UploadBookButton';
 
 const customFonts = {
     Roboto: require('../assets/fonts/Roboto-Regular.ttf')
@@ -25,7 +25,7 @@ export default function Home({ navigation }: RootTabScreenProps<'Home'>) {
                         ¿Buscas un libro en especial?
                     </Text>
                 </View>
-                <SearchHomeBar />
+                <SearchInputHome />
                 <View style={styles.titleTwoContainer}>
                     <Text style={styles.titleTwo}>
                         ¿No sabés qué leer?
@@ -37,7 +37,7 @@ export default function Home({ navigation }: RootTabScreenProps<'Home'>) {
                         ¿Querés alquilar tus libros?
                     </Text>
                 </View>
-                <UploadBook />
+                <UploadBookButton />
             </View>
         </ScrollView>
     )

@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Alert } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 import { useFonts } from 'expo-font';
-import { Icon } from 'react-native-elements';
+import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 const customFonts = {
@@ -9,19 +9,21 @@ const customFonts = {
 };
 
 
-export default function SearchHomeBar() {
+export default function SearchInputHome() {
 
     const navigation = useNavigation();
     useFonts(customFonts);
 
     return (
         <View style={styles.searchContainer} >
-            <Icon
-                name='search'
-                color='#000'
-                onPress={() => navigation.navigate("SearchResults")}
+
+            <FontAwesome
+                name="search"
                 size={20}
+                color="black"
+                onPress={() => navigation.navigate("SearchResults")}
             />
+
             <TextInput
                 style={styles.searchInput}
                 placeholder="Buscá tu libro..."
