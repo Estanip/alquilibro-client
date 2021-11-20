@@ -5,7 +5,7 @@ import SliderBooks from '../components/sliderBooks';
 
 import BookCardResult from '../components/BookCardResult';
 
-export default function BookResultSceen() {
+export default function BookSelectedScreen() {
 
     interface IList {
         title: string;

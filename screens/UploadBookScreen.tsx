@@ -4,10 +4,12 @@ import { useForm, Controller } from "react-hook-form";
 import { RootStackScreenProps } from '../types';
 import { AntDesign } from '@expo/vector-icons';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigation } from '@react-navigation/native';
+
 import  uploadBookValidationSchema  from '../validations/uploadBookValidator';
 import Books from '../constants/Books';
 
-export default function UploadBookScreen({ navigation }: RootStackScreenProps<'Upload'>) {
+export default function UploadBookScreen({ }: RootStackScreenProps<'Upload'>) {
 
   type FormData = {
     isbn: string;
@@ -23,6 +25,8 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
   const { control, setValue, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: yupResolver(uploadBookValidationSchema)
   })
+
+  const navigation = useNavigation();
 
   const onSubmit = handleSubmit((data: FormData) => {
 
@@ -189,7 +193,7 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<'U
             </Pressable>
 
             <Pressable
-              onPress={onSubmit}
+              onPress={() => navigation.navigate("UploadedBook")}
               style={styles.uploadButton}
             >
               <Text

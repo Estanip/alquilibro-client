@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View, Text, Platform } from 'react-native';
+import { CheckBox } from 'react-native-elements';
+
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-import DateTimePicker from '@react-native-community/datetimepicker';
 
 import SearchResultsCards from '../components/SearchResultsCards';
-import { CheckBox } from 'react-native-elements';
 
 export default function SearchResultScreen() {
 
@@ -26,10 +27,6 @@ export default function SearchResultScreen() {
 
     const showDatepicker = () => {
         showMode('date');
-    };
-
-    const showTimepicker = () => {
-        showMode('time');
     };
 
     return (
