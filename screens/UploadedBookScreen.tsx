@@ -34,10 +34,9 @@ export default function UploadedBookScreen() {
                 <Text
                     style={styles.offerText}
                 >Ya estas ofrenciendo tu libro: </Text>
-
-                <OfferDetailCard />
-
             </View>
+
+            <OfferDetailCard />
 
             <View style={styles.buttonContainer}>
 

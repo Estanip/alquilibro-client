@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
     offerCardContainer: {
         display: 'flex',
         flexDirection: 'row',
-        top: '5%',
+        top: '50%',
         padding: 10,
-        backgroundColor: '#CCFFBD',
-        width: 400,
+        width: '95%',
         marginHorizontal: 10,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        backgroundColor: '#CCFFBD'
     },
     img: {
         width: '15%',
