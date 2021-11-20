@@ -57,5 +57,5 @@ function TabBarIcon(props: {
 }) {
   const navigation = useNavigation();
 
-  return <MaterialCommunityIcons size={24} onPress={() => navigation.navigate("Main")} style={{ marginBottom: -3, color: "black" }} {...props} />;
+  return <MaterialCommunityIcons size={24} style={{ marginBottom: -3, color: "black" }} {...props} />;
 }
