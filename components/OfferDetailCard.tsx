@@ -31,9 +31,9 @@ const styles = StyleSheet.create({
     offerCardContainer: {
         display: 'flex',
         flexDirection: 'row',
-        top: '50%',
-        padding: 10,
-        width: '95%',
+        top: '5%',
+        padding: 15,
+        width: '70%',
         marginHorizontal: 10,
         alignSelf: 'center',
         backgroundColor: '#CCFFBD'
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     img: {
         width: '15%',
         height: 60,
-        marginRight: 10
+        marginRight: 20
     },
     text: {
         fontFamily: "Roboto",

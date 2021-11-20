@@ -278,8 +278,13 @@ const styles = StyleSheet.create({
     marginLeft: 14,
     padding: 10,
     width: '43%',
+<<<<<<< HEAD
     borderRadius: 5,
     backgroundColor: '#DADADA'
+=======
+    backgroundColor: '#7ECA9C',
+    borderRadius: 5
+>>>>>>> 79fbdc3 (agregue UploadedBookScreen)
   },
   uploadText: {
     margin: 0,
