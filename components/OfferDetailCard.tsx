@@ -31,17 +31,17 @@ const styles = StyleSheet.create({
     offerCardContainer: {
         display: 'flex',
         flexDirection: 'row',
-        top: '5%',
-        padding: 15,
-        width: '70%',
+        top: '50%',
+        padding: 10,
+        width: '95%',
         marginHorizontal: 10,
         alignSelf: 'center',
         backgroundColor: '#CCFFBD'
     },
     img: {
         width: '15%',
-        height: 60,
-        marginRight: 20
+        height: 80,
+        marginRight: 15
     },
     text: {
         fontFamily: "Roboto",
@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
         lineHeight: 20,
         letterSpacing: 1.25,
         color: "#1C1427",
-        marginRight: 10
+        marginRight: 5
     }
 })
