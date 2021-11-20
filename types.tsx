@@ -22,6 +22,7 @@ export type RootStackParamList = {
   SearchResults: NavigatorScreenParams<RootTabParamList> | undefined;
   BookDetail: NavigatorScreenParams<RootTabParamList> | undefined;
   Recommended: NavigatorScreenParams<RootTabParamList> | undefined;
+  UploadedBook: NavigatorScreenParams<RootTabParamList> | undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

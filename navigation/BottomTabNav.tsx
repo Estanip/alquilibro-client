@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from '../screens/HomeScreen';
 import { RootTabParamList, RootTabScreenProps } from '../types';
 import { useNavigation } from '@react-navigation/native';
+
+import HomeScreen from '../screens/HomeScreen';
 import UploadBookScreen from '../screens/UploadBookScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
@@ -20,18 +21,19 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      screenOptions={{headerShown: false, tabBarShowLabel: false, tabBarActiveBackgroundColor: '#7ECA9C'}}
+      screenOptions={{ headerShown: false, tabBarShowLabel: false, tabBarActiveTintColor:'black', tabBarInactiveTintColor: 'black', tabBarActiveBackgroundColor: '#7ECA9C', tabBarInactiveBackgroundColor: '#7ECA9C' }}
     >
       <BottomTab.Screen
-      name='Home'
-      component={HomeScreen}
+        name='Home'
+        component={HomeScreen}
         options={({ navigation }: RootTabScreenProps<'Home'>) => ({
+          title: 'HOME',
           tabBarIcon: () => <TabBarIcon name="home-circle-outline" />
         })}
       />
       <BottomTab.Screen
-      name='Upload'
-      component={UploadBookScreen}
+        name='Upload'
+        component={UploadBookScreen}
         options={({ navigation }: RootTabScreenProps<'Upload'>) => ({
           tabBarIcon: () => <TabBarIcon name="book"   />
         })}
@@ -50,9 +52,10 @@ export default function BottomTabNavigator() {
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
- function TabBarIcon(props: {
+function TabBarIcon(props: {
   name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
 }) {
   const navigation = useNavigation();
-  return <MaterialCommunityIcons size={24} style={{ marginBottom: -3, color: "black" }} {...props} />;
+
+  return <MaterialCommunityIcons size={24} onPress={() => navigation.navigate("Main")} style={{ marginBottom: -3, color: "black" }} {...props} />;
 }
