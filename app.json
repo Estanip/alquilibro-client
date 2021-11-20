@@ -4,13 +4,13 @@
     "slug": "alquilibro",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/alquilibro-icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "cover",
+      "backgroundColor": "#000000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,10 +22,13 @@
       "supportsTablet": true
     },
     "android": {
+      "permissions": ["READ_CALENDAR", "WRITE_CALENDAR"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#FFFFFF"     
+      },
+    "package": "com.alquilibrodev.alquilibro",
+    "versionCode": 1
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
