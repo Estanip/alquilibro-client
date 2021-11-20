@@ -278,6 +278,7 @@ const styles = StyleSheet.create({
     marginLeft: 14,
     padding: 10,
     width: '43%',
+    borderRadius: 5,
     backgroundColor: '#DADADA'
   },
   uploadText: {

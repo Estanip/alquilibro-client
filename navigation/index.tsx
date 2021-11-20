@@ -136,7 +136,7 @@ function RootNavigator() {
         }
       }}
       />
-      <Stack.Screen name="UploadedBook" component={UploadBookScreen} options={{
+      <Stack.Screen name="UploadedBook" component={UploadedBookScreen} options={{
         title: 'Nombre del Libro',
         headerRight: () => (
           <View style={{ display: 'flex', flexDirection: 'row', marginRight: 10 }}>
