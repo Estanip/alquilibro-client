@@ -35,11 +35,9 @@ export default function UploadedBookScreen() {
                 <Text
                     style={styles.offerText}
                 >Ya estas ofrenciendo tu libro: </Text>
-
-                <OfferDetailCard />
-
-
             </View>
+
+            <OfferDetailCard />
 
             <View
                 style={styles.buttonsContainer}
@@ -53,14 +51,13 @@ export default function UploadedBookScreen() {
                     <Text
                         style={styles.imageText}
                     >
-
-                       MIS LIBROS SUBIDOS
+                        MIS LIBROS SUBIDOS
                     </Text>
                 </Pressable>
 
                 <Pressable
                     onPress={() => Alert.alert("SUBIR MAS")}
-                
+
                     style={styles.uploadButton}
                 >
                     <Text
