@@ -278,8 +278,8 @@ const styles = StyleSheet.create({
     marginLeft: 14,
     padding: 10,
     width: '43%',
-    backgroundColor: '#7ECA9C',
-    borderRadius: 5
+    borderRadius: 5,
+    backgroundColor: '#DADADA'
   },
   uploadText: {
     margin: 0,
