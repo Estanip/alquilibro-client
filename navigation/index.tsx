@@ -16,11 +16,11 @@ import BottomTabNavigator from './BottomTabNav';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import LoginRegister from '../screens/LoginRegisterScreen';
-import UploadBookScreen from '../screens/UploadBookScreen';
 import SearchResultScreen from '../screens/SearchResultScreen';
 import RecommendedScreen from '../screens/RecommendedScreen';
 import SelectedBookScreen from '../screens/SelectedBookScreen';
 import UploadedBookScreen from '../screens/UploadedBookScreen';
+import UploadBookScreen from '../screens/UploadBookScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (

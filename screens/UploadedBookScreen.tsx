@@ -23,6 +23,7 @@ export default function UploadedBookScreen() {
                     <AntDesign name="checkcircle" size={34} color="black" />
                 </View>
 
+
                 <Text
                     style={styles.titleText}
                 >{"FELICITACIONES!\nSUBISTE UN NUEVO LIBRO CON EXITO!"}</Text>
@@ -34,11 +35,15 @@ export default function UploadedBookScreen() {
                 <Text
                     style={styles.offerText}
                 >Ya estas ofrenciendo tu libro: </Text>
+
+                <OfferDetailCard />
+
+
             </View>
 
-            <OfferDetailCard />
-
-            <View style={styles.buttonContainer}>
+            <View
+                style={styles.buttonsContainer}
+            >
 
                 <Pressable
                     onPress={() => Alert.alert("Upload Image")}
@@ -48,12 +53,14 @@ export default function UploadedBookScreen() {
                     <Text
                         style={styles.imageText}
                     >
-                        MIS LIBROS SUBIDOS
+
+                       MIS LIBROS SUBIDOS
                     </Text>
                 </Pressable>
 
                 <Pressable
-                    onPress={() => navigation.navigate("UploadedBook")}
+                    onPress={() => Alert.alert("SUBIR MAS")}
+                
                     style={styles.uploadButton}
                 >
                     <Text

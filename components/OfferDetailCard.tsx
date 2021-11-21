@@ -20,7 +20,6 @@ export default function OfferDetailCard() {
             <Text
                 style={styles.text}
             >{"Precio por día\n$35"}</Text>
-
             <Entypo name="edit" size={24} color="black" style={{marginLeft: 10, alignSelf: 'center'}} />
 
         </View>
@@ -30,7 +29,7 @@ export default function OfferDetailCard() {
 const styles = StyleSheet.create({
     offerCardContainer: {
         display: 'flex',
-        flexDirection: 'row',
+        flexDirecti
         top: '50%',
         padding: 10,
         width: '95%',
@@ -39,9 +38,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#CCFFBD'
     },
     img: {
-        width: '15%',
-        height: 80,
-        marginRight: 15
+        width: '20%',
+        height: 60,
+        marginRight: 20
     },
     text: {
         fontFamily: "Roboto",
