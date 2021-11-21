@@ -31,14 +31,14 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         top: '50%',
-        padding: 10,
+        padding: 5,
         width: '95%',
         marginHorizontal: 10,
         alignSelf: 'center',
         backgroundColor: '#CCFFBD'
     },
     img: {
-        width: '20%',
+        width: '15%',
         height: 60,
         marginRight: 20
     },
