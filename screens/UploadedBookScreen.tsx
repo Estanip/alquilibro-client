@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         color: "#1C1427",
         textAlign: 'center'
     },
-    buttonContainer: {
+    buttonsContainer: {
         top: '75%',
         width: '100%',
         alignSelf: 'center',

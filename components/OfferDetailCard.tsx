@@ -29,7 +29,7 @@ export default function OfferDetailCard() {
 const styles = StyleSheet.create({
     offerCardContainer: {
         display: 'flex',
-        flexDirecti
+        flexDirection: 'row',
         top: '50%',
         padding: 10,
         width: '95%',
