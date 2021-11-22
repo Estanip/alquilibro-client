@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         width: '40%',
         left: '30%',
-        top: '40%',
+        top: '48%',
         padding: 10
     },
     buttonText: {   

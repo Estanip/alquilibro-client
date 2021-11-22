@@ -9,9 +9,9 @@ import {
   Image,
   ScrollView,
   Alert,
+  Text
 } from "react-native";
 
-import { Text } from "../components/Themed";
 import { RootStackScreenProps } from "../types";
 import { useState } from "react";
 import InputLogin from "../components/InputLogin";
@@ -65,43 +65,43 @@ export default function LoginRegister({
             }) => (
               <View style={styles.formik}>
                 <View >
-                <InputLogin
-                  label={"Usuario"}
-                  name={"username"}
-                  placeHolder={"Ingresar usuario"}
-                  icon={false}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  value={values.username}
-                />
-                {errors.username && touched.username && (
-                  <Text style={styles.error}>{errors.username}</Text>
-                )}
-                <InputLogin
-                  label={"Contraseña"}
-                  name={"password"}
-                  placeHolder={"Ingresar contraseña"}
-                  icon={true}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  value={values.password}
-                />
-                {errors.password && touched.password && (
-                  <Text style={styles.error}>{errors.password}</Text>
-                )}
-                <Text style={{ paddingLeft: 15 }}>
-                  <Text style={styles.text}>¿Ovidaste tu contraseña? </Text>
-                  <Text
-                    style={styles.text}
-                    onPress={() => {
-                      Alert.alert("Recuperar pass");
-                    }}
-                  >
-                    Hacé click acá.
+                  <InputLogin
+                    label={"Usuario"}
+                    name={"username"}
+                    placeHolder={"Ingresar usuario"}
+                    icon={false}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    value={values.username}
+                  />
+                  {errors.username && touched.username && (
+                    <Text style={styles.error}>{errors.username}</Text>
+                  )}
+                  <InputLogin
+                    label={"Contraseña"}
+                    name={"password"}
+                    placeHolder={"Ingresar contraseña"}
+                    icon={true}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    value={values.password}
+                  />
+                  {errors.password && touched.password && (
+                    <Text style={styles.error}>{errors.password}</Text>
+                  )}
+                  <Text style={{ paddingLeft: 15 }}>
+                    <Text style={styles.text}>¿Ovidaste tu contraseña? </Text>
+                    <Text
+                      style={styles.text}
+                      onPress={() => {
+                        Alert.alert("Recuperar pass");
+                      }}
+                    >
+                      Hacé click acá.
+                    </Text>
                   </Text>
-                </Text>
                 </View>
-                    
+
                 <Pressable
                   onPress={handleSubmit}
                   style={isValid ? styles.disabledButton : styles.activeButton}
@@ -226,12 +226,12 @@ const styles = StyleSheet.create({
     marginVertical: 4,
     alignSelf: "center",
   },
-  formik:{
-    flex:2,
+  formik: {
+    flex: 2,
     justifyContent: 'space-evenly'
   },
   registerArea: {
-    flex:1,
+    flex: 1,
     textAlign: "center",
     alignItems: "center",
     justifyContent: "space-evenly",
