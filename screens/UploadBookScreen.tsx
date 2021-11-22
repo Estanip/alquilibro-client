@@ -1,12 +1,13 @@
 import React from 'react';
-import { Text, View, TextInput, Button, Alert, StyleSheet, ScrollView, Pressable } from "react-native";
+import { Text, View, TextInput, Alert, StyleSheet, ScrollView, Pressable } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { RootStackScreenProps } from '../types';
+
 import { AntDesign } from '@expo/vector-icons';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigation } from '@react-navigation/native';
 
-import  uploadBookValidationSchema  from '../validations/uploadBookValidator';
+import uploadBookValidationSchema  from '../validations/uploadBookValidator';
 import Books from '../constants/Books';
 
 export default function UploadBookScreen({ }: RootStackScreenProps<'Upload'>) {
@@ -193,15 +194,16 @@ export default function UploadBookScreen({ }: RootStackScreenProps<'Upload'>) {
             </Pressable>
 
             <Pressable
-              onPress={() => navigation.navigate("UploadedBook")}
-              style={styles.uploadButton}
-            >
-              <Text
-                style={styles.uploadText}
-              >
-                SUBIR LIBRO
-              </Text>
-            </Pressable>
+                    onPress={() => Alert.alert("APLICAR FILTROS")}
+
+                    style={styles.uploadButton}
+                >
+                    <Text
+                        style={styles.uploadText}
+                    >
+                        SUBIR MAS LIBROS
+                    </Text>
+                </Pressable>
 
           </View>
 
@@ -223,14 +225,12 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   uploadTitle: {
-    marginLeft: 12,
-    marginRight: 12,
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: 'bold',
-/*     fontSize: 20,
- */    lineHeight: 24,
+    marginHorizontal: 10,
     letterSpacing: 0.15,
+    fontSize: 20,
     color: '#1C1427',
     alignSelf: 'center',
     textAlign: 'center',

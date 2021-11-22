@@ -17,7 +17,7 @@ export default function HomeCards() {
                     resizeMode='cover'
                 >
                     <Pressable
-                        onPress={() => Alert.alert("Filter Button")}
+                        onPress={() => navigation.navigate('AdvancedFilter')}
                         style={styles.btnContainer}
                     >
                         <Text
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         height: 152,
-        top: '34%',
+        top: '45%',
         backgroundColor: 'transparent'
     },
     filterContainer: {

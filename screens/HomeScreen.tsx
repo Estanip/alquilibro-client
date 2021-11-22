@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     titleOneContainer: {
         width: '100%',
         alignSelf: 'center',
-        top: '6%'
+        top: '10%'
     },
     titleOne: {
         fontFamily: 'Roboto',
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         width: '100%',
         alignSelf: 'center',
         height: 24,
-        top: '18%'
+        top: '25%'
     },
     titleTwo: {
         fontFamily: 'Roboto',
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     titleThreeContainer: {
         width: '100%',
         alignSelf: 'center',
-        top: '35%'
+        top: '45%'
     },
     titleThree: {
         fontFamily: 'Roboto',

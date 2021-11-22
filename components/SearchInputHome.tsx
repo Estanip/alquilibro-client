@@ -40,9 +40,9 @@ const styles = StyleSheet.create({
     searchContainer: {
         flexDirection: 'row',
         alignSelf: 'center',
-        width: '80%',
+        width: '90%',
         height: 40,
-        top: '15%',
+        top: '20%',
         padding: 10,
         backgroundColor: '#ECEFF0',
         alignItems: 'center',

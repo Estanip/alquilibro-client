@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, StyleSheet, View, Text } from 'react-native';
+import { Image, StyleSheet, View, Text, Alert } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
 
@@ -20,7 +20,7 @@ export default function OfferDetailCard() {
             <Text
                 style={styles.text}
             >{"Precio por día\n$35"}</Text>
-            <Entypo name="edit" size={24} color="black" style={{marginLeft: 10, alignSelf: 'center'}} />
+            <Entypo name="edit" size={24} color="black" style={{alignSelf: 'center', width: '10%', marginLeft: 10}} onPress={() => Alert.alert("Edit Button")} />
 
         </View>
     )
@@ -30,25 +30,27 @@ const styles = StyleSheet.create({
     offerCardContainer: {
         display: 'flex',
         flexDirection: 'row',
-        top: '50%',
-        padding: 5,
-        width: '95%',
-        marginHorizontal: 10,
         alignSelf: 'center',
+        top: '50%',
+        padding: 10,
+        height: 100,
+        width: '95%',
         backgroundColor: '#CCFFBD'
     },
     img: {
         width: '15%',
-        height: 60,
-        marginRight: 20
+        height: '80%',
+        alignSelf: 'center',
+        marginRight: 15
     },
     text: {
         fontFamily: "Roboto",
         fontStyle: "normal",
         fontWeight: 'bold',
+        marginTop: 10,
         fontSize: 12,
         lineHeight: 20,
-        letterSpacing: 1.25,
+        letterSpacing: 0.50,
         color: "#1C1427",
         marginRight: 5
     }

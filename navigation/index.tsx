@@ -21,6 +21,7 @@ import RecommendedScreen from '../screens/RecommendedScreen';
 import SelectedBookScreen from '../screens/SelectedBookScreen';
 import UploadedBookScreen from '../screens/UploadedBookScreen';
 import UploadBookScreen from '../screens/UploadBookScreen';
+import AdvancedFilterScreen from '../screens/AdvancedFilterScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -81,6 +82,25 @@ function RootNavigator() {
       }} />
       <Stack.Screen name="SearchResults" component={SearchResultScreen} options={{
         title: "Nombre del Libro",
+        headerRight: () => (
+          <View style={{ display: 'flex', flexDirection: 'row', marginRight: 10 }}>
+            <Icons name="notification" />
+            <Icons name="share" />
+          </View>),
+        headerStyle: {
+          backgroundColor: '#7ECA9C'
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontFamily: 'Roboto',
+          fontWeight: 'bold',
+          fontSize: 20,
+          color: '#1C1427'
+        }
+      }}
+      />
+            <Stack.Screen name="AdvancedFilter" component={AdvancedFilterScreen} options={{
+        title: "Búsqueda Avanzada",
         headerRight: () => (
           <View style={{ display: 'flex', flexDirection: 'row', marginRight: 10 }}>
             <Icons name="notification" />

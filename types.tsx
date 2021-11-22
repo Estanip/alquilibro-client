@@ -20,6 +20,7 @@ export type RootStackParamList = {
   Main: NavigatorScreenParams<RootTabParamList> | undefined;
   Upload: NavigatorScreenParams<RootTabParamList> | undefined;
   SearchResults: NavigatorScreenParams<RootTabParamList> | undefined;
+  AdvancedFilter: NavigatorScreenParams<RootTabParamList> | undefined;
   BookDetail: NavigatorScreenParams<RootTabParamList> | undefined;
   Recommended: NavigatorScreenParams<RootTabParamList> | undefined;
   UploadedBook: NavigatorScreenParams<RootTabParamList> | undefined;
