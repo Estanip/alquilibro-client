@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm, Controller } from "react-hook-form";
+import { Formik } from "formik";
 import { StyleSheet, Text, View, TextInput, ScrollView, Pressable, Alert } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
@@ -8,19 +8,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import advancedFilterValidationSchema from '../validations/advancedFilter';
 
 export default function AdvancedFilterScreen() {
-
-    type FormData = {
-        title: string;
-        author: string;
-        editorial: string;
-        category: string;
-        language: string;
-        price: string;
-    }
-
-    const { control, setValue, handleSubmit, formState: { errors } } = useForm<FormData>({
-        resolver: yupResolver(advancedFilterValidationSchema)
-    })
 
     const navigation = useNavigation();
 
@@ -40,107 +27,53 @@ export default function AdvancedFilterScreen() {
                     style={styles.formContainer}
                 >
 
-                    <Controller
-                        control={control}
-                        rules={{
-                            maxLength: 50,
+                    <Formik
+                        initialValues={{
+                            title: "",
+                            author: "",
+                            editorial: "",
+                            category: "",
+                            language: "",
+                            price: 0
                         }}
-                        render={({ field: { onChange, value } }) => (
-                            <TextInput
-                                style={styles.input}
-                                value={value}
-                                onChangeText={onChange}
-                                placeholder="Titulo" />
-                        )} name="title"
-                    />
 
-                    <Controller
-                        control={control}
-                        rules={{
-                            maxLength: 50,
-                        }}
-                        render={({ field: { onChange, value } }) => (
-                            <TextInput
-                                style={styles.input}
-                                value={value}
-                                onChangeText={onChange}
-                                placeholder="Autor"
-                            />
-                        )} name="author"
-                    />
-
-                    <Controller
-                        control={control}
-                        rules={{
-                            maxLength: 50,
-                        }}
-                        render={({ field: { onChange, value } }) => (
-                            <TextInput
-                                style={styles.input}
-                                value={value}
-                                onChangeText={onChange}
-                                placeholder="Editorial"
-                            />
-                        )} name="editorial"
-                    />
-
-                    <Controller
-                        control={control}
-                        rules={{
-                            maxLength: 50,
-                        }}
-                        render={({ field: { onChange, value } }) => (
-                            <TextInput
-                                style={styles.input}
-                                value={value}
-                                onChangeText={onChange}
-                                placeholder="Genero"
-                            />
-                        )} name="category"
-                    />
-
-                    <Controller
-                        control={control}
-                        rules={{
-                            maxLength: 50,
-                        }}
-                        render={({ field: { onChange, value } }) => (
-                            <TextInput
-                                style={styles.input}
-                                value={value}
-                                onChangeText={onChange}
-                                placeholder="Idioma"
-                            />
-                        )} name="language"
-                    />
-
-                    <Controller
-                        control={control}
-                        rules={{
-                            maxLength: 50,
-                        }}
-                        render={({ field: { onChange, value } }) => (
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={onChange}
-                                value={value}
-                                placeholder="Precio por día"
-                            />
-                        )} name="price"
-                    />
-
-
-                    <Pressable
-                        onPress={() => Alert.alert("APLICAR FILTROS")}
-
-                        style={styles.filterButton}
+                        onSubmit={() => Alert.alert("Boton Onsubmit")}
                     >
-                        <Text
-                            style={styles.filterText}
-                        >
-                            SUBIR MAS LIBROS
-                        </Text>
-                    </Pressable>
+
+                        {
+                            ({
+                                handleChange,
+                                handleBlur,
+                                handleSubmit,
+                                values,
+                                errors,
+                                touched,
+                                isValid,
+                            }) => (
+                                <>
+                                    <TextInput>Titulo</TextInput>
+                                    <TextInput style={styles.filterText} >Titulo</TextInput>
+                                    <TextInput>Titulo</TextInput>
+                                    <TextInput>Titulo</TextInput>
+                                    <TextInput>Titulo</TextInput>
+                                    <TextInput>Titulo</TextInput>
+
+                                    <Pressable
+                                        onPress={handleSubmit}
+
+                                        style={styles.filterButton}
+                                    >
+                                        <Text
+                                            style={styles.filterText}
+                                        >
+                                            APLICAR FILTROS
+                                        </Text>
+                                    </Pressable>
+
+                                </>
+                            )
+                        }
+                    </Formik>
 
                 </View>
             </View>
