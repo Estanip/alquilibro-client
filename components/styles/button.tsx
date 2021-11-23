@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-const text = StyleSheet.create({
+const button = StyleSheet.create({
 
 
 
