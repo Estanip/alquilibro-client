@@ -42,21 +42,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
 
   const navBar = {
-    title: 'Alquilibro',
-    headerLeft: () => <Image source={require('../assets/images/adaptive-icon.png')} style={{ marginRight: 15, width: 50, height: 50 }} />,
-    headerStyle: {
-      backgroundColor: '#7ECA9C'
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontFamily: 'Roboto',
-      fontWeight: 'bold',
-      fontSize: 20,
-      color: '#1C1427'
-    }
-  }
-
-  const navBarTwo = {
+    headerLeft:  () => <Image source={require('../assets/images/adaptive-icon.png')} style={{ marginRight: 15, width: 50, height: 50 }} />,
     headerRight: () => (
       <View style={{ display: 'flex', flexDirection: 'row', marginRight: 10 }}>
         <Icons name="notification" />
@@ -65,7 +51,7 @@ function RootNavigator() {
     headerStyle: {
       backgroundColor: '#7ECA9C'
     },
-    headerTintColor: '#fff',
+    headerTintColor: '#fff', 
     headerTitleStyle: {
       fontFamily: 'Roboto',
       fontWeight: 'bold',
@@ -74,16 +60,17 @@ function RootNavigator() {
     }
   }
 
+
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Login" component={LoginRegister} options={navBar} />
-      <Stack.Screen name="Main" component={BottomTabNavigator} options={{title: "Alquilibro", ...navBarTwo}} />
-      <Stack.Screen name="SearchResults" component={SearchResultScreen} options={{title: "Titulo del Libro", ...navBarTwo}}/>
-      <Stack.Screen name="AdvancedFilter" component={AdvancedFilterScreen} options={{title: "Búsqueda avanzada", ...navBarTwo}}/>
-      <Stack.Screen name="BookDetail" component={SelectedBookScreen} options={{title: "Titulo del Libro", ...navBarTwo}}/>
-      <Stack.Screen name="Upload" component={UploadBookScreen} options={{title: "Subir Libro", ...navBarTwo}}/>
-      <Stack.Screen name="UploadedBook" component={UploadedBookScreen} options={{title: "Titulo del Libro", ...navBarTwo}}/>
-      <Stack.Screen name="Recommended" component={RecommendedScreen} options={{title: "Recomendados", ...navBarTwo}}/>
+      <Stack.Screen name="Login" component={LoginRegister} options={{...navBar, title:"Alquilibro", headerRight: undefined}} />
+      <Stack.Screen name="Main" component={BottomTabNavigator} options={{...navBar, title: "Alquilibro"}} />
+      <Stack.Screen name="SearchResults" component={SearchResultScreen} options={{...navBar, title: "Titulo del Libro", headerLeft: undefined}}/>
+      <Stack.Screen name="AdvancedFilter" component={AdvancedFilterScreen} options={{...navBar, title: "Busqueda Avanzada", headerLeft: undefined}}/>
+      <Stack.Screen name="BookDetail" component={SelectedBookScreen} options={{...navBar, title: "Titulo del Libro", headerLeft: undefined}}/>
+      <Stack.Screen name="Upload" component={UploadBookScreen} options={{...navBar, title: "Subir Libro", headerLeft: undefined}}/>
+      <Stack.Screen name="UploadedBook" component={UploadedBookScreen} options={{...navBar, title: "Titulo del Libro", headerLeft: undefined}}/>
+      <Stack.Screen name="Recommended" component={RecommendedScreen} options={{...navBar, title: "Recomendados", headerLeft: undefined}}/>
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
