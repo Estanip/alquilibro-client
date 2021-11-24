@@ -4,26 +4,23 @@ import { Formik } from "formik";
 import {
   StyleSheet,
   View,
-  Pressable,
   ImageBackground,
   Image,
   ScrollView,
   Alert,
-  Text
+  Text,
 } from "react-native";
 
 import { RootStackScreenProps } from "../types";
-import { useState } from "react";
 import InputLogin from "../components/InputLogin";
 import loginValidatorSchema from "../validations/loginValidator";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import ButtonText from "../components/ButtonText";
+import textStyle from "../components/styles/text";
+import buttonStyle from "../components/styles/button";
 
 const bgLibrary = require("../assets/images/loginBackground.png");
 const logo = require("../assets/images/alquilibro-icon.png");
-
-const customFonts = {
-  Roboto: require("../assets/fonts/Roboto-Regular.ttf"),
-};
 
 export default function LoginRegister({
   navigation,
@@ -64,7 +61,7 @@ export default function LoginRegister({
               isValid,
             }) => (
               <View style={styles.formik}>
-                <View >
+                <View>
                   <InputLogin
                     label={"Usuario"}
                     name={"username"}
@@ -101,14 +98,15 @@ export default function LoginRegister({
                     </Text>
                   </Text>
                 </View>
-
-                <Pressable
-                  onPress={handleSubmit}
-                  style={isValid ? styles.disabledButton : styles.activeButton}
+                <ButtonText
+                  title={"INGRESAR"}
+                  textStyle={textStyle.buttonTextBlack}
+                  styles={
+                    isValid ? buttonStyle.greenNoBorder : buttonStyle.grey
+                  }
+                  handleSubmit={handleSubmit}
                   disabled={!isValid}
-                >
-                  <Text style={styles.buttonText}>INGRESAR</Text>
-                </Pressable>
+                />
               </View>
             )}
           </Formik>
@@ -119,13 +117,17 @@ export default function LoginRegister({
               <Ionicons name="logo-google" size={22} color="black" />
             </View>
 
-            <View>
+            <View style={styles.visitArea}>
               <Text style={styles.visitText}>
                 ¿Querés entrar sin registrarte?
               </Text>
-              <Pressable onPress={handleOnPress} style={styles.buttonVisit}>
-                <Text style={styles.buttonText}>DAR UNA VUELTA</Text>
-              </Pressable>
+              <ButtonText
+                title={"DAR UNA VUELTA"}
+                textStyle={textStyle.buttonTextBlack}
+                styles={buttonStyle.white}
+                handleSubmit={handleOnPress}
+                disabled={false}
+              />
             </View>
           </View>
         </ScrollView>
@@ -195,46 +197,20 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     paddingHorizontal: 10,
   },
-  buttonText: {
-    fontFamily: "Roboto",
-    fontStyle: "normal",
-    fontWeight: "500",
-    fontSize: 14,
-    lineHeight: 22,
-    letterSpacing: 1.25,
-    color: "#1C1427",
-  },
-  disabledButton: {
-    width: 183,
-    backgroundColor: "#7ECA9C",
-    borderRadius: 4,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 6,
-    marginTop: 10,
-    marginVertical: 4,
-    alignSelf: "center",
-  },
-  activeButton: {
-    width: 183,
-    backgroundColor: "#DADADA",
-    borderRadius: 4,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 6,
-    marginTop: 10,
-    marginVertical: 4,
-    alignSelf: "center",
-  },
   formik: {
     flex: 2,
-    justifyContent: 'space-evenly'
+    justifyContent: "space-evenly",
+    alignItems: "center"
   },
   registerArea: {
     flex: 1,
     textAlign: "center",
     alignItems: "center",
     justifyContent: "space-evenly",
+  },
+  visitArea:{
+    alignItems: "center",
+    justifyContent: "center"
   },
   text: {
     fontWeight: "400",
@@ -255,17 +231,6 @@ const styles = StyleSheet.create({
     lineHeight: 18.75,
     letterSpacing: 0.5,
     color: "#1C1427",
-  },
-  buttonVisit: {
-    width: 183,
-    backgroundColor: "transparent",
-    borderRadius: 4,
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 6,
-    marginTop: 5,
-    color: "#DADADA",
-    alignSelf: "center",
+    textAlign: "center"
   },
 });

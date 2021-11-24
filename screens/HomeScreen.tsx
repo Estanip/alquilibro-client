@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { RootTabScreenProps } from '../types';
 
-import {text} from '../components/styles/text';
+import textStyle from '../components/styles/text';
 import HomeCards from '../components/HomeCards';
 import SearchInputHome from '../components/SearchInputHome';
 import UploadBookButton from '../components/UploadBookButton';
@@ -15,19 +15,19 @@ export default function Home({ navigation }: RootTabScreenProps<'Home'>) {
         >
             <View style={styles.homeContainer}>
                 <View style={styles.titleOneContainer}>
-                    <Text style={text.title}>
+                    <Text style={textStyle.title}>
                         ¿Buscas un libro en especial?
                     </Text>
                 </View>
                 <SearchInputHome />
                 <View style={styles.titleTwoContainer}>
-                    <Text style={text.title}>
+                    <Text style={textStyle.title}>
                         ¿No sabés qué leer?
                     </Text>
                 </View>
                 <HomeCards />
                 <View style={styles.titleThreeContainer}>
-                    <Text style={text.title}>
+                    <Text style={textStyle.title}>
                         ¿Querés alquilar tus libros?
                     </Text>
                 </View>
