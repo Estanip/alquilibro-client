@@ -1,13 +1,31 @@
 import React from 'react';
 import { Formik } from "formik";
 import { StyleSheet, Text, View, TextInput, ScrollView, Pressable, Alert } from 'react-native';
-
 import { useNavigation } from '@react-navigation/native';
 
-import { yupResolver } from '@hookform/resolvers/yup';
 import advancedFilterValidationSchema from '../validations/advancedFilter';
+import InputForm from '../components/InputForm';
+import { text } from '../components/styles/text';
 
 export default function AdvancedFilterScreen() {
+
+    interface FormValues {
+        title: string;
+        author: string;
+        editorial: string;
+        category: string;
+        language: string;
+        price: string;
+    }
+
+    const initialValues: FormValues = {
+        title: "",
+        author: "",
+        editorial: "",
+        category: "",
+        language: "",
+        price: ""
+    }
 
     const navigation = useNavigation();
 
@@ -19,7 +37,7 @@ export default function AdvancedFilterScreen() {
                 style={styles.advancedFilterContainer}
             >
                 <Text
-                    style={styles.filterTitle}
+                    style={text.title}
                 > !Usá los filtros de búsqueda y encontrá lo que querés!
                 </Text>
 
@@ -28,15 +46,8 @@ export default function AdvancedFilterScreen() {
                 >
 
                     <Formik
-                        initialValues={{
-                            title: "",
-                            author: "",
-                            editorial: "",
-                            category: "",
-                            language: "",
-                            price: 0
-                        }}
-
+                        initialValues={initialValues}
+                        validationSchema={advancedFilterValidationSchema}
                         onSubmit={() => Alert.alert("Boton Onsubmit")}
                     >
 
@@ -51,12 +62,42 @@ export default function AdvancedFilterScreen() {
                                 isValid,
                             }) => (
                                 <>
-                                    <TextInput>Titulo</TextInput>
-                                    <TextInput style={styles.filterText} >Titulo</TextInput>
-                                    <TextInput>Titulo</TextInput>
-                                    <TextInput>Titulo</TextInput>
-                                    <TextInput>Titulo</TextInput>
-                                    <TextInput>Titulo</TextInput>
+                                    <InputForm
+                                        placeHolder={"Titulo"}
+                                        name={"title"}
+                                        handleChange={handleChange}
+                                        value={values.title}
+                                    />
+                                    <InputForm
+                                        placeHolder={"Autor"}
+                                        name={"author"}
+                                        handleChange={handleChange}
+                                        value={values.author}
+                                    />
+                                    <InputForm
+                                        placeHolder={"Editorial"}
+                                        name={"editorial"}
+                                        handleChange={handleChange}
+                                        value={values.editorial}
+                                    />
+                                    <InputForm
+                                        placeHolder={"Género"}
+                                        name={"category"}
+                                        handleChange={handleChange}
+                                        value={values.category}
+                                    />
+                                    <InputForm
+                                        placeHolder={"Idioma"}
+                                        name={"language"}
+                                        handleChange={handleChange}
+                                        value={values.language}
+                                    />
+                                    <InputForm
+                                        placeHolder={"Precio del día"}
+                                        name={"price"}
+                                        handleChange={handleChange}
+                                        value={values.price}
+                                    />
 
                                     <Pressable
                                         onPress={handleSubmit}
@@ -86,31 +127,13 @@ const styles = StyleSheet.create({
     advancedFilterContainer: {
         maxHeight: 730,
         minHeight: 640,
-        backgroundColor: '#FFF'
-    },
-    filterTitle: {
-        fontFamily: 'Roboto',
-        fontStyle: 'normal',
-        fontWeight: 'bold',
-        top: '5%',
-        fontSize: 26,
-        letterSpacing: 0.15,
-        color: '#1C1427',
-        alignSelf: 'center',
-        textAlign: 'center'
+        backgroundColor: '#FFF',
+        top: '5%'
     },
     formContainer: {
-        top: '10%',
+        top: '5%',
         height: '100%',
         width: '100%'
-    },
-    input: {
-        alignSelf: 'center',
-        padding: 10,
-        width: '90%',
-        height: '5%',
-        backgroundColor: '#ECEFF0',
-        marginBottom: 10
     },
     filterButton: {
         padding: 10,

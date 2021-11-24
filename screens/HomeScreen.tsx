@@ -1,19 +1,13 @@
 import * as React from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { RootTabScreenProps } from '../types';
-import { useFonts } from 'expo-font';
 
+import {text} from '../components/styles/text';
 import HomeCards from '../components/HomeCards';
 import SearchInputHome from '../components/SearchInputHome';
 import UploadBookButton from '../components/UploadBookButton';
 
-const customFonts = {
-    Roboto: require('../assets/fonts/Roboto-Regular.ttf')
-};
-
 export default function Home({ navigation }: RootTabScreenProps<'Home'>) {
-
-    useFonts(customFonts);
 
     return (
         <ScrollView
@@ -21,19 +15,19 @@ export default function Home({ navigation }: RootTabScreenProps<'Home'>) {
         >
             <View style={styles.homeContainer}>
                 <View style={styles.titleOneContainer}>
-                    <Text style={styles.titleOne}>
+                    <Text style={text.title}>
                         ¿Buscas un libro en especial?
                     </Text>
                 </View>
                 <SearchInputHome />
                 <View style={styles.titleTwoContainer}>
-                    <Text style={styles.titleTwo}>
+                    <Text style={text.title}>
                         ¿No sabés qué leer?
                     </Text>
                 </View>
                 <HomeCards />
                 <View style={styles.titleThreeContainer}>
-                    <Text style={styles.titleThree}>
+                    <Text style={text.title}>
                         ¿Querés alquilar tus libros?
                     </Text>
                 </View>
@@ -55,45 +49,15 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         top: '10%'
     },
-    titleOne: {
-        fontFamily: 'Roboto',
-        fontStyle: 'normal',
-        fontWeight: 'bold',
-        fontSize: 24,
-        lineHeight: 24,
-        textAlign: 'center',
-        color: '#1C1427',
-        letterSpacing: 0.15
-    },
     titleTwoContainer: {
         width: '100%',
         alignSelf: 'center',
         height: 24,
         top: '25%'
     },
-    titleTwo: {
-        fontFamily: 'Roboto',
-        fontStyle: 'normal',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: 24,
-        lineHeight: 24,
-        color: '#1C1427',
-        letterSpacing: 0.15
-    },
-    titleThreeContainer: {
+   titleThreeContainer: {
         width: '100%',
         alignSelf: 'center',
         top: '45%'
-    },
-    titleThree: {
-        fontFamily: 'Roboto',
-        fontStyle: 'normal',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: 24,
-        lineHeight: 24,
-        color: '#1C1427',
-        letterSpacing: 0.15
     }
 });
