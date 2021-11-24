@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 import InputForm from '../components/InputForm';
 import uploadBookValidationSchema from '../validations/uploadBookValidator';
 import Books from '../constants/Books';
-import { text } from '../components/styles/text';
+import textStyle from '../components/styles/text';
 
 export default function UploadBookScreen({ }: RootStackScreenProps<'Upload'>) {
 
@@ -45,7 +45,7 @@ export default function UploadBookScreen({ }: RootStackScreenProps<'Upload'>) {
         style={styles.uploadBookContainer}
       >
         <Text
-          style={text.title}
+          style={textStyle.title}
         > Cargá el ISBN del libro a subir y completá los campos vacios: </Text>
 
         <View

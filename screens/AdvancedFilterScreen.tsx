@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import advancedFilterValidationSchema from '../validations/advancedFilter';
 import InputForm from '../components/InputForm';
-import { text } from '../components/styles/text';
+import textStyle from '../components/styles/text';
 
 export default function AdvancedFilterScreen() {
 
@@ -37,7 +37,7 @@ export default function AdvancedFilterScreen() {
                 style={styles.advancedFilterContainer}
             >
                 <Text
-                    style={text.title}
+                    style={textStyle.title}
                 > !Usá los filtros de búsqueda y encontrá lo que querés!
                 </Text>
 
