@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "575892239646",
+    "project_id": "alquilibro-b9234",
+    "storage_bucket": "alquilibro-b9234.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575892239646:android:2795ea997c2e2c0e95850f",
+        "android_client_info": {
+          "package_name": "com.alquilibro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "575892239646-gq8n6vcemj8si1mkmubbt0uhif5709gs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJJGWOkKYH5begTZoLDTU81lV5Rsz446c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "575892239646-gq8n6vcemj8si1mkmubbt0uhif5709gs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

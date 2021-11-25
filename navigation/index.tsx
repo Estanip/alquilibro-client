@@ -22,6 +22,7 @@ import SelectedBookScreen from '../screens/SelectedBookScreen';
 import UploadedBookScreen from '../screens/UploadedBookScreen';
 import UploadBookScreen from '../screens/UploadBookScreen';
 import AdvancedFilterScreen from '../screens/AdvancedFilterScreen';
+import Auth from '../auth/auth';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -63,6 +64,7 @@ function RootNavigator() {
 
   return (
     <Stack.Navigator>
+      {/* <Stack.Screen name="LoginTest" component={Auth} /> */}
       <Stack.Screen name="Login" component={LoginRegister} options={{...navBar, title:"Alquilibro", headerRight: undefined}} />
       <Stack.Screen name="Main" component={BottomTabNavigator} options={{...navBar, title: "Alquilibro"}} />
       <Stack.Screen name="SearchResults" component={SearchResultScreen} options={{...navBar, title: "Titulo del Libro", headerLeft: undefined}}/>
