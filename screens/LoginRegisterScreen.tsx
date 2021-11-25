@@ -1,6 +1,11 @@
 import * as React from "react";
 import { Formik } from "formik";
 
+import * as WebBrowser from 'expo-web-browser';
+import * as Google from 'expo-auth-session/providers/google';
+import { makeRedirectUri, ResponseType } from 'expo-auth-session';
+import { getAuth, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
+
 import {
   StyleSheet,
   View,
@@ -18,6 +23,7 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import ButtonText from "../components/ButtonText";
 import textStyle from "../components/styles/text";
 import buttonStyle from "../components/styles/button";
+import initializeApp from "../auth/auth";
 
 const bgLibrary = require("../assets/images/loginBackground.png");
 const logo = require("../assets/images/alquilibro-icon.png");
@@ -25,9 +31,31 @@ const logo = require("../assets/images/alquilibro-icon.png");
 export default function LoginRegister({
   navigation,
 }: RootStackScreenProps<any>) {
+
+
+  WebBrowser.maybeCompleteAuthSession();
+
+  const [request, response, promptAsync] = Google.useIdTokenAuthRequest(
+    {
+      clientId: '575892239646-gq8n6vcemj8si1mkmubbt0uhif5709gs.apps.googleusercontent.com',
+    },
+  );
+
+  React.useEffect(() => {
+    if (response?.type === 'success') {
+      initializeApp
+      const { id_token } = response.params;
+      const auth = getAuth();
+      const credential = GoogleAuthProvider.credential(id_token)
+      signInWithCredential(auth, credential);
+      makeRedirectUri(navigation.replace('Main'))
+    }
+  }, [response]);
+
   const handleOnPress = () => {
     navigation.replace("Main");
   };
+
   return (
     <View style={styles.screen}>
       <ImageBackground
@@ -114,7 +142,16 @@ export default function LoginRegister({
             <Text style={styles.text}>¿No tenés cuenta? ¡Registrate!</Text>
             <View style={styles.iconsLogin}>
               <MaterialIcons name="facebook" size={24} color="black" />
-              <Ionicons name="logo-google" size={22} color="black" />
+              <Ionicons
+                name="logo-google"
+                size={22}
+                color="black"
+                disabled={!request}
+                title="Login"
+                onPress={() => {
+                  promptAsync();
+                }}
+              />
             </View>
 
             <View style={styles.visitArea}>
@@ -208,7 +245,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
   },
-  visitArea:{
+  visitArea: {
     alignItems: "center",
     justifyContent: "center"
   },
