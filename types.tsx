@@ -17,7 +17,6 @@ export type RootStackParamList = {
   Login:  undefined;
   Modal: undefined;
   NotFound: undefined;
-  LoginTest: NavigatorScreenParams<RootTabParamList> | undefined;
   Main: NavigatorScreenParams<RootTabParamList> | undefined;
   Upload: NavigatorScreenParams<RootTabParamList> | undefined;
   SearchResults: NavigatorScreenParams<RootTabParamList> | undefined;

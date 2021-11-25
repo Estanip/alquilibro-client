@@ -64,7 +64,6 @@ function RootNavigator() {
 
   return (
     <Stack.Navigator>
-      {/* <Stack.Screen name="LoginTest" component={Auth} /> */}
       <Stack.Screen name="Login" component={LoginRegister} options={{...navBar, title:"Alquilibro", headerRight: undefined}} />
       <Stack.Screen name="Main" component={BottomTabNavigator} options={{...navBar, title: "Alquilibro"}} />
       <Stack.Screen name="SearchResults" component={SearchResultScreen} options={{...navBar, title: "Titulo del Libro", headerLeft: undefined}}/>
