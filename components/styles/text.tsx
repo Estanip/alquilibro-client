@@ -29,6 +29,24 @@ const textStyle = StyleSheet.create({
     letterSpacing: 1.25,
     color: "#FFFFFF",
   },
+  text16px: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "400",
+    fontSize: 16,
+    lineHeight: 24,
+    letterSpacing: 1.25,
+    color: "#000000",
+  },
+  text16pxBold: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 16,
+    lineHeight: 24,
+    letterSpacing: 1.25,
+    color: "#000000",
+  },
 });
 
 export default textStyle;
