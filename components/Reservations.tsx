@@ -21,23 +21,25 @@ export default function Reservations(props: Iprops) {
     <View style={visible ? styles.container : styles.hidden}>
       {reservationList?.map((book) => (
         <View style={styles.detail}>
-          <Text style={styles.text}>
+          <View style={styles.text}>
             <Text style={textStyle.text16px}>{book.bookName}</Text>
             <Text style={textStyle.text16pxBold}>{book.bookOwner}</Text>
-          </Text>
-          {book.state ? (
-            <Ionicons
-              name="ios-checkmark-circle-outline"
-              size={24}
-              color="green"
-            />
-          ) : (
-            <Ionicons
-              name="ios-checkmark-circle-outline"
-              size={24}
-              color="red"
-            />
-          )}
+          </View>
+          <View style={styles.icon}>
+            {book.state ? (
+              <Ionicons
+                name="ios-checkmark-circle-outline"
+                size={24}
+                color="green"
+              />
+            ) : (
+              <Ionicons
+                name="ellipsis-horizontal-circle-outline"
+                size={24}
+                color="red"
+              />
+            )}
+          </View>
         </View>
       ))}
     </View>
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignSelf: "flex-end",
-    width: "90%",
+    width: "85%",
   },
   detail: {
     flexDirection: "row",
@@ -59,6 +61,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
+    width: "90%",
+    flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 15,
+  },
+  icon: {
+    width: "10%",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 15,
+    marginLeft: 5,
   },
 });

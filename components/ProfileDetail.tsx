@@ -3,6 +3,8 @@ import { StyleSheet, View, Text, Pressable } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import Reservations from "./Reservations";
+import FavoritesBooks from "./Favorites";
+import ReaderRating from "./ReaderRating";
 
 interface Iprops {
   iconName: any;
@@ -28,7 +30,39 @@ const reservedList = [
     state: false,
   },
 ];
-//-------------------------
+//-----FAVORITOS test------------
+
+const favorites = [
+  {
+    bookName: "Renuncio.",
+    bookAuthor: "Hernán Casciari",
+  },
+  {
+    bookName: "Papeles en el viento.",
+    bookAuthor: "Eduardo Sacheri",
+  },
+  {
+    bookName: "Deshoras.",
+    bookAuthor: "Julio Cortazar",
+  },
+];
+//-------Rating de lector--------------
+
+const ratings = [
+  {
+    stars: 4,
+    title: "General",
+  },
+  {
+    stars: 3,
+    title: "Puntualidad en la devolución.",
+  },
+  {
+    stars: 5,
+    title: "Cuidado del libro.",
+  },
+];
+//-----------------
 
 export default function ProfileDetail(props: Iprops) {
   const { title, iconName } = props;
@@ -38,13 +72,28 @@ export default function ProfileDetail(props: Iprops) {
     setPressed(!pressed);
   };
 
+  const contentType = (content: string) => {
+    switch (content) {
+      case "Reservas Realizadas":
+        return (
+          <Reservations reservationList={reservedList} visible={pressed} />
+        );
+      case "Mis Favoritos":
+        return <FavoritesBooks favoritesList={favorites} visible={pressed} />;
+      case "Mi reputación como lector/a":
+        return <ReaderRating ratingList={ratings} visible={pressed} />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Pressable style={styles.cardDetail} onPress={handleOnPress}>
         <MaterialCommunityIcons name={iconName} size={24} color="black" />
         <Text style={styles.text}>{title}</Text>
       </Pressable>
-      <Reservations reservationList={reservedList} visible={pressed} />
+      {contentType(title)}
     </View>
   );
 }
