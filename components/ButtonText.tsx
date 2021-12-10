@@ -5,16 +5,16 @@ interface Iprops {
   title: string;
   textStyle: any;
   styles: any;
-  handleSubmit: any;
+  onPress: any;
   disabled: boolean;
 }
 
 export default function ButtonText(props: Iprops) {
-  const { title, textStyle, styles, handleSubmit, disabled } = props;
+  const { title, textStyle, styles, onPress , disabled } = props;
 
   return (
     <>
-      <Pressable onPress={handleSubmit} style={styles} disabled={disabled}>
+      <Pressable onPress={onPress} style={styles} disabled={disabled}>
         <Text style={textStyle}>{title}</Text>
       </Pressable>
     </>

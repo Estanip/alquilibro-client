@@ -6,17 +6,17 @@ interface Iprops {
   title: string;
   textStyle: any;
   styles: any;
-  handleSubmit: any;
+  onPress: any;
   disabled: boolean;
   icon: any;
 }
 
 export default function ButtonIcon(props: Iprops) {
-  const { title, textStyle, styles, handleSubmit, disabled, icon } = props;
+  const { title, textStyle, styles, onPress, disabled, icon } = props;
 
   return (
     <>
-      <Pressable onPress={handleSubmit} style={styles} disabled={disabled}>
+      <Pressable onPress={onPress} style={styles} disabled={disabled}>
         <View
           style={{
             flexDirection: "row",

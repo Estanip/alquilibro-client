@@ -41,14 +41,14 @@ export default function UploadedBookScreen() {
           title={"MIS LIBROS SUBIDOS"}
           textStyle={textStyle.buttonTextBlack}
           styles={buttonStyle.white}
-          handleSubmit={() => Alert.alert("Upload Image")}
+          onPress={() => Alert.alert("Upload Image")}
           disabled={false}
         />
         <ButtonText
           title={"SUBIR MÁS LIBROS"}
           textStyle={textStyle.buttonTextBlack}
           styles={buttonStyle.greenNoBorder}
-          handleSubmit={() => Alert.alert("SUBIR MAS")}
+          onPress={() => Alert.alert("SUBIR MAS")}
           disabled={false}
         />
       </View>

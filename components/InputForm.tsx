@@ -8,11 +8,12 @@ interface inputProps {
     placeHolder: string;
     handleChange: any;
     value: string;
+    handleBlur: any;
 }
 
 export default function InputForm(props: inputProps) {
 
-    const { name, placeHolder, handleChange, value } = props;
+    const { name, placeHolder, handleBlur, handleChange, value } = props;
 
     return (
 
@@ -21,6 +22,7 @@ export default function InputForm(props: inputProps) {
             placeholder={placeHolder}
             onChangeText={handleChange(name)} 
             value={value}
+            onBlur={handleBlur(name)}
         />
 
     )
