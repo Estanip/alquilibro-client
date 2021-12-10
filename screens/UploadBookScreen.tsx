@@ -1,51 +1,57 @@
 import React from "react";
-import { Formik } from "formik";
+import { useNavigation } from "@react-navigation/native";
 import {
   Text,
   View,
-  TextInput,
   Alert,
   StyleSheet,
   ScrollView,
   Pressable,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { Formik } from "formik";
+
 import { RootStackScreenProps } from "../types";
-import ButtonIcon from "../components/ButtonIcon";
-
-import { AntDesign } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
-
-import InputForm from "../components/InputForm";
 import uploadBookValidationSchema from "../validations/uploadBookValidator";
-import Books from "../constants/Books";
+import { getBookByIsbn } from "../actions/booksActions";
+import { IUploadForm } from "../interfaces/bookInterfaces";
+import ButtonIcon from "../components/ButtonIcon";
+import InputForm from "../components/InputForm";
 import textStyle from "../components/styles/text";
 import buttonStyle from "../components/styles/button";
 import ButtonText from "../components/ButtonText";
+import InputDisabled from "../components/InputDisabled";
 
-export default function UploadBookScreen({}: RootStackScreenProps<"Upload">) {
-  interface FormValues {
-    isbn: string;
-    title: string;
-    author: string;
-    editorial: string;
-    category: string;
-    language: string;
-    state: string;
-    price: string;
-  }
 
-  const initialValues: FormValues = {
+
+export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
+
+  const dispatch = useDispatch();
+  const book = useSelector((state: any) => state.book.uploadBook)
+
+
+  const initialValues: IUploadForm = {
     isbn: "",
-    title: "",
+    price: "",
     author: "",
+    title: "",
     editorial: "",
     category: "",
     language: "",
-    state: "",
-    price: "",
+    state: ""
   };
 
-  const navigation = useNavigation();
+  const getBook = async (values: any) => {
+
+    await dispatch(getBookByIsbn(values.isbn));
+
+    values.title = book.title
+    values.author = book.author
+    values.editorial = book.editorial
+    values.category = book.category
+    values.language = book.language
+
+  }
 
   return (
     <ScrollView style={{ backgroundColor: "#FFF" }}>
@@ -54,16 +60,14 @@ export default function UploadBookScreen({}: RootStackScreenProps<"Upload">) {
           {" "}
           Cargá el ISBN del libro a subir y completá los campos vacios:{" "}
         </Text>
-
         <View style={styles.formContainer}>
           <Formik
             initialValues={initialValues}
             validationSchema={uploadBookValidationSchema}
-            onSubmit={() => Alert.alert("Boton Onsubmit")}
+            onSubmit={(values) => getBook(values)}
           >
             {({
               handleChange,
-              handleBlur,
               handleSubmit,
               values,
               errors,
@@ -77,40 +81,40 @@ export default function UploadBookScreen({}: RootStackScreenProps<"Upload">) {
                   handleChange={handleChange}
                   value={values.isbn}
                 />
-                {errors.isbn && (
+                {errors.isbn && touched.isbn && (
                   <Text style={styles.textError}>{errors.isbn}</Text>
                 )}
-                <InputForm
+                <InputDisabled
                   placeHolder={"Titulo"}
                   name={"title"}
                   handleChange={handleChange}
-                  value={values.title}
+                  value={"" || values.title}
                 />
-                <InputForm
+                <InputDisabled
                   placeHolder={"Autor"}
                   name={"author"}
                   handleChange={handleChange}
                   value={values.author}
                 />
-                <InputForm
+                <InputDisabled
                   placeHolder={"Editorial"}
                   name={"editorial"}
                   handleChange={handleChange}
                   value={values.editorial}
                 />
-                <InputForm
+                <InputDisabled
                   placeHolder={"Género"}
                   name={"category"}
                   handleChange={handleChange}
                   value={values.category}
                 />
-                <InputForm
+                <InputDisabled
                   placeHolder={"Idioma"}
                   name={"language"}
                   handleChange={handleChange}
                   value={values.language}
                 />
-                <InputForm
+                <InputDisabled
                   placeHolder={"Estado"}
                   name={"state"}
                   handleChange={handleChange}
@@ -122,7 +126,9 @@ export default function UploadBookScreen({}: RootStackScreenProps<"Upload">) {
                   handleChange={handleChange}
                   value={values.price}
                 />
-
+                {errors.price && touched.price && (
+                  <Text style={styles.textError}>{errors.price}</Text>
+                )}
                 <View style={styles.buttonContainer}>
                   <ButtonIcon
                     title={"SUBIR FOTO"}
@@ -130,7 +136,7 @@ export default function UploadBookScreen({}: RootStackScreenProps<"Upload">) {
                     styles={
                       isValid ? buttonStyle.lightGreen : buttonStyle.white
                     }
-                    handleSubmit={handleSubmit}
+                    handleSubmit={() => Alert.alert("Subir Foto")}
                     disabled={!isValid}
                     icon={"camera"}
                   />
@@ -144,7 +150,7 @@ export default function UploadBookScreen({}: RootStackScreenProps<"Upload">) {
                     styles={
                       isValid ? buttonStyle.greenNoBorder : buttonStyle.grey
                     }
-                    handleSubmit={() => Alert.alert("APLICAR FILTROS")}
+                    handleSubmit={handleSubmit}
                     disabled={false}
                   />
                 </View>
@@ -153,7 +159,7 @@ export default function UploadBookScreen({}: RootStackScreenProps<"Upload">) {
           </Formik>
         </View>
       </View>
-    </ScrollView>
+    </ScrollView >
   );
 }
 
