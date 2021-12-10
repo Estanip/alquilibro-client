@@ -132,7 +132,7 @@ export default function LoginRegister({
                   styles={
                     isValid ? buttonStyle.greenNoBorder : buttonStyle.grey
                   }
-                  handleSubmit={handleSubmit}
+                  onPress={handleSubmit}
                   disabled={!isValid}
                 />
               </View>
@@ -162,7 +162,7 @@ export default function LoginRegister({
                 title={"DAR UNA VUELTA"}
                 textStyle={textStyle.buttonTextBlack}
                 styles={buttonStyle.white}
-                handleSubmit={handleOnPress}
+                onPress={handleOnPress}
                 disabled={false}
               />
             </View>

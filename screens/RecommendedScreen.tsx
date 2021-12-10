@@ -4,8 +4,6 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { RootStackScreenProps } from '../types';
 import { useFonts } from 'expo-font';
 import SliderBooks from '../components/sliderBooks';
-import { string } from 'yup';
-import BottomTabNavigator from '../navigation/BottomTabNav';
 
 const customFonts = {
     Roboto: require('../assets/fonts/Roboto-Regular.ttf')

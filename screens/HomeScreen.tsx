@@ -30,7 +30,7 @@ export default function Home({ navigation }: RootTabScreenProps<"Home">) {
             title={"SUBIR LIBRO"}
             textStyle={textStyle.buttonTextBlack}
             styles={buttonStyle.white}
-            handleSubmit={handleOnClick}
+            onPress={handleOnClick}
             disabled={false}
           />
         </View>

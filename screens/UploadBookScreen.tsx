@@ -43,13 +43,22 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
 
   const getBook = async (values: any) => {
 
-    await dispatch(getBookByIsbn(values.isbn));
 
-    values.title = book.title
-    values.author = book.author
-    values.editorial = book.editorial
-    values.category = book.category
-    values.language = book.language
+    try {
+
+      await dispatch(getBookByIsbn(values.isbn));
+
+      values.title = book.title
+      values.author = book.author
+      values.editorial = book.editorial
+      values.category = book.category
+      values.language = book.language
+      values.state = "Usado"
+      
+    } catch(err) {
+      console.log(err)
+    }
+
 
   }
 
@@ -69,6 +78,7 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
             {({
               handleChange,
               handleSubmit,
+              handleBlur,
               values,
               errors,
               touched,
@@ -79,6 +89,7 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
                   placeHolder={"ISBN"}
                   name={"isbn"}
                   handleChange={handleChange}
+                  handleBlur={handleBlur}
                   value={values.isbn}
                 />
                 {errors.isbn && touched.isbn && (
@@ -87,6 +98,7 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
                 <InputDisabled
                   placeHolder={"Titulo"}
                   name={"title"}
+                  handleBlur={handleBlur}
                   handleChange={handleChange}
                   value={"" || values.title}
                 />
@@ -94,36 +106,42 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
                   placeHolder={"Autor"}
                   name={"author"}
                   handleChange={handleChange}
+                  handleBlur={handleBlur}
                   value={values.author}
                 />
                 <InputDisabled
                   placeHolder={"Editorial"}
                   name={"editorial"}
                   handleChange={handleChange}
+                  handleBlur={handleBlur}
                   value={values.editorial}
                 />
                 <InputDisabled
                   placeHolder={"Género"}
                   name={"category"}
                   handleChange={handleChange}
+                  handleBlur={handleBlur}
                   value={values.category}
                 />
                 <InputDisabled
                   placeHolder={"Idioma"}
                   name={"language"}
                   handleChange={handleChange}
+                  handleBlur={handleBlur}
                   value={values.language}
                 />
                 <InputDisabled
                   placeHolder={"Estado"}
                   name={"state"}
                   handleChange={handleChange}
+                  handleBlur={handleBlur}
                   value={values.state}
                 />
                 <InputForm
                   placeHolder={"Precio del día"}
                   name={"price"}
                   handleChange={handleChange}
+                  handleBlur={handleBlur}
                   value={values.price}
                 />
                 {errors.price && touched.price && (
@@ -136,7 +154,7 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
                     styles={
                       isValid ? buttonStyle.lightGreen : buttonStyle.white
                     }
-                    handleSubmit={() => Alert.alert("Subir Foto")}
+                    onPress={() => Alert.alert("Subir Foto")}
                     disabled={!isValid}
                     icon={"camera"}
                   />
@@ -150,7 +168,7 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
                     styles={
                       isValid ? buttonStyle.greenNoBorder : buttonStyle.grey
                     }
-                    handleSubmit={handleSubmit}
+                    onPress={handleSubmit}
                     disabled={false}
                   />
                 </View>

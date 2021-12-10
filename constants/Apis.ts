@@ -1,3 +1,4 @@
-const api = "http://localhost:3008"
+const localApi = "http://localhost:3008"
+const deployApi = "https://alquilibro.herokuapp.com"
 
-export default api;
+export { localApi, deployApi};

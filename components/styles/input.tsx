@@ -8,7 +8,8 @@ export const input = StyleSheet.create({
         width: '90%',
         height: '5%',
         backgroundColor: '#ECEFF0',
-        marginBottom: 10
+        marginBottom: 10,
+        color: "black"
     }
 
 });
