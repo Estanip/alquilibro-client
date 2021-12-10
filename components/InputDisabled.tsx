@@ -4,23 +4,25 @@ import { TextInput } from 'react-native';
 import { input } from './styles/input';
 
 interface inputProps {
-    name: string;
     placeHolder: string;
-    handleChange: any;
     value: string;
+    name: string;
+    handleChange: any;
 }
 
-export default function InputForm(props: inputProps) {
+export default function InputDisabled(props: inputProps) {
 
-    const { name, placeHolder, handleChange, value } = props;
+    const {name, handleChange, placeHolder, value } = props;
 
     return (
 
         <TextInput
+            editable={false}
             style={input.container}
             placeholder={placeHolder}
-            onChangeText={handleChange(name)} 
             value={value}
+            selectTextOnFocus={false}
+            onChangeText={handleChange(name)} 
         />
 
     )

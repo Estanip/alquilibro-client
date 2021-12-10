@@ -7,7 +7,6 @@ import HomeCards from "../components/HomeCards";
 import SearchInputHome from "../components/SearchInputHome";
 import buttonStyle from "../components/styles/button";
 import ButtonText from "../components/ButtonText";
-import { useNavigation } from "@react-navigation/native";
 
 export default function Home({ navigation }: RootTabScreenProps<"Home">) {
   const handleOnClick = () => {
