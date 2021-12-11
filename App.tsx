@@ -3,15 +3,14 @@ import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 
-import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
+import useCachedResources from './hooks (ver para que sirven)/useCachedResources';
 import Navigation from './navigation';
 import store, { persistedStore } from './store/store';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 
 export default function App() {
+
   const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
 
   if (!isLoadingComplete) {
     return null;
@@ -20,7 +19,7 @@ export default function App() {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistedStore}>
           <SafeAreaProvider>
-            <Navigation colorScheme={colorScheme} />
+            <Navigation />
             <StatusBar />
           </SafeAreaProvider>
         </PersistGate>
