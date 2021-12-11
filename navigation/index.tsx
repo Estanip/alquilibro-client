@@ -1,47 +1,39 @@
-/**
- * If you are not familiar with React Navigation, refer to the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
-
+// IMPORTAR LIBRERIAS & UTILS
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Alert, ColorSchemeName, View, Image } from 'react-native';
+import { Alert, View, Image } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import { RootStackParamList } from '../types';
 
+// IMPORTAR BOTTOM NAVIGATOR
 import BottomTabNavigator from './BottomTabNav';
 
+// IMPORTAR SCREENS
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import LoginScreen from '../screens/LoginScreen';
-import SearchResultScreen from '../screens/SearchResultScreen';
-import RecommendedScreen from '../screens/RecommendedScreen';
-import SelectedBookScreen from '../screens/SelectedBookScreen';
-import UploadedBookScreen from '../screens/UploadedBookScreen';
-import UploadBookScreen from '../screens/UploadBookScreen';
-import AdvancedFilterScreen from '../screens/AdvancedFilterScreen';
-import Auth from '../auth/auth';
+import LoginScreen from '../screens/Login/LoginScreen';
+import SearchResultScreen from '../screens/Search/SearchResultScreen';
+import RecommendedScreen from '../screens/Recommended/RecommendedScreen';
+import SelectedBookScreen from '../screens/Search/SelectedBookScreen';
+import UploadedBookScreen from '../screens/UploadBook/UploadedBookScreen';
+import UploadBookScreen from '../screens/UploadBook/UploadBookScreen';
+import AdvancedFilterScreen from '../screens/FilterSearch/AdvancedFilterScreen';
 
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+export default function Navigation() {
   return (
-    <NavigationContainer
-    // theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-    >
+    <NavigationContainer>
       <RootNavigator />
     </NavigationContainer>
   );
 }
 
-/**
- * A root stack navigator is often used for displaying modals on top of all other content.
- * https://reactnavigation.org/docs/modal
- */
+/* A root stack navigator is often used for displaying modals on top of all other content. https://reactnavigation.org/docs/modal */
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
 
+  // TOP NAVBAR
   const navBar = {
     headerLeft:  () => <Image source={require('../assets/images/adaptive-icon.png')} style={{ marginRight: 15, width: 50, height: 50 }} />,
     headerRight: () => (
@@ -61,7 +53,7 @@ function RootNavigator() {
     }
   }
 
-
+  // STACK DE NAVEGACION
   return (
     <Stack.Navigator>
       <Stack.Screen name="Login" component={LoginScreen} options={{...navBar, title:"Alquilibro", headerRight: undefined}} />
@@ -81,9 +73,7 @@ function RootNavigator() {
   );
 }
 
-
-// * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-
+// ICONOS
 function Icons(props: { name: React.ComponentProps<typeof Entypo>["name"] }) {
   return (
     <Entypo
