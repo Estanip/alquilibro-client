@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Text,
   View,
   Alert,
   ScrollView,
+  TextInput,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { Formik } from "formik";
-
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
 import { styles } from "./uploadBookStyles";
 import { RootStackScreenProps } from "../../types";
 import uploadBookValidationSchema from "../../validations/uploadBookValidator";
@@ -25,8 +26,7 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
   const dispatch = useDispatch();
   const book = useSelector((state: any) => state.book.uploadBook)
 
-
-  const initialValues: IUploadForm = {
+  const defaultValues: IUploadForm = {
     isbn: "",
     price: "",
     author: "",
@@ -37,144 +37,198 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
     state: ""
   };
 
-  const getBook = async (values: any) => {
+  const { control, reset, handleSubmit, watch, setValue, getValues, formState: { errors } } = useForm({
+    defaultValues,
+    resolver: yupResolver(uploadBookValidationSchema)
+  });
 
+  const isValid = true;
+  let isbn = watch('isbn')
+
+  useEffect(() => {
+
+    console.log(isbn)
+
+    if (isbn.length === 13) {
+
+      console.log(book)
+
+      getBook(isbn)
+
+    } else {
+      reset(defaultValues)
+    }
+
+  }, [isbn])
+
+
+  const getBook = async (isbn: any) => {
 
     try {
 
-      await dispatch(getBookByIsbn(values.isbn));
+      await dispatch(getBookByIsbn(isbn));
 
-      values.title = book.title
-      values.author = book.author
-      values.editorial = book.editorial
-      values.category = book.category
-      values.language = book.language
-      values.state = "Usado"
-      
-    } catch(err) {
+      setValue('title', book.title)
+      setValue('author', book.author)
+      setValue('editorial', book.editorial)
+      setValue('category', book.category)
+      setValue('language', book.language)
+      setValue('state', "Usado")
+
+    } catch (err) {
       console.log(err)
     }
-
 
   }
 
   return (
     <ScrollView style={{ backgroundColor: "#FFF" }}>
+
       <View style={styles.uploadBookContainer}>
         <Text style={textStyle.title}>
           {" "}
           Cargá el ISBN del libro a subir y completá los campos vacios:{" "}
         </Text>
-        <View style={styles.formContainer}>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={uploadBookValidationSchema}
-            onSubmit={(values) => getBook(values)}
-          >
-            {({
-              handleChange,
-              handleSubmit,
-              handleBlur,
-              values,
-              errors,
-              touched,
-              isValid,
-            }) => (
-              <>
-                <InputForm
-                  placeHolder={"ISBN"}
-                  name={"isbn"}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  value={values.isbn}
-                />
-                {errors.isbn && touched.isbn && (
-                  <Text style={styles.textError}>{errors.isbn}</Text>
-                )}
-                <InputDisabled
-                  placeHolder={"Titulo"}
-                  name={"title"}
-                  handleBlur={handleBlur}
-                  handleChange={handleChange}
-                  value={"" || values.title}
-                />
-                <InputDisabled
-                  placeHolder={"Autor"}
-                  name={"author"}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  value={values.author}
-                />
-                <InputDisabled
-                  placeHolder={"Editorial"}
-                  name={"editorial"}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  value={values.editorial}
-                />
-                <InputDisabled
-                  placeHolder={"Género"}
-                  name={"category"}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  value={values.category}
-                />
-                <InputDisabled
-                  placeHolder={"Idioma"}
-                  name={"language"}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  value={values.language}
-                />
-                <InputDisabled
-                  placeHolder={"Estado"}
-                  name={"state"}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  value={values.state}
-                />
-                <InputForm
-                  placeHolder={"Precio del día"}
-                  name={"price"}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  value={values.price}
-                />
-                {errors.price && touched.price && (
-                  <Text style={styles.textError}>{errors.price}</Text>
-                )}
-                <View style={styles.buttonContainer}>
-                  <ButtonIcon
-                    title={"SUBIR FOTO"}
-                    textStyle={textStyle.buttonTextBlack}
-                    styles={
-                      isValid ? buttonStyle.lightGreen : buttonStyle.white
-                    }
-                    onPress={() => Alert.alert("Subir Foto")}
-                    disabled={!isValid}
-                    icon={"camera"}
-                  />
 
-                  {/*Este boton tiene que depender de un estado que
+        <View style={styles.formContainer}>
+          <Controller
+            control={control}
+            name={"isbn"}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                style={styles.inputText}
+                placeholder="ISBN"
+                onChangeText={(value: any) => onChange(value)}
+                onBlur={onBlur}              
+                />
+            )}
+          />
+          {errors.isbn && (
+            <Text style={styles.textError}>{errors.isbn}</Text>
+          )}
+
+          <Controller
+            control={control}
+            name={"title"}
+            render={({ field: { value } }) => (
+              <TextInput
+                style={styles.inputText}
+                placeholder="Titulo"
+                value={value}
+              />
+            )}
+          />
+
+
+          <Controller
+            control={control}
+            name={"author"}
+            render={({ field: { value } }) => (
+              <TextInput
+                style={styles.inputText}
+                placeholder="Autor"
+                value={value}
+              />
+            )}
+          />
+
+          <Controller
+            control={control}
+            name={"editorial"}
+            render={({ field: { value } }) => (
+              <TextInput
+                style={styles.inputText}
+                placeholder="Editorial"
+                value={value}
+              />
+            )}
+          />
+
+
+          <Controller
+            control={control}
+            name={"category"}
+            render={({ field: { value } }) => (
+              <TextInput
+                style={styles.inputText}
+                placeholder="Categoría"
+                value={value}
+              />
+            )}
+          />
+
+          <Controller
+            control={control}
+            name={"language"}
+            render={({ field: { value } }) => (
+              <TextInput
+                style={styles.inputText}
+                placeholder="Idioma"
+                value={value}
+              />
+            )}
+          />
+
+          <Controller
+            control={control}
+            name={"state"}
+            render={({ field: { value } }) => (
+              <TextInput
+                style={styles.inputText}
+                placeholder="Estado"
+                value={value}
+              />
+            )}
+          />
+
+          <Controller
+            control={control}
+            name={"price"}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                style={styles.inputText}
+                placeholder="Precio por día"
+                onChangeText={(value: any) => onChange(value)}
+                onBlur={onBlur}
+                value={value}
+              />
+            )}
+          />
+          {errors.price && (
+            <Text style={styles.textError}>{errors.price}</Text>
+          )}
+
+          <View style={styles.buttonContainer}>
+            <ButtonIcon
+              name={"SUBIR FOTO"}
+              textStyle={textStyle.buttonTextBlack}
+              styles={
+                isValid ? buttonStyle.lightGreen : buttonStyle.white
+              }
+              onPress={() => Alert.alert("Subir Foto")}
+              disabled={!isValid}
+              icon={"camera"}
+            />
+
+            {/*Este boton tiene que depender de un estado que
                   registre cuando se subió la foto en lugar de "isvalid"
                   El title tambien debe cambiar según ese estado*/}
-                  <ButtonText
-                    title={"SUBIR LIBRO"}
-                    textStyle={textStyle.buttonTextBlack}
-                    styles={
-                      isValid ? buttonStyle.greenNoBorder : buttonStyle.grey
-                    }
-                    onPress={handleSubmit}
-                    disabled={false}
-                  />
-                </View>
-              </>
-            )}
-          </Formik>
+            <ButtonText
+              name={"SUBIR LIBRO"}
+              textStyle={textStyle.buttonTextBlack}
+              styles={
+                isValid ? buttonStyle.greenNoBorder : buttonStyle.grey
+              }
+              onPress={(value: any) => getBook('isbn')}
+              disabled={false}
+            />
+          </View>
+
         </View>
-      </View>
+
+      </View >
+
     </ScrollView >
   );
 }
-
 

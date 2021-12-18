@@ -28,7 +28,7 @@ export default function Home({ navigation }: RootTabScreenProps<"Home">) {
         <View style={styles.titleThreeContainer}>
           <Text style={textStyle.title}>¿Querés alquilar tus libros?</Text>
           <ButtonText
-            title={"SUBIR LIBRO"}
+            name={"SUBIR LIBRO"}
             textStyle={textStyle.buttonTextBlack}
             styles={buttonStyle.white}
             onPress={handleOnClick}

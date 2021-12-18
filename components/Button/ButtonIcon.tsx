@@ -3,7 +3,7 @@ import { Pressable, Text, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 interface Iprops {
-  title: string;
+  name: string;
   textStyle: any;
   styles: any;
   onPress: any;
@@ -12,7 +12,7 @@ interface Iprops {
 }
 
 export default function ButtonIcon(props: Iprops) {
-  const { title, textStyle, styles, onPress, disabled, icon } = props;
+  const { name, textStyle, styles, onPress, disabled, icon } = props;
 
   return (
     <>
@@ -30,7 +30,7 @@ export default function ButtonIcon(props: Iprops) {
             color="black"
             style={{ marginRight: 20 }}
           />
-          <Text style={textStyle}>{title}</Text>
+          <Text style={textStyle}>{name}</Text>
         </View>
       </Pressable>
     </>
