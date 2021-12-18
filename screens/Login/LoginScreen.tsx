@@ -126,7 +126,7 @@ export default function LoginRegister({
                   </Text>
                 </View>
                 <ButtonText
-                  title={"INGRESAR"}
+                  name={"INGRESAR"}
                   textStyle={textStyle.buttonTextBlack}
                   styles={
                     isValid ? buttonStyle.greenNoBorder : buttonStyle.grey
@@ -158,7 +158,7 @@ export default function LoginRegister({
                 ¿Querés entrar sin registrarte?
               </Text>
               <ButtonText
-                title={"DAR UNA VUELTA"}
+                name={"DAR UNA VUELTA"}
                 textStyle={textStyle.buttonTextBlack}
                 styles={buttonStyle.white}
                 onPress={handleOnPress}
