@@ -16,6 +16,7 @@ export const booksReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case booksActionsTypes.GET_BOOK_BY_ISBN:
             return {
+                ...state,
                 uploadBook: action.payload
             };
         default:
