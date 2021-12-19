@@ -4,7 +4,7 @@ import {
   View,
   Alert,
   ScrollView,
-  TextInput,
+  TextInput
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
@@ -37,21 +37,24 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
     state: ""
   };
 
-  const { control, reset, handleSubmit, watch, setValue, getValues, formState: { errors } } = useForm({
+  const { control, reset, register, handleSubmit, watch, setValue, getValues, formState: { errors } } = useForm({
     defaultValues,
+    reValidateMode: "onBlur",
     resolver: yupResolver(uploadBookValidationSchema)
   });
 
   const isValid = true;
   let isbn = watch('isbn')
 
+  console.log("BOOK FUERA", book)
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
+
   useEffect(() => {
 
-    console.log(isbn)
-
     if (isbn.length === 13) {
-
-      console.log(book)
 
       getBook(isbn)
 
@@ -62,11 +65,14 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
   }, [isbn])
 
 
+
   const getBook = async (isbn: any) => {
 
     try {
 
       await dispatch(getBookByIsbn(isbn));
+
+      console.log("BOOK AFTER GET BOOK", book)
 
       setValue('title', book.title)
       setValue('author', book.author)
@@ -74,6 +80,7 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
       setValue('category', book.category)
       setValue('language', book.language)
       setValue('state', "Usado")
+
 
     } catch (err) {
       console.log(err)
@@ -93,18 +100,22 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
         <View style={styles.formContainer}>
           <Controller
             control={control}
-            name={"isbn"}
+            rules={{ required: true }}
+
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 style={styles.inputText}
                 placeholder="ISBN"
-                onChangeText={(value: any) => onChange(value)}
-                onBlur={onBlur}              
-                />
+                onChangeText={onChange}
+                onChange={onChange}
+                onBlur={onBlur}
+              />
             )}
+            name="isbn"
           />
-          {errors.isbn && (
-            <Text style={styles.textError}>{errors.isbn}</Text>
+
+          {errors?.isbn?.message && (
+            <Text style={styles.textError}>{errors.isbn.message}</Text>
           )}
 
           <Controller
@@ -183,7 +194,7 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
 
           <Controller
             control={control}
-            name={"price"}
+            name="price"
             render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 style={styles.inputText}
@@ -194,8 +205,8 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
               />
             )}
           />
-          {errors.price && (
-            <Text style={styles.textError}>{errors.price}</Text>
+          {errors?.price?.message && (
+            <Text style={styles.textError}>{errors.price.message}</Text>
           )}
 
           <View style={styles.buttonContainer}>
@@ -219,7 +230,7 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
               styles={
                 isValid ? buttonStyle.greenNoBorder : buttonStyle.grey
               }
-              onPress={(value: any) => getBook('isbn')}
+              onPress={handleSubmit(onSubmit)}
               disabled={false}
             />
           </View>
