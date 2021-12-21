@@ -1,20 +1,23 @@
 export interface IBook {
   uploadBook: {
-    title: string,
-    author: string,
-    editorial: string,
-    category: string,
-    language: string
+    isbn: string;
+    title: string;
+    author: string;
+    category: string;
+    editorial: string;
+    language: string;
+    state: string;
+    price: string;
   }
 };
 
-export interface IUploadForm {
-  state: string;
-  language: string;
-  category: string;
-  editorial: string;
+export interface IBookForm {
+  isbn: string;
   title: string;
   author: string;
-  isbn: string;
+  category: string;
+  editorial: string;
+  language: string;
+  state: string;
   price: string;
 };
