@@ -13,28 +13,25 @@ import { styles } from "./uploadBookStyles";
 import { RootStackScreenProps } from "../../types";
 import uploadBookValidationSchema from "../../validations/uploadBookValidator";
 import { getBookByIsbn } from "../../actions/booksActions";
-import { IUploadForm } from "../../interfaces/bookInterfaces";
-import ButtonIcon from "../../components/Button/ButtonIcon";
-import InputForm from "../../components/Input/InputForm";
+import { IBookForm } from "../../interfaces/bookInterfaces";
 import textStyle from "../../components/Text/textStyles";
 import buttonStyle from "../../components/Button/buttonStyles";
 import ButtonText from "../../components/Button/ButtonText";
-import InputDisabled from "../../components/Input/InputDisabled";
 
-export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
+export default function UploadBookScreen({ navigation }: RootStackScreenProps<"Upload">) {
 
   const dispatch = useDispatch();
   const book = useSelector((state: any) => state.book.uploadBook)
 
-  const defaultValues: IUploadForm = {
+  const defaultValues: IBookForm = {
     isbn: "",
-    price: "",
-    author: "",
     title: "",
+    author: "",
     editorial: "",
     category: "",
     language: "",
-    state: ""
+    state: "",
+    price: ""
   };
 
   const { control, reset, register, handleSubmit, watch, setValue, getValues, formState: { errors } } = useForm({
@@ -46,33 +43,27 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
   const isValid = true;
   let isbn = watch('isbn')
 
-  console.log("BOOK FUERA", book)
-
   const onSubmit = (data: any) => {
-    console.log(data);
+    console.log("DATA", data);
+    navigation.navigate('UploadedBook')
   };
 
   useEffect(() => {
 
     if (isbn.length === 13) {
 
-      getBook(isbn)
+      dispatch(getBookByIsbn(isbn))
 
     } else {
       reset(defaultValues)
     }
 
+
   }, [isbn])
 
+  useEffect(() => {
 
-
-  const getBook = async (isbn: any) => {
-
-    try {
-
-      await dispatch(getBookByIsbn(isbn));
-
-      console.log("BOOK AFTER GET BOOK", book)
+    if (isbn.length === 13) {
 
       setValue('title', book.title)
       setValue('author', book.author)
@@ -81,12 +72,11 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
       setValue('language', book.language)
       setValue('state', "Usado")
 
-
-    } catch (err) {
-      console.log(err)
+    } else {
+      reset(defaultValues)
     }
 
-  }
+  }, [book])
 
   return (
     <ScrollView style={{ backgroundColor: "#FFF" }}>
@@ -210,15 +200,25 @@ export default function UploadBookScreen({ }: RootStackScreenProps<"Upload">) {
           )}
 
           <View style={styles.buttonContainer}>
-            <ButtonIcon
+            {/*             <ButtonIcon
               name={"SUBIR FOTO"}
               textStyle={textStyle.buttonTextBlack}
               styles={
                 isValid ? buttonStyle.lightGreen : buttonStyle.white
               }
-              onPress={() => Alert.alert("Subir Foto")}
+              onPress={(val: any) => getBook(val)}
               disabled={!isValid}
               icon={"camera"}
+            /> */}
+
+            <ButtonText
+              name={"BUSCAR LIBRO"}
+              textStyle={textStyle.buttonTextBlack}
+              styles={
+                isValid ? buttonStyle.greenNoBorder : buttonStyle.grey
+              }
+              onPress={() => Alert.alert("Hola")}
+              disabled={false}
             />
 
             {/*Este boton tiene que depender de un estado que

@@ -3,11 +3,14 @@ import booksActionsTypes from '../actions_types/booksActionsTypes';
 
 const initialState: IBook = {
     uploadBook: {
+        isbn: "",
         title: "",
         author: "",
         editorial: "",
         category: "",
-        language: ""
+        language: "",
+        state: "",
+        price: ""
     }
 };
 

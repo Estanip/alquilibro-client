@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Alert } from "react-native";
+import { useSelector } from "react-redux";
 
 import { Entypo } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
