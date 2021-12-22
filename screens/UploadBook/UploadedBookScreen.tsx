@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, Alert } from "react-native";
-import { useSelector } from "react-redux";
 
 import { Entypo } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
@@ -11,7 +10,9 @@ import ButtonText from "../../components/Button/ButtonText";
 import textStyle from "../../components/Text/textStyles";
 import buttonStyle from "../../components/Button/buttonStyles";
 
-export default function UploadedBookScreen() {
+export default function UploadedBookScreen({ route }):any {
+
+  let price = route.params.price;
 
   return (
     <>
@@ -35,7 +36,7 @@ export default function UploadedBookScreen() {
         <Text style={styles.offerText}>Ya estas ofrenciendo tu libro: </Text>
       </View>
 
-      <UploadedBookCard />
+      <UploadedBookCard price={price} />
 
       <View style={styles.buttonsContainer}>
         <ButtonText

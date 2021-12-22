@@ -4,11 +4,9 @@ import { useSelector } from "react-redux";
 
 import { Entypo } from '@expo/vector-icons';
 
-export default function UploadedBookCard() {
+export default function UploadedBookCard({price}):any {
 
     const book = useSelector((state: any) => state.book.uploadBook)
-
-    console.log(book)
 
     return (
         <View
@@ -30,7 +28,12 @@ export default function UploadedBookCard() {
             </Text>
             <Text
                 style={styles.textPrice}
-            >{"Precio por día\n$35"}</Text>
+            >{"Precio por día\n"}
+            </Text>
+            <Text
+                style={styles.textPrice}
+            >{price}
+            </Text>
             <Entypo name="edit" size={24} color="black" style={{ alignSelf: 'center', width: '10%', marginLeft: 10 }} onPress={() => Alert.alert("Edit Button")} />
 
         </View>
