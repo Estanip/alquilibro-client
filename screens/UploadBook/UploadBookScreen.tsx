@@ -18,7 +18,7 @@ import textStyle from "../../components/Text/textStyles";
 import buttonStyle from "../../components/Button/buttonStyles";
 import ButtonText from "../../components/Button/ButtonText";
 
-export default function UploadBookScreen({ navigation }: RootStackScreenProps<"Upload">) {
+export default function UploadBookScreen({ navigation: {navigate} }: RootStackScreenProps<"Upload">) {
 
   const dispatch = useDispatch();
   const book = useSelector((state: any) => state.book.uploadBook)
@@ -44,8 +44,7 @@ export default function UploadBookScreen({ navigation }: RootStackScreenProps<"U
   let isbn = watch('isbn')
 
   const onSubmit = (data: any) => {
-    console.log("DATA", data);
-    navigation.navigate('UploadedBook')
+    navigate('UploadedBook', { price: data.price})
   };
 
   useEffect(() => {
