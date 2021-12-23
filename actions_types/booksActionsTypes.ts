@@ -1,6 +1,6 @@
-import { IActions } from "../interfaces/actionsInterfaces";
+import { IBookActions } from "../interfaces/actionsInterfaces";
 
-const booksActionsTypes:IActions = {
+const booksActionsTypes:IBookActions = {
     GET_BOOK_BY_ISBN: "GET_BOOK_BY_ISBN"
 }
 
