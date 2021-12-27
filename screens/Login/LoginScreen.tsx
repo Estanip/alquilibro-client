@@ -7,6 +7,7 @@ import {
   Alert,
   Text,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { Formik } from "formik";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
@@ -15,6 +16,7 @@ import * as Google from 'expo-auth-session/providers/google';
 import { makeRedirectUri, ResponseType } from 'expo-auth-session';
 import { getAuth, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
 import initializeApp from "../../auth/auth";
+import { login } from "../../actions/userActions";
 
 import { RootStackScreenProps } from "../../types";
 import InputLogin from "../../components/Input/InputLogin";
@@ -31,6 +33,10 @@ export default function LoginRegister({
   navigation,
 }: RootStackScreenProps<any>) {
 
+  const dispatch = useDispatch();
+  const state = useSelector((state: any) => state.auth);
+
+  console.log(state);
 
   WebBrowser.maybeCompleteAuthSession();
 
@@ -51,7 +57,10 @@ export default function LoginRegister({
     }
   }, [response]);
 
-  const handleOnPress = () => {
+
+  const handleOnPress = (username:any, password:any) => {
+    console.log(username, password)
+    dispatch(login(username, password))
     navigation.replace("Main");
   };
 
