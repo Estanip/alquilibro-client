@@ -3,6 +3,7 @@ export interface IBookActions {
 };
 
 export interface IAuthActions {
-    LOGIN: string
+    LOGIN: string,
+    LOGOUT: string
 };
 

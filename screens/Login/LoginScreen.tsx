@@ -36,9 +36,12 @@ export default function LoginRegister({
   const dispatch = useDispatch();
   const state = useSelector((state: any) => state.auth);
 
-  console.log(state);
+  console.log("USUARIO EN LOGIN", state);
 
-  WebBrowser.maybeCompleteAuthSession();
+  
+  // GOGLE LOGIN
+
+WebBrowser.maybeCompleteAuthSession();
 
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest(
     {
@@ -58,10 +61,14 @@ export default function LoginRegister({
   }, [response]);
 
 
-  const handleOnPress = (username:any, password:any) => {
-    console.log(username, password)
-    dispatch(login(username, password))
-    navigation.replace("Main");
+  const handleOnPress = (values:any) => {
+    try {
+      let res = dispatch(login(values.username, values.password))
+      console.log("Respuesta", res)
+    } catch (err) {
+      console.log(err)
+    }
+
   };
 
   return (
@@ -85,7 +92,7 @@ export default function LoginRegister({
           <Formik
             validationSchema={loginValidatorSchema}
             initialValues={{ username: "", password: "" }}
-            onSubmit={handleOnPress}
+            onSubmit={(values:any) => {handleOnPress(values)}}
           >
             {({
               handleChange,
@@ -170,7 +177,7 @@ export default function LoginRegister({
                 name={"DAR UNA VUELTA"}
                 textStyle={textStyle.buttonTextBlack}
                 styles={buttonStyle.white}
-                onPress={handleOnPress}
+                onPress={() => navigation.replace('Main')}
                 disabled={false}
               />
             </View>

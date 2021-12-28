@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         width: '70%'
     },
     author: {
-        fontFamily: "Roboto",
+        fontFamily: "Arial",
         fontStyle: "normal",
         fontSize: 10,
         letterSpacing: 0.75,

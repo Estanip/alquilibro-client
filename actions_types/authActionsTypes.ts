@@ -1,7 +1,8 @@
 import { IAuthActions } from "../interfaces/actionsInterfaces";
 
 const authActionsTypes:IAuthActions = {
-    LOGIN: "LOGIN"
+    LOGIN: "LOGIN",
+    LOGOUT: "LOGOUT"
 };
 
 export default authActionsTypes;
