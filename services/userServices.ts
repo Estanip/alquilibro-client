@@ -4,15 +4,25 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 async function login(username: string, password: string) {
 
-    let user = await axios.post(`${localApi}/`, {
+    let res = await axios.post(`${localApi}/api/auth/`, {
         username, password
     });
 
-    console.log(user);
+    console.log("SERVICE", res.data)
 
-    AsyncStorage.setItem('user', JSON.stringify(user));
+    if(res.data.ok === true) {
 
-    return user;
+        let user = res.data;
+
+        AsyncStorage.setItem('user', JSON.stringify(user));
+
+        return res.data;
+
+    } {
+
+        return res.data;
+    }
+
 };
 
 function logout() {

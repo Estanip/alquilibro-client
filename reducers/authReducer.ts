@@ -1,7 +1,7 @@
 import { userActionsTypes } from "../actions_types/userActionsTypes";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-let user = JSON.parse(AsyncStorage.getItem('user'));
+let user:any = AsyncStorage.getItem('user');
 const initialState = user ? { loggedIn: true, user } : {};
 
 export function authentication(state = initialState, action: any) {
