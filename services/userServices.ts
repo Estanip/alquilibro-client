@@ -8,8 +8,6 @@ async function login(username: string, password: string) {
         username, password
     });
 
-    console.log("SERVICE", res.data)
-
     if(res.data.ok === true) {
 
         let user = res.data;

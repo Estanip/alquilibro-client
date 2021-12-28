@@ -1,18 +1,26 @@
-import { alertActionsTypes as Alerts } from '../actions_types/alertActionsTypes'
+import { alertActionsTypes as Alerts } from '../actions_types/alertActionsTypes';
 
-export function success(message:any) {
+export const alertActions = {
+    error,
+    success,
+    clear
+}
+
+function success(message: any) {
     return {
-        type: Alerts.SUCCESS, message
+        type: Alerts.SUCCESS,
+        message
     }
 }
 
-export function error(message:any) {
+function error(message: any) {
     return {
-        type: Alerts.ERROR, message
+        type: Alerts.ERROR,
+        message
     }
 }
 
-export function clear() {
+function clear() {
     return {
         type: Alerts.CLEAR
     }

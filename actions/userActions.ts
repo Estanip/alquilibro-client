@@ -1,34 +1,53 @@
-import { alertActionsTypes as Alerts } from "../actions_types/alertActionsTypes";
+import { alertActions } from "./alertActions";
 import { userActionsTypes } from "../actions_types/userActionsTypes";
 import userServices from "../services/userServices";
 
 export function login(username: string, password: string) {
 
-    return (dispatch: any) => {
-
-        console.log("USERACTIOn", "USER", username,"pas", password)
+    return async (dispatch: any) => {
 
         dispatch(request({ username }));
 
-        userServices.login(username, password)
-            .then(
-                (user: any) => {
-                    dispatch(success(user))
-                },
-                (error: any) => {
-                    dispatch(failure(error.toString()));
-/*                     dispatch(Alerts.ERROR(error.toString()))
- */                }
-            )
+        let res = await userServices.login(username, password);
+
+        if (res.ok === false) {
+            dispatch(failure(res.msg));
+            dispatch(alertActions.error(res.msg))
+        }
+        if (res.ok === true) {
+            dispatch(success(res.name))
+            dispatch(alertActions.success("Usuario logueado con exito"))
+        }
     }
 
-    function request(user: any) { return { type: userActionsTypes.LOGIN_REQUEST, user } }
-    function success(user: any) { return { type: userActionsTypes.LOGIN_SUCCESS, user } }
-    function failure(error: any) { return { type: userActionsTypes.LOGIN_FAILURE, error } }
+    function request(user: any) {
+        return {
+            type: userActionsTypes.LOGIN_REQUEST,
+            user
+        }
+    }
+
+    function success(user: any) {
+        return {
+            type: userActionsTypes.LOGIN_SUCCESS,
+            user
+        }
+    }
+
+    function failure(error: any) {
+        return {
+            type: userActionsTypes.LOGIN_FAILURE,
+            error
+        }
+    }
 
 }
 
 export function logout() {
+
     userServices.logout();
-    return { type: userActionsTypes.LOGOUT };
+    return {
+        type: userActionsTypes.LOGOUT
+    };
+
 }
