@@ -1,9 +1,9 @@
 import axios from "axios";
 import booksActionsTypes from "../actions_types/booksActionsTypes";
-import { deployApi,localApi } from "../constants/Apis";
+import { deployApi, localApi } from "../constants/Apis";
 
-export function getBookByIsbn(isbn:string) {
-    return async (dispatch:any) => {
+export function getBookByIsbn(isbn: string) {
+    return async (dispatch: any) => {
         try {
             const response = await axios.get(`${localApi}/api/books/${isbn}`);
             dispatch({

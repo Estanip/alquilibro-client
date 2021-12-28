@@ -15,7 +15,7 @@ import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
 import { makeRedirectUri, ResponseType } from 'expo-auth-session';
 import { getAuth, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
-import initializeApp from "../../auth/auth";
+import initializeApp from "../../auth/firebase";
 import { login } from "../../actions/userActions";
 
 import { RootStackScreenProps } from "../../types";
@@ -34,9 +34,8 @@ export default function LoginRegister({
 }: RootStackScreenProps<any>) {
 
   const dispatch = useDispatch();
-  const state = useSelector((state: any) => state.auth);
-
-  console.log("USUARIO EN LOGIN", state);
+  const user = useSelector((state: any) => state.auth);
+  const alert = useSelector((state: any) => state.alert);
 
   
   // GOGLE LOGIN
@@ -63,8 +62,10 @@ WebBrowser.maybeCompleteAuthSession();
 
   const handleOnPress = (values:any) => {
     try {
-      let res = dispatch(login(values.username, values.password))
-      console.log("Respuesta", res)
+      dispatch(login(values.username, values.password))
+      console.log("USUARIO EN LOGIN", user);
+      console.log("ALERT EN LOGIN", alert);
+
     } catch (err) {
       console.log(err)
     }
