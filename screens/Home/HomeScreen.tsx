@@ -8,11 +8,20 @@ import HomeCards from "../../components/Card/HomeCards";
 import SearchInputHome from "../../components/Input/SearchInputHome";
 import buttonStyle from "../../components/Button/buttonStyles";
 import ButtonText from "../../components/Button/ButtonText";
+import { useDispatch } from "react-redux";
+import { logout } from "../../actions/userActions";
 
 export default function Home({ navigation }: RootTabScreenProps<"Home">) {
   const handleOnClick = () => {
     navigation.navigate("Upload");
   };
+
+  const dispatch = useDispatch();
+
+  const notlog = () => {
+    dispatch(logout())
+    navigation.navigate('Login')
+  }
 
   return (
     <ScrollView style={{ backgroundColor: "#FFF" }}>
@@ -32,6 +41,13 @@ export default function Home({ navigation }: RootTabScreenProps<"Home">) {
             textStyle={textStyle.buttonTextBlack}
             styles={buttonStyle.white}
             onPress={handleOnClick}
+            disabled={false}
+          />
+                    <ButtonText
+            name={"CERRAR SESION"}
+            textStyle={textStyle.buttonTextBlack}
+            styles={buttonStyle.white}
+            onPress={notlog}
             disabled={false}
           />
         </View>

@@ -1,4 +1,4 @@
-import * as React from "react";
+import  React, {useEffect} from "react";
 import {
   View,
   ImageBackground,
@@ -26,6 +26,7 @@ import { styles } from "./loginStyles";
 import loginValidatorSchema from "../../validations/loginValidator";
 import buttonStyle from "../../components/Button/buttonStyles";
 
+
 const bgLibrary = require("../../assets/images/loginBackground.png")
 const logo = require("../../assets/images/alquilibro-icon.png");
 
@@ -37,10 +38,10 @@ export default function LoginRegister({
   const user = useSelector((state: any) => state.auth);
   const alert = useSelector((state: any) => state.alert);
 
-  
+
   // GOGLE LOGIN
 
-WebBrowser.maybeCompleteAuthSession();
+  WebBrowser.maybeCompleteAuthSession();
 
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest(
     {
@@ -48,7 +49,7 @@ WebBrowser.maybeCompleteAuthSession();
     },
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (response?.type === 'success') {
       initializeApp
       const { id_token } = response.params;
@@ -59,16 +60,20 @@ WebBrowser.maybeCompleteAuthSession();
     }
   }, [response]);
 
-
-  const handleOnPress = (values:any) => {
-    try {
-      dispatch(login(values.username, values.password))
-      console.log("USUARIO EN LOGIN", user);
-      console.log("ALERT EN LOGIN", alert);
-
-    } catch (err) {
-      console.log(err)
+  useEffect(() => {
+    
+    if (user?.loggedIn) {
+      navigation.navigate('Main')
     }
+
+    console.log("ALERT",alert)
+    console.log("USER", user)
+
+  }, [user, alert])
+
+  const handleOnPress = (values: any) => {
+  
+      dispatch(login(values.username, values.password))
 
   };
 
@@ -93,7 +98,7 @@ WebBrowser.maybeCompleteAuthSession();
           <Formik
             validationSchema={loginValidatorSchema}
             initialValues={{ username: "", password: "" }}
-            onSubmit={(values:any) => {handleOnPress(values)}}
+            onSubmit={(values: any) => { handleOnPress(values) }}
           >
             {({
               handleChange,
