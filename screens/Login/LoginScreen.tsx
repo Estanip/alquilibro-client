@@ -56,7 +56,7 @@ export default function LoginRegister({
       const auth = getAuth();
       const credential = GoogleAuthProvider.credential(id_token)
       signInWithCredential(auth, credential);
-      makeRedirectUri(navigation.replace('Main'))
+      makeRedirectUri()
     }
   }, [response]);
 
