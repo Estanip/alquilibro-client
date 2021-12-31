@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Alert, View, Image } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import { RootStackParamList } from '../types';
+import Toast from 'react-native-toast-message'
 
 // IMPORTAR BOTTOM NAVIGATOR
 import BottomTabNavigator from './BottomTabNav';
@@ -22,9 +23,16 @@ import AdvancedFilterScreen from '../screens/FilterSearch/AdvancedFilterScreen';
 
 export default function Navigation() {
   return (
-    <NavigationContainer>
-      <RootNavigator />
-    </NavigationContainer>
+    <>
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
+      <Toast
+        position='top'
+        topOffset={120}
+        visibilityTime={10000}
+      />
+    </>
   );
 }
 
@@ -35,7 +43,7 @@ function RootNavigator() {
 
   // TOP NAVBAR
   const navBar = {
-    headerLeft:  () => <Image source={require('../assets/images/adaptive-icon.png')} style={{ marginRight: 15, width: 50, height: 50 }} />,
+    headerLeft: () => <Image source={require('../assets/images/adaptive-icon.png')} style={{ marginRight: 15, width: 50, height: 50 }} />,
     headerRight: () => (
       <View style={{ display: 'flex', flexDirection: 'row', marginRight: 10 }}>
         <Icons name="notification" />
@@ -44,7 +52,7 @@ function RootNavigator() {
     headerStyle: {
       backgroundColor: '#7ECA9C'
     },
-    headerTintColor: '#fff', 
+    headerTintColor: '#fff',
     headerTitleStyle: {
       fontFamily: 'Roboto',
       fontWeight: 'bold',
@@ -56,14 +64,14 @@ function RootNavigator() {
   // STACK DE NAVEGACION
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Login" component={LoginScreen} options={{...navBar, title:"Alquilibro", headerRight: undefined}} />
-      <Stack.Screen name="Main" component={BottomTabNavigator} options={{...navBar, title: "Alquilibro"}} />
-      <Stack.Screen name="SearchResults" component={SearchResultScreen} options={{...navBar, title: "Titulo del Libro", headerLeft: undefined}}/>
-      <Stack.Screen name="AdvancedFilter" component={AdvancedFilterScreen} options={{...navBar, title: "Busqueda Avanzada", headerLeft: undefined}}/>
-      <Stack.Screen name="BookDetail" component={SelectedBookScreen} options={{...navBar, title: "Titulo del Libro", headerLeft: undefined}}/>
-      <Stack.Screen name="Upload" component={UploadBookScreen} options={{...navBar, title: "Subir Libro", headerLeft: undefined}}/>
-      <Stack.Screen name="UploadedBook" component={UploadedBookScreen} options={{...navBar, title: "Titulo del Libro", headerLeft: undefined}}/>
-      <Stack.Screen name="Recommended" component={RecommendedScreen} options={{...navBar, title: "Recomendados", headerLeft: undefined}}/>
+      <Stack.Screen name="Login" component={LoginScreen} options={{ ...navBar, title: "Alquilibro", headerRight: undefined }} />
+      <Stack.Screen name="Main" component={BottomTabNavigator} options={{ ...navBar, title: "Alquilibro" }} />
+      <Stack.Screen name="SearchResults" component={SearchResultScreen} options={{ ...navBar, title: "Titulo del Libro", headerLeft: undefined }} />
+      <Stack.Screen name="AdvancedFilter" component={AdvancedFilterScreen} options={{ ...navBar, title: "Busqueda Avanzada", headerLeft: undefined }} />
+      <Stack.Screen name="BookDetail" component={SelectedBookScreen} options={{ ...navBar, title: "Titulo del Libro", headerLeft: undefined }} />
+      <Stack.Screen name="Upload" component={UploadBookScreen} options={{ ...navBar, title: "Subir Libro", headerLeft: undefined }} />
+      <Stack.Screen name="UploadedBook" component={UploadedBookScreen} options={{ ...navBar, title: "Titulo del Libro", headerLeft: undefined }} />
+      <Stack.Screen name="Recommended" component={RecommendedScreen} options={{ ...navBar, title: "Recomendados", headerLeft: undefined }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />

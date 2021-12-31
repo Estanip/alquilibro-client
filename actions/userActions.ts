@@ -7,7 +7,7 @@ export function login(username: string, password: string) {
 
     return async (dispatch: any) => {
 
- /*        dispatch(request({ username })); */
+        /*        dispatch(request({ username })); */
 
         let res = await userServices.login(username, password);
 
@@ -17,16 +17,16 @@ export function login(username: string, password: string) {
         }
         if (res.ok === true) {
             dispatch(success(res.name))
-            dispatch(alertActions.success("Usuario logueado con exito"))            
+            dispatch(alertActions.success("Usuario logueado con exito"))
         }
     }
 
-/*     function request(user: any) {
-        return {
-            type: userActionsTypes.LOGIN_REQUEST,
-            user
-        }
-    } */
+    /*     function request(user: any) {
+            return {
+                type: userActionsTypes.LOGIN_REQUEST,
+                user
+            }
+        } */
 
     function success(user: any) {
         return {
@@ -42,7 +42,7 @@ export function login(username: string, password: string) {
         }
     }
 
-}
+};
 
 export function logout() {
 
@@ -51,4 +51,4 @@ export function logout() {
         type: userActionsTypes.LOGOUT
     };
 
-}
+};
