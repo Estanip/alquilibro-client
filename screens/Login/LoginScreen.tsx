@@ -1,4 +1,4 @@
-import  React, {useEffect} from "react";
+import  React, {useEffect, useState} from "react";
 import {
   View,
   ImageBackground,
@@ -8,8 +8,9 @@ import {
   Text,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { Formik } from "formik";
+import { Formik, FormikState } from "formik";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import Toast from 'react-native-toast-message';
 
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
@@ -38,7 +39,6 @@ export default function LoginRegister({
   const user = useSelector((state: any) => state.auth);
   const alert = useSelector((state: any) => state.alert);
 
-
   // GOGLE LOGIN
 
   WebBrowser.maybeCompleteAuthSession();
@@ -64,17 +64,25 @@ export default function LoginRegister({
     
     if (user?.loggedIn) {
       navigation.navigate('Main')
+      Toast.show({
+        type: 'success',
+        text1: 'Hola!',
+        text2: 'Bienvenido a Alquilibro 👋'
+        })
+    } 
+    
+    if(!user?.loggedIn && alert?.message){
+      Toast.show({
+        type: 'error',
+        text1: 'Error de Logueo',
+        text2: alert.message
+      })
     }
 
-    console.log("ALERT",alert)
-    console.log("USER", user)
-
-  }, [user, alert])
+  }, [user])
 
   const handleOnPress = (values: any) => {
-  
       dispatch(login(values.username, values.password))
-
   };
 
   return (
@@ -92,7 +100,6 @@ export default function LoginRegister({
           </Text>
         </Text>
       </ImageBackground>
-
       <View style={styles.loginArea}>
         <ScrollView contentContainerStyle={styles.scroll}>
           <Formik
@@ -104,6 +111,8 @@ export default function LoginRegister({
               handleChange,
               handleBlur,
               handleSubmit,
+              resetForm,
+              setSubmitting,
               values,
               errors,
               touched,

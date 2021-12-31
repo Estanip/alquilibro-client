@@ -1,5 +1,10 @@
 import * as React from "react";
 import { View, Text, ScrollView } from "react-native";
+import { useDispatch } from "react-redux";
+import { logout } from "../../actions/userActions";
+import { alertActions } from '../../actions/alertActions';
+import Toast from 'react-native-toast-message';
+
 import { RootTabScreenProps } from "../../types";
 
 import textStyle from "../../components/Text/textStyles";
@@ -8,8 +13,6 @@ import HomeCards from "../../components/Card/HomeCards";
 import SearchInputHome from "../../components/Input/SearchInputHome";
 import buttonStyle from "../../components/Button/buttonStyles";
 import ButtonText from "../../components/Button/ButtonText";
-import { useDispatch } from "react-redux";
-import { logout } from "../../actions/userActions";
 
 export default function Home({ navigation }: RootTabScreenProps<"Home">) {
   const handleOnClick = () => {
@@ -19,6 +22,7 @@ export default function Home({ navigation }: RootTabScreenProps<"Home">) {
   const dispatch = useDispatch();
 
   const notlog = () => {
+    dispatch(alertActions.clear())
     dispatch(logout())
     navigation.navigate('Login')
   }
@@ -43,7 +47,7 @@ export default function Home({ navigation }: RootTabScreenProps<"Home">) {
             onPress={handleOnClick}
             disabled={false}
           />
-                    <ButtonText
+          <ButtonText
             name={"CERRAR SESION"}
             textStyle={textStyle.buttonTextBlack}
             styles={buttonStyle.white}
