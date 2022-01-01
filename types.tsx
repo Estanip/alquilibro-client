@@ -14,6 +14,7 @@ declare global {
 }
 
 export type RootStackParamList = {
+  Register: undefined;
   Login:  undefined;
   Modal: undefined;
   NotFound: undefined;

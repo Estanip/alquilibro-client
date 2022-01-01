@@ -8,7 +8,7 @@ async function login(username: string, password: string) {
         username, password
     });
 
-    if(res.data.ok === true) {
+    if (res.data.ok === true) {
 
         let user = res.data;
 
@@ -23,11 +23,21 @@ async function login(username: string, password: string) {
 
 };
 
+async function register(username: string, password: string) {
+
+    let res = await axios.post(`${localApi}/api/auth/new`, {
+        username,
+        password
+    });
+
+    return res.data;
+}
+
 function logout() {
     // remove user from Local Storage
     AsyncStorage.removeItem('user');
 };
 
-const userServices = { login, logout };
+const userServices = { login, logout, register };
 
 export default userServices;

@@ -20,6 +20,7 @@ import SelectedBookScreen from '../screens/Search/SelectedBookScreen';
 import UploadedBookScreen from '../screens/UploadBook/UploadedBookScreen';
 import UploadBookScreen from '../screens/UploadBook/UploadBookScreen';
 import AdvancedFilterScreen from '../screens/FilterSearch/AdvancedFilterScreen';
+import RegisterScreen from '../screens/Register/RegisterScreen';
 
 export default function Navigation() {
   return (
@@ -30,7 +31,7 @@ export default function Navigation() {
       <Toast
         position='top'
         topOffset={120}
-        visibilityTime={10000}
+        visibilityTime={3000}
       />
     </>
   );
@@ -64,6 +65,7 @@ function RootNavigator() {
   // STACK DE NAVEGACION
   return (
     <Stack.Navigator>
+      <Stack.Screen name="Register" component={RegisterScreen} options={{ ...navBar, title: "Alquilibro", headerRight: undefined }} />
       <Stack.Screen name="Login" component={LoginScreen} options={{ ...navBar, title: "Alquilibro", headerRight: undefined }} />
       <Stack.Screen name="Main" component={BottomTabNavigator} options={{ ...navBar, title: "Alquilibro" }} />
       <Stack.Screen name="SearchResults" component={SearchResultScreen} options={{ ...navBar, title: "Titulo del Libro", headerLeft: undefined }} />
