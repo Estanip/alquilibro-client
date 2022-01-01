@@ -1,4 +1,4 @@
-import  React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   ImageBackground,
@@ -24,7 +24,7 @@ import InputLogin from "../../components/Input/InputLogin";
 import ButtonText from "../../components/Button/ButtonText";
 import textStyle from "../../components/Text/textStyles";
 import { styles } from "./loginStyles";
-import loginValidatorSchema from "../../validations/loginValidator";
+import userValidatorSchema from "../../validations/userValidator";
 import buttonStyle from "../../components/Button/buttonStyles";
 
 
@@ -61,28 +61,30 @@ export default function LoginRegister({
   }, [response]);
 
   useEffect(() => {
-    
-    if (user?.loggedIn) {
-      navigation.navigate('Main')
-      Toast.show({
-        type: 'success',
-        text1: 'Hola!',
-        text2: 'Bienvenido a Alquilibro 👋'
+
+
+      if (user?.loggedIn) {
+        Toast.show({
+          type: 'success',
+          text1: 'Hola!',
+          text2: 'Bienvenido a Alquilibro 👋'
         })
-    } 
-    
-    if(!user?.loggedIn && alert?.message){
-      Toast.show({
-        type: 'error',
-        text1: 'Error de Logueo',
-        text2: alert.message
-      })
-    }
+        navigation.navigate('Main')
+
+      }
+
+      if (!user?.loggedIn && alert?.message && alert?.type === 'alert-danger') {
+        Toast.show({
+          type: 'error',
+          text1: 'Error de Registro',
+          text2: alert.message
+        })
+      }
 
   }, [user])
 
   const handleOnPress = (values: any) => {
-      dispatch(login(values.username, values.password))
+    dispatch(login(values.username, values.password))
   };
 
   return (
@@ -100,10 +102,13 @@ export default function LoginRegister({
           </Text>
         </Text>
       </ImageBackground>
+
       <View style={styles.loginArea}>
+
         <ScrollView contentContainerStyle={styles.scroll}>
+
           <Formik
-            validationSchema={loginValidatorSchema}
+            validationSchema={userValidatorSchema}
             initialValues={{ username: "", password: "" }}
             onSubmit={(values: any) => { handleOnPress(values) }}
           >
@@ -119,6 +124,7 @@ export default function LoginRegister({
               isValid,
             }) => (
               <View style={styles.formik}>
+
                 <View>
                   <InputLogin
                     label={"Usuario"}
@@ -144,6 +150,7 @@ export default function LoginRegister({
                   {errors.password && touched.password && (
                     <Text style={styles.error}>{errors.password}</Text>
                   )}
+
                   <Text style={{ paddingLeft: 15 }}>
                     <Text style={styles.text}>¿Ovidaste tu contraseña? </Text>
                     <Text
@@ -156,6 +163,7 @@ export default function LoginRegister({
                     </Text>
                   </Text>
                 </View>
+
                 <ButtonText
                   name={"INGRESAR"}
                   textStyle={textStyle.buttonTextBlack}
@@ -165,11 +173,16 @@ export default function LoginRegister({
                   onPress={handleSubmit}
                   disabled={!isValid}
                 />
+
               </View>
             )}
           </Formik>
+
           <View style={styles.registerArea}>
-            <Text style={styles.text}>¿No tenés cuenta? ¡Registrate!</Text>
+            <Text
+              style={styles.text}
+              onPress={() => navigation.navigate('Register')}
+            >¿No tenés cuenta? ¡Registrate!</Text>
             <View style={styles.iconsLogin}>
               <MaterialIcons name="facebook" size={24} color="black" />
               <Ionicons
