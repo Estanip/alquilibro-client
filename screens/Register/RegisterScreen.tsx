@@ -28,7 +28,7 @@ import InputRegister from "../../components/Input/InputRegister";
 import ButtonText from "../../components/Button/ButtonText";
 import textStyle from "../../components/Text/textStyles";
 import buttonStyle from "../../components/Button/buttonStyles";
-import { localApi } from "../../constants/Apis";
+import { localApi, deployApi } from "../../constants/Apis";
 
 // STYLES
 import { styles } from "./registerStyles";
@@ -102,7 +102,7 @@ export default function RegisterScreen({
     // Assume "photo" is the name of the form field the server expects
     formData.append('image', { uri: localUri, name: filename, type });
 
-    let dataObj = await axios.post(`${localApi}/api/users/upload-image`, formData);
+    let dataObj = await axios.post(`${deployApi}/api/users/upload-image`, formData);
 
     let imgUrl = dataObj.data.data.url
 
