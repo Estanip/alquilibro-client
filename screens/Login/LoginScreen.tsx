@@ -1,39 +1,64 @@
+// UTILITIES & LIBRARIES
 import React, { useEffect, useState } from "react";
 import {
   View,
   ImageBackground,
   Image,
   ScrollView,
-  Alert,
   Text,
 } from "react-native";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { Formik, FormikState } from "formik";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import * as ImagePicker from 'expo-image-picker';
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
 import Toast from 'react-native-toast-message';
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
+// ACTIONS
+import { login } from "../../actions/userActions";
+import { alertActions } from "../../actions/alertActions";
+
+// TYPES, INTERFACES & VALIDATORS
+import { RootStackScreenProps } from "../../types";
+import { IUserAuth } from "../../interfaces/userInterfaces";
+import userValidatorSchema from "../../validations/userValidator";
+
+// COMPONENTS
+import InputRegister from "../../components/Input/InputRegister";
+import ButtonText from "../../components/Button/ButtonText";
+import textStyle from "../../components/Text/textStyles";
+import buttonStyle from "../../components/Button/buttonStyles";
+import InputLogin from "../../components/Input/InputLogin";
+
+// STYLES
+import { styles } from "./loginStyles";
+
+// FIREBASE
+import { getAuth, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
+import initializeApp from "../../auth/firebase";
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
 import { makeRedirectUri, ResponseType } from 'expo-auth-session';
-import { getAuth, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
-import initializeApp from "../../auth/firebase";
-import { login } from "../../actions/userActions";
 
-import { RootStackScreenProps } from "../../types";
-import InputLogin from "../../components/Input/InputLogin";
-import ButtonText from "../../components/Button/ButtonText";
-import textStyle from "../../components/Text/textStyles";
-import { styles } from "./loginStyles";
-import userValidatorSchema from "../../validations/userValidator";
-import buttonStyle from "../../components/Button/buttonStyles";
-
-
+// IMAGES
 const bgLibrary = require("../../assets/images/loginBackground.png")
 const logo = require("../../assets/images/alquilibro-icon.png");
 
 export default function LoginRegister({
   navigation,
 }: RootStackScreenProps<any>) {
+
+  const defaultValues: IUserAuth = {
+    username: "",
+    password: ""
+  };
+
+  // REACT HOOK FORM
+  const { control, reset, handleSubmit, formState: { errors } } = useForm({
+    defaultValues,
+    resolver: yupResolver(userValidatorSchema)
+  });
 
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.auth);
@@ -62,129 +87,121 @@ export default function LoginRegister({
 
   useEffect(() => {
 
+    if (user?.loggedIn) {
+      Toast.show({
+        type: 'success',
+        text1: 'Hola!',
+        text2: 'Bienvenido a Alquilibro 👋'
+      })
+      navigation.navigate('Main')
+    }
 
-      if (user?.loggedIn) {
-        Toast.show({
-          type: 'success',
-          text1: 'Hola!',
-          text2: 'Bienvenido a Alquilibro 👋'
-        })
-        navigation.navigate('Main')
+    if (!user?.loggedIn && alert?.message && alert?.type === 'alert-danger') {
+      Toast.show({
+        type: 'error',
+        text1: 'Error de Registro',
+        text2: alert.message
+      })
+    }
 
-      }
-
-      if (!user?.loggedIn && alert?.message && alert?.type === 'alert-danger') {
-        Toast.show({
-          type: 'error',
-          text1: 'Error de Registro',
-          text2: alert.message
-        })
-      }
+    return () => {
+      dispatch(alertActions.clear())
+      reset(defaultValues);
+    }
 
   }, [user])
 
-  const handleOnPress = (values: any) => {
-    dispatch(login(values.username, values.password))
+  const onSubmit = (data: any) => {
+    dispatch(login(data.username, data.password))
   };
 
+  // BUTTON CONDITION
+  const isValid: boolean = false;
+
   return (
-    <View style={styles.screen}>
+    <View style={styles.logScreen}>
       <ImageBackground
         source={bgLibrary}
         resizeMode="cover"
-        style={styles.bgImage}
+        style={styles.logBgImage}
       >
-        <Image source={logo} style={styles.image} />
-        <Text style={styles.textContainer}>
-          <Text style={styles.title}>¡HOLA, ya estás en ALQUILIBRO!</Text>
-          <Text style={styles.subTitle}>
+        <Image source={logo} style={styles.logImage} />
+        <Text style={styles.logTextContainer}>
+          <Text style={styles.logTitle}>¡HOLA, ya estás en ALQUILIBRO!</Text>
+          <Text style={styles.logSubTitle}>
             {"\nTu app para alquilar libros en papel."}
           </Text>
         </Text>
       </ImageBackground>
 
-      <View style={styles.loginArea}>
+      <View style={styles.logArea}>
 
-        <ScrollView contentContainerStyle={styles.scroll}>
+        <ScrollView contentContainerStyle={styles.logScroll}>
 
-          <Formik
-            validationSchema={userValidatorSchema}
-            initialValues={{ username: "", password: "" }}
-            onSubmit={(values: any) => { handleOnPress(values) }}
-          >
-            {({
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              resetForm,
-              setSubmitting,
-              values,
-              errors,
-              touched,
-              isValid,
-            }) => (
-              <View style={styles.formik}>
+          <View style={styles.logForm}>
 
-                <View>
-                  <InputLogin
-                    label={"Usuario"}
-                    name={"username"}
-                    placeHolder={"Ingresar usuario"}
-                    icon={false}
-                    handleChange={handleChange}
-                    handleBlur={handleBlur}
-                    value={values.username}
-                  />
-                  {errors.username && touched.username && (
-                    <Text style={styles.error}>{errors.username}</Text>
-                  )}
-                  <InputLogin
-                    label={"Contraseña"}
-                    name={"password"}
-                    placeHolder={"Ingresar contraseña"}
-                    icon={true}
-                    handleChange={handleChange}
-                    handleBlur={handleBlur}
-                    value={values.password}
-                  />
-                  {errors.password && touched.password && (
-                    <Text style={styles.error}>{errors.password}</Text>
-                  )}
-
-                  <Text style={{ paddingLeft: 15 }}>
-                    <Text style={styles.text}>¿Ovidaste tu contraseña? </Text>
-                    <Text
-                      style={styles.text}
-                      onPress={() => {
-                        Alert.alert("Recuperar pass");
-                      }}
-                    >
-                      Hacé click acá.
-                    </Text>
-                  </Text>
-                </View>
-
-                <ButtonText
-                  name={"INGRESAR"}
-                  textStyle={textStyle.buttonTextBlack}
-                  styles={
-                    isValid ? buttonStyle.greenNoBorder : buttonStyle.grey
-                  }
-                  onPress={handleSubmit}
-                  disabled={!isValid}
+            <Controller
+              control={control}
+              name="username"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputRegister
+                  label={"Usuario"}
+                  name={"usuario"}
+                  placeHolder={"Ingresar usuario"}
+                  icon={false}
+                  handleChange={onChange}
+                  handleBlur={onBlur}
+                  value={value}
                 />
+              )}
+            />
 
-              </View>
+            {errors?.username?.message && (
+              <Text style={styles.logError}>{errors.username.message}</Text>
             )}
-          </Formik>
 
-          <View style={styles.registerArea}>
-            <Text
-              style={styles.text}
-              onPress={() => navigation.navigate('Register')}
-            >¿No tenés cuenta? ¡Registrate!</Text>
-            <View style={styles.iconsLogin}>
-              <MaterialIcons name="facebook" size={24} color="black" />
+            <Controller
+              control={control}
+              name="password"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputRegister
+                  label={"Contraseña"}
+                  name={"password"}
+                  placeHolder={"Ingresar contraseña"}
+                  icon={true}
+                  handleChange={onChange}
+                  handleBlur={onBlur}
+                  value={value}
+                />
+              )}
+            />
+            {errors?.password?.message && (
+              <Text style={styles.logError}>{errors.password.message}</Text>
+            )}
+
+            <View
+              style={styles.logButtons}
+            >
+              <ButtonText
+                name={"INGRESAR"}
+                textStyle={textStyle.buttonTextBlack}
+                onPress={handleSubmit(onSubmit)}
+                disabled={isValid}
+                styles={buttonStyle.greenBorder}
+              />
+
+              <ButtonText
+                name={"NO TENGO CUENTA"}
+                textStyle={textStyle.buttonTextBlack}
+                onPress={() => navigation.navigate('Register')}
+                disabled={false}
+                styles={buttonStyle.lightGreen}
+              />
+            </View>
+
+
+
+{/*            <View style={styles.iconsLogin}>
               <Ionicons
                 name="logo-google"
                 size={22}
@@ -195,10 +212,10 @@ export default function LoginRegister({
                   promptAsync();
                 }}
               />
-            </View>
+            </View> */}
 
-            <View style={styles.visitArea}>
-              <Text style={styles.visitText}>
+            <View style={styles.logVisitArea}>
+              <Text style={styles.logVisitText}>
                 ¿Querés entrar sin registrarte?
               </Text>
               <ButtonText
@@ -209,7 +226,9 @@ export default function LoginRegister({
                 disabled={false}
               />
             </View>
+
           </View>
+
         </ScrollView>
       </View>
     </View>

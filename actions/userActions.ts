@@ -52,11 +52,11 @@ export function logout() {
 
 };
 
-export function createUser(username: string, password:string) {
+export function createUser(username: string, password:string, image: string) {
 
     return async (dispatch:any) => {
 
-        let res = await userServices.register(username, password);
+        let res = await userServices.register(username, password, image);
 
         if (res.ok === false) {
             dispatch(failure(res.msg));

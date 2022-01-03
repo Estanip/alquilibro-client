@@ -1,34 +1,34 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    screen: {
+    logScreen: {
         backgroundColor: "#ffffff",
         flex: 1,
     },
-    scroll: {
+    logScroll: {
         flexGrow: 1,
         justifyContent: "space-between",
         alignItems: "center",
     },
-    bgImage: {
-        flex: 3,
+    logBgImage: {
+        flex: 2,
         alignItems: "center",
         justifyContent: "space-evenly",
     },
-    image: {
+    logImage: {
         minWidth: 84,
         minHeight: 84,
         maxWidth: 94,
         maxHeight: 94,
     },
-    textContainer: {
+    logTextContainer: {
         height: "auto",
         width: "100%",
         textAlign: "center",
         justifyContent: "center",
         backgroundColor: "transparent",
     },
-    title: {
+    logTitle: {
         fontFamily: "Roboto",
         fontStyle: "normal",
         fontWeight: "700",
@@ -37,13 +37,13 @@ export const styles = StyleSheet.create({
         letterSpacing: 0.15,
         color: "#1C1427",
     },
-    error: {
+    logError: {
         fontFamily: "Roboto",
         fontStyle: "normal",
         fontWeight: "400",
         color: "#FF0000",
     },
-    subTitle: {
+    logSubTitle: {
         fontFamily: "Roboto",
         fontStyle: "normal",
         fontWeight: "500",
@@ -52,29 +52,29 @@ export const styles = StyleSheet.create({
         letterSpacing: 0.15,
         color: "#1C1427",
     },
-    loginArea: {
+    logArea: {
         flex: 5,
-        width: "100%",
-        height: "100%",
-        alignItems: "center",
-        paddingTop: 5,
-        paddingBottom: 15,
-        paddingHorizontal: 10,
-    },
-    formik: {
-        flex: 2,
-        justifyContent: "space-evenly",
-        alignItems: "center"
-    },
-    registerArea: {
-        flex: 1,
         textAlign: "center",
         alignItems: "center",
-        justifyContent: "space-evenly",
+        justifyContent: "space-evenly"
     },
-    visitArea: {
+    logForm: {
+        flex: 1,
         alignItems: "center",
-        justifyContent: "center"
+        margin: 20
+    },
+    logText: {
+        fontWeight: "400",
+        fontSize: 12,
+        lineHeight: 14.06,
+        letterSpacing: 0.6,
+        color: "#1C1427",
+    },
+    logButtons: {
+        height: '25%',
+        marginTop: '5%',
+        alignItems: "center",
+        justifyContent: "space-evenly"
     },
     text: {
         fontWeight: "400",
@@ -89,8 +89,14 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         width: 100,
     },
-    visitText: {
+    logVisitArea: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    logVisitText: {
         fontWeight: "bold",
+        marginBottom: '3%',
         fontSize: 14,
         lineHeight: 18.75,
         letterSpacing: 0.5,

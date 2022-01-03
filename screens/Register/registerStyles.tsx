@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
         color: "#1C1427",
     },
     regArea: {
-        flex: 3,
+        flex: 5,
         textAlign: "center",
         alignItems: "center",
         justifyContent: "space-evenly",
@@ -71,7 +71,14 @@ export const styles = StyleSheet.create({
         color: "#1C1427",
     },
     regButtons: {
+        height: '25%',
         marginTop: '5%',
+        alignItems: "center",
+        justifyContent: "space-evenly"
+    },
+    regUploadImg: {
+        marginTop: '5%',
+        marginBottom: '4%',
         alignItems: "center",
     }
 });

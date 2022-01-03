@@ -23,11 +23,12 @@ async function login(username: string, password: string) {
 
 };
 
-async function register(username: string, password: string) {
+async function register(username: string, password: string, image: string) {
 
     let res = await axios.post(`${localApi}/api/auth/new`, {
         username,
-        password
+        password,
+        image
     });
 
     return res.data;
