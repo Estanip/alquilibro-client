@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 async function login(username: string, password: string) {
 
-    let res = await axios.post(`${localApi}/api/auth/`, {
+    let res = await axios.post(`${deployApi}/api/auth/`, {
         username, password
     });
 
@@ -25,7 +25,7 @@ async function login(username: string, password: string) {
 
 async function register(username: string, password: string, image: string) {
 
-    let res = await axios.post(`${localApi}/api/auth/new`, {
+    let res = await axios.post(`${deployApi}/api/auth/new`, {
         username,
         password,
         image
