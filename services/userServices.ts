@@ -4,9 +4,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 async function login(username: string, password: string) {
 
-    let res = await axios.post(`${deployApi}/api/auth/`, {
+    let res = await axios.post(`${deployApi}/api/auth`, {
         username, password
     });
+
+    console.log("ENTRO AL SERVICE", res.data)
 
     if (res.data.ok === true) {
 
@@ -30,6 +32,9 @@ async function register(username: string, password: string, image: string) {
         password,
         image
     });
+
+    console.log("ENTRO AL SERVICE", res.data)
+
 
     return res.data;
 }

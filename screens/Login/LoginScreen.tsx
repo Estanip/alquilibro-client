@@ -87,6 +87,8 @@ export default function LoginRegister({
 
   useEffect(() => {
 
+    console.log("USER", user)
+
     if (user?.loggedIn) {
       Toast.show({
         type: 'success',
@@ -107,7 +109,7 @@ export default function LoginRegister({
     return () => {
       dispatch(alertActions.clear())
       reset(defaultValues);
-    }
+    } 
 
   }, [user])
 

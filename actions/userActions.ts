@@ -10,6 +10,9 @@ export function login(username: string, password: string) {
 
         let res = await userServices.login(username, password);
 
+        console.log("ENTRO AL ACTION", res)
+
+
         if (res.ok === false) {
             dispatch(failure(res.msg));
             dispatch(alertActions.error(res.msg))
